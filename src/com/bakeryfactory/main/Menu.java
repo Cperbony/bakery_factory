@@ -253,7 +253,7 @@ public class Menu implements MDIController, LoginController {
         //configura os botões da barra de ferramentas
         mdi.addButtonToToolBar("condominio.png", "Cadastro de Condomínios");
         mdi.addButtonToToolBar("fornecedor.png", "Cadastro de Fornecedores");
-        mdi.addButtonToToolBar("banco.png", "Cadastro de Bancos");
+        mdi.addButtonToToolBar("ingredientes.png", "Cadastro de Ingredientes");
         mdi.addButtonToToolBar("inquilino.png", "Cadastro de Inquilinos");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
@@ -312,7 +312,7 @@ public class Menu implements MDIController, LoginController {
 
         ApplicationFunction n11 = new ApplicationFunction("Condomínios", "condominio", null, "getCondominio");
         ApplicationFunction n12 = new ApplicationFunction("Inquilinos", "inquilino", null, "getInquilino");
-        ApplicationFunction n13 = new ApplicationFunction("Bancos", "banco", null, "getBanco");
+        ApplicationFunction n13 = new ApplicationFunction("Ingredientes", "ingredientes", null, "getIngredientes");
         ApplicationFunction n14 = new ApplicationFunction("Fornecedores", "fornecedor", null, "getFornecedor");
         ApplicationFunction n15 = new ApplicationFunction(true);
         ApplicationFunction n16 = new ApplicationFunction("Centro de Custo", "centro_custo", null, "getCentroCusto");
