@@ -3,22 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bakeryfactory.Controller;
+package com.bakeryfactory.view;
 
+import com.bakeryfactory.view.Ingredientes;
+import java.sql.Connection;
+import org.openswing.swing.client.DeleteButton;
+import org.openswing.swing.client.EditButton;
+import org.openswing.swing.client.SaveButton;
+import org.openswing.swing.form.client.Form;
+import org.openswing.swing.form.client.FormController;
 import org.openswing.swing.mdi.client.InternalFrame;
 
 /**
  *
  * @author Claudinei Aparecido Perboni
  */
-public class TempDetalheController extends InternalFrame {
+public class IngredienteDetalhe extends InternalFrame {
+    
+    private Connection conn = null;
 
-    /**
-     * Creates new form IngredienteDetalhe
-     */
-    public TempDetalheController() {
-        initComponents();
+    public IngredienteDetalhe(Connection conn, FormController dataController) {
+        try {
+            this.conn = conn;
+             initComponents();
+             formIngredientes.setFormController(dataController);
+             setSize(590,440);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+    
+    public Form getForm1(){
+        return formIngredientes;
+        
+    }
+    
+    public SaveButton getSaveButton() {
+        return saveButton1;
+    }
+
+    public DeleteButton getDeleteButton() {
+        return deleteButton1;
+    }
+
+    public EditButton getEditButton() {
+        return editButton1;
+    }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,13 +262,13 @@ public class TempDetalheController extends InternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TempDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngredienteDetalhe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TempDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngredienteDetalhe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TempDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngredienteDetalhe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TempDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngredienteDetalhe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -245,7 +278,7 @@ public class TempDetalheController extends InternalFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TempDetalheController().setVisible(true);
+                //new IngredienteDetalhe().setVisible(true);
             }
         });
     }
