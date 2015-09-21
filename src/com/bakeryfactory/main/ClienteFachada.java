@@ -6,7 +6,7 @@
 package com.bakeryfactory.main;
 
 import com.bakeryfactory.Controller.IngredientesController;
-import com.bakeryfactory.view.IngredientesPanificadora;
+import com.bakeryfactory.view.Ingredientes;
 import java.sql.Connection;
 import org.openswing.swing.mdi.client.ClientFacade;
 import org.openswing.swing.mdi.client.InternalFrame;

@@ -14,14 +14,14 @@ import org.openswing.swing.mdi.client.InternalFrame;
  *
  * @author Claudinei Aparecido Perboni
  */
-public class IngredientesPanificadora extends InternalFrame {
+public class Ingredientes extends InternalFrame {
 
     private Connection conn = null;
 
     /**
      * Creates new form Ingredientes Panificadora
      */
-    public IngredientesPanificadora(Connection conn, IngredientesController ingredController) {
+    public Ingredientes(Connection conn, IngredientesController ingredController) {
         this.conn = conn;
         try {
             initComponents();
@@ -61,21 +61,21 @@ public class IngredientesPanificadora extends InternalFrame {
         importButtonIngred = new org.openswing.swing.client.ImportButton();
         navigatorBarIngred = new org.openswing.swing.client.NavigatorBar();
         gridControlIngred = new org.openswing.swing.client.GridControl();
-        dateDataIngred = new org.openswing.swing.table.columns.client.DateColumn();
-        integerCodIngred = new org.openswing.swing.table.columns.client.IntegerColumn();
-        textNomeIngred = new org.openswing.swing.table.columns.client.TextColumn();
-        textTipoIngred = new org.openswing.swing.table.columns.client.TextColumn();
-        decimalPesoIngred = new org.openswing.swing.table.columns.client.DecimalColumn();
-        decimalUnidadeIngred = new org.openswing.swing.table.columns.client.DecimalColumn();
-        decimalValorIngred = new org.openswing.swing.table.columns.client.DecimalColumn();
+        dateData_Ingred = new org.openswing.swing.table.columns.client.DateColumn();
+        integerCod_Ingred = new org.openswing.swing.table.columns.client.IntegerColumn();
+        textNome_Ingred = new org.openswing.swing.table.columns.client.TextColumn();
+        textTipo_Ingred = new org.openswing.swing.table.columns.client.TextColumn();
+        decimalPeso_Ingred = new org.openswing.swing.table.columns.client.DecimalColumn();
+        decimalUnidade_Ingred = new org.openswing.swing.table.columns.client.DecimalColumn();
+        decimalValor_Ingred = new org.openswing.swing.table.columns.client.DecimalColumn();
 
         setTitle("Cadastro de Ingredientes");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 0, 0));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ata.png"))); // NOI18N
-        jLabel2.setPreferredSize(new java.awt.Dimension(50, 50));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Bakery_Factory_logo_127x50.png"))); // NOI18N
+        jLabel2.setPreferredSize(new java.awt.Dimension(250, 50));
         jPanel1.add(jLabel2);
 
         jLabel1.setFont(new java.awt.Font("Tunga", 1, 24)); // NOI18N
@@ -109,6 +109,7 @@ public class IngredientesPanificadora extends InternalFrame {
         getContentPane().add(jPanel2, gridBagConstraints);
 
         gridControlIngred.setDeleteButton(deleteButtonIngred);
+        gridControlIngred.setEditButton(editButtonIngred);
         gridControlIngred.setExportButton(exportButtonIngred);
         gridControlIngred.setFunctionId("ingredientes");
         gridControlIngred.setImportButton(importButtonIngred);
@@ -117,39 +118,42 @@ public class IngredientesPanificadora extends InternalFrame {
         gridControlIngred.setReloadButton(reloadButtonIngred);
         gridControlIngred.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         gridControlIngred.setValueObjectClassName("com.bakeryfactory.VO.IngredientesVO");
+        gridControlIngred.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        dateDataIngred.setColumnName("dataCadastroIngred");
-        dateDataIngred.setColumnSortable(true);
-        dateDataIngred.setHeaderColumnName("Data");
-        dateDataIngred.setSortVersus(org.openswing.swing.util.java.Consts.ASC_SORTED);
-        gridControlIngred.getColumnContainer().add(dateDataIngred);
+        dateData_Ingred.setColumnName(dateData_Ingred.getColumnName());
+        dateData_Ingred.setColumnSortable(true);
+        dateData_Ingred.setHeaderColumnName("Data");
+        dateData_Ingred.setSortVersus(org.openswing.swing.util.java.Consts.ASC_SORTED);
+        gridControlIngred.getColumnContainer().add(dateData_Ingred);
 
-        integerCodIngred.setColumnName("codigo");
-        integerCodIngred.setHeaderColumnName("Codigo");
-        gridControlIngred.getColumnContainer().add(integerCodIngred);
+        integerCod_Ingred.setColumnName(integerCod_Ingred.getColumnName());
+        integerCod_Ingred.setHeaderColumnName("Código");
+        gridControlIngred.getColumnContainer().add(integerCod_Ingred);
 
-        textNomeIngred.setColumnName("nomeIngrediente");
-        textNomeIngred.setColumnSortable(true);
-        textNomeIngred.setHeaderColumnName("Nome dos Ingredientes");
-        textNomeIngred.setPreferredWidth(300);
-        gridControlIngred.getColumnContainer().add(textNomeIngred);
+        textNome_Ingred.setColumnName(textNome_Ingred.getColumnName());
+        textNome_Ingred.setColumnSortable(true);
+        textNome_Ingred.setHeaderColumnName("Nome dos Ingredientes");
+        textNome_Ingred.setPreferredWidth(300);
+        gridControlIngred.getColumnContainer().add(textNome_Ingred);
 
-        textTipoIngred.setColumnName("tipoIngrediente");
-        textTipoIngred.setColumnSortable(true);
-        textTipoIngred.setHeaderColumnName("Tipo");
-        textTipoIngred.setPreferredWidth(200);
-        gridControlIngred.getColumnContainer().add(textTipoIngred);
+        textTipo_Ingred.setColumnFilterable(true);
+        textTipo_Ingred.setColumnName(textTipo_Ingred.getColumnName());
+        textTipo_Ingred.setColumnSortable(true);
+        textTipo_Ingred.setHeaderColumnName("Tipo");
+        textTipo_Ingred.setPreferredWidth(200);
+        gridControlIngred.getColumnContainer().add(textTipo_Ingred);
 
-        decimalPesoIngred.setHeaderColumnName("Peso");
-        gridControlIngred.getColumnContainer().add(decimalPesoIngred);
+        decimalPeso_Ingred.setColumnName(decimalPeso_Ingred.getColumnName());
+        decimalPeso_Ingred.setHeaderColumnName("Peso");
+        gridControlIngred.getColumnContainer().add(decimalPeso_Ingred);
 
-        decimalUnidadeIngred.setColumnName("unidade");
-        decimalUnidadeIngred.setHeaderColumnName("Unidades");
-        gridControlIngred.getColumnContainer().add(decimalUnidadeIngred);
+        decimalUnidade_Ingred.setColumnName(decimalUnidade_Ingred.getColumnName());
+        decimalUnidade_Ingred.setHeaderColumnName("Unidades");
+        gridControlIngred.getColumnContainer().add(decimalUnidade_Ingred);
 
-        decimalValorIngred.setColumnName("valor");
-        decimalValorIngred.setHeaderColumnName("Valor R$");
-        gridControlIngred.getColumnContainer().add(decimalValorIngred);
+        decimalValor_Ingred.setColumnName(decimalValor_Ingred.getColumnName());
+        decimalValor_Ingred.setHeaderColumnName("Valor R$");
+        gridControlIngred.getColumnContainer().add(decimalValor_Ingred);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -158,30 +162,31 @@ public class IngredientesPanificadora extends InternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(gridControlIngred, gridBagConstraints);
+        gridControlIngred.getAccessibleContext().setAccessibleName("Cadastro Ingredientes");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.openswing.swing.table.columns.client.DateColumn dateDataIngred;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalPesoIngred;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalUnidadeIngred;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalValorIngred;
+    private org.openswing.swing.table.columns.client.DateColumn dateData_Ingred;
+    private org.openswing.swing.table.columns.client.DecimalColumn decimalPeso_Ingred;
+    private org.openswing.swing.table.columns.client.DecimalColumn decimalUnidade_Ingred;
+    private org.openswing.swing.table.columns.client.DecimalColumn decimalValor_Ingred;
     private org.openswing.swing.client.DeleteButton deleteButtonIngred;
     private org.openswing.swing.client.EditButton editButtonIngred;
     private org.openswing.swing.client.ExportButton exportButtonIngred;
     private org.openswing.swing.client.GridControl gridControlIngred;
     private org.openswing.swing.client.ImportButton importButtonIngred;
     private org.openswing.swing.client.InsertButton insertButtonIngred;
-    private org.openswing.swing.table.columns.client.IntegerColumn integerCodIngred;
+    private org.openswing.swing.table.columns.client.IntegerColumn integerCod_Ingred;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private org.openswing.swing.client.NavigatorBar navigatorBarIngred;
     private org.openswing.swing.client.ReloadButton reloadButtonIngred;
-    private org.openswing.swing.table.columns.client.TextColumn textNomeIngred;
-    private org.openswing.swing.table.columns.client.TextColumn textTipoIngred;
+    private org.openswing.swing.table.columns.client.TextColumn textNome_Ingred;
+    private org.openswing.swing.table.columns.client.TextColumn textTipo_Ingred;
     // End of variables declaration//GEN-END:variables
 }

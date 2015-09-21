@@ -6,7 +6,7 @@
 package com.bakeryfactory.Controller;
 
 import com.bakeryfactory.VO.IngredientesVO;
-import com.bakeryfactory.view.Ingredientes;
+import com.bakeryfactory.view.Temp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,15 +32,15 @@ import org.openswing.swing.table.java.GridDataLocator;
  * @email cperbony@gmail.com
  *
  */
-public class IngredientesController extends GridController implements GridDataLocator {
+public class TempController extends GridController implements GridDataLocator {
 
-    private Ingredientes gridIngredientes = null;
+    private Temp gridTemp = null;
     private Connection conn = null;
 
-    public IngredientesController(Connection conn) {
+    public TempController(Connection conn) {
         this.conn = conn;
-        gridIngredientes = new Ingredientes(conn, this);
-        MDIFrame.add(gridIngredientes, true);
+        gridTemp = new Temp(conn, this);
+        MDIFrame.add(gridTemp, true);
     }
 
     /**

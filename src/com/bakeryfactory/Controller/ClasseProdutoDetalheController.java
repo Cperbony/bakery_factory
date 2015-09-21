@@ -11,12 +11,12 @@ import org.openswing.swing.mdi.client.InternalFrame;
  *
  * @author Claudinei Aparecido Perboni
  */
-public class IngredienteDetalheController extends InternalFrame {
+public class ClasseProdutoDetalheController extends InternalFrame {
 
     /**
      * Creates new form IngredienteDetalhe
      */
-    public IngredienteDetalheController() {
+    public ClasseProdutoDetalheController() {
         initComponents();
     }
 
@@ -39,22 +39,20 @@ public class IngredienteDetalheController extends InternalFrame {
         deleteButton1 = new org.openswing.swing.client.DeleteButton();
         reloadButton1 = new org.openswing.swing.client.ReloadButton();
         saveButton1 = new org.openswing.swing.client.SaveButton();
-        formIngredientes = new org.openswing.swing.form.client.Form();
-        textNomeIngred = new org.openswing.swing.client.TextControl();
-        textCodIngred = new org.openswing.swing.client.TextControl();
-        numericUnidadeIngred = new org.openswing.swing.client.NumericControl();
-        txtData_Ingred = new org.openswing.swing.client.LabelControl();
-        txtNome_Ingred = new org.openswing.swing.client.LabelControl();
-        txtUnidade_Ingred = new org.openswing.swing.client.LabelControl();
-        numericPesoIngred = new org.openswing.swing.client.NumericControl();
-        txtPeso_Ingred1 = new org.openswing.swing.client.LabelControl();
-        txtValor_ingred = new org.openswing.swing.client.LabelControl();
-        numericValorIngred = new org.openswing.swing.client.NumericControl();
-        dateControlIngred = new org.openswing.swing.client.DateControl();
-        txtCod_Ingred1 = new org.openswing.swing.client.LabelControl();
+        formDetalheClasseProd = new org.openswing.swing.form.client.Form();
+        textNomeTipoClasse = new org.openswing.swing.client.TextControl();
+        textCodClasse = new org.openswing.swing.client.TextControl();
+        txtData_classe = new org.openswing.swing.client.LabelControl();
+        txtNomeTipo = new org.openswing.swing.client.LabelControl();
+        txtDescricaoClasse = new org.openswing.swing.client.LabelControl();
+        dateControlClasse = new org.openswing.swing.client.DateControl();
+        txtCod_classe = new org.openswing.swing.client.LabelControl();
+        textAreaDescricaoClasse = new org.openswing.swing.client.TextAreaControl();
+        txtNomeClasse1 = new org.openswing.swing.client.LabelControl();
+        textNomeClasse = new org.openswing.swing.client.TextControl();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Ingredientes (Inserir/Alterar)");
+        setTitle("Cadastro de Classe de Produtos (Inserir/Alterar)");
         getContentPane().setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -85,24 +83,24 @@ public class IngredienteDetalheController extends InternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
 
-        formIngredientes.setVOClassName("com.bakeryfactory.VO.IngredienteVO");
-        formIngredientes.setCopyButton(copyButtonIngrediente);
-        formIngredientes.setDeleteButton(deleteButton1);
-        formIngredientes.setEditButton(editButton1);
-        formIngredientes.setInsertButton(insertButton1);
-        formIngredientes.setReloadButton(reloadButton1);
-        formIngredientes.setSaveButton(saveButton1);
-        formIngredientes.setLayout(new java.awt.GridBagLayout());
+        formDetalheClasseProd.setVOClassName("com.bakeryfactory.VO.IngredienteVO");
+        formDetalheClasseProd.setCopyButton(copyButtonIngrediente);
+        formDetalheClasseProd.setDeleteButton(deleteButton1);
+        formDetalheClasseProd.setEditButton(editButton1);
+        formDetalheClasseProd.setInsertButton(insertButton1);
+        formDetalheClasseProd.setReloadButton(reloadButton1);
+        formDetalheClasseProd.setSaveButton(saveButton1);
+        formDetalheClasseProd.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        formIngredientes.add(textNomeIngred, gridBagConstraints);
+        formDetalheClasseProd.add(textNomeTipoClasse, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -113,92 +111,78 @@ public class IngredienteDetalheController extends InternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 250);
-        formIngredientes.add(textCodIngred, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 26;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        formIngredientes.add(numericUnidadeIngred, gridBagConstraints);
+        formDetalheClasseProd.add(textCodClasse, gridBagConstraints);
 
-        txtData_Ingred.setText("Data de Cadastro");
+        txtData_classe.setText("Data de Cadastro");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        formIngredientes.add(txtData_Ingred, gridBagConstraints);
+        formDetalheClasseProd.add(txtData_classe, gridBagConstraints);
 
-        txtNome_Ingred.setText("Nome do Ingrediente:");
+        txtNomeTipo.setText("Tipo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        formIngredientes.add(txtNome_Ingred, gridBagConstraints);
+        formDetalheClasseProd.add(txtNomeTipo, gridBagConstraints);
 
-        txtUnidade_Ingred.setText("Unidade");
+        txtDescricaoClasse.setText("Descrição");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        formIngredientes.add(txtUnidade_Ingred, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 26;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        formIngredientes.add(numericPesoIngred, gridBagConstraints);
+        formDetalheClasseProd.add(txtDescricaoClasse, gridBagConstraints);
 
-        txtPeso_Ingred1.setText("Peso");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        formIngredientes.add(txtPeso_Ingred1, gridBagConstraints);
-
-        txtValor_ingred.setText("Valor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        formIngredientes.add(txtValor_ingred, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        formIngredientes.add(numericValorIngred, gridBagConstraints);
-
-        dateControlIngred.setCanCopy(false);
-        dateControlIngred.setRequired(true);
-        dateControlIngred.setToolTipText("Inserir Data de Cadastro do Ingrediente");
+        dateControlClasse.setCanCopy(false);
+        dateControlClasse.setRequired(true);
+        dateControlClasse.setToolTipText("Inserir Data de Cadastro do Ingrediente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        formIngredientes.add(dateControlIngred, gridBagConstraints);
+        formDetalheClasseProd.add(dateControlClasse, gridBagConstraints);
 
-        txtCod_Ingred1.setText("Código");
+        txtCod_classe.setText("Código");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        formIngredientes.add(txtCod_Ingred1, gridBagConstraints);
+        formDetalheClasseProd.add(txtCod_classe, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        formDetalheClasseProd.add(textAreaDescricaoClasse, gridBagConstraints);
+
+        txtNomeClasse1.setText("Classe Produto:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
+        formDetalheClasseProd.add(txtNomeClasse1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 26;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        formDetalheClasseProd.add(textNomeClasse, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -207,7 +191,7 @@ public class IngredienteDetalheController extends InternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 1;
-        getContentPane().add(formIngredientes, gridBagConstraints);
+        getContentPane().add(formDetalheClasseProd, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -229,47 +213,48 @@ public class IngredienteDetalheController extends InternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngredienteDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClasseProdutoDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngredienteDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClasseProdutoDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngredienteDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClasseProdutoDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IngredienteDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClasseProdutoDetalheController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new IngredienteDetalheController().setVisible(true);
+                new ClasseProdutoDetalheController().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.openswing.swing.client.CopyButton copyButtonIngrediente;
-    private org.openswing.swing.client.DateControl dateControlIngred;
+    private org.openswing.swing.client.DateControl dateControlClasse;
     private org.openswing.swing.client.DeleteButton deleteButton1;
     private org.openswing.swing.client.EditButton editButton1;
-    private org.openswing.swing.form.client.Form formIngredientes;
+    private org.openswing.swing.form.client.Form formDetalheClasseProd;
     private org.openswing.swing.client.InsertButton insertButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblLogo;
-    private org.openswing.swing.client.NumericControl numericPesoIngred;
-    private org.openswing.swing.client.NumericControl numericUnidadeIngred;
-    private org.openswing.swing.client.NumericControl numericValorIngred;
     private org.openswing.swing.client.ReloadButton reloadButton1;
     private org.openswing.swing.client.SaveButton saveButton1;
-    private org.openswing.swing.client.TextControl textCodIngred;
-    private org.openswing.swing.client.TextControl textNomeIngred;
-    private org.openswing.swing.client.LabelControl txtCod_Ingred1;
-    private org.openswing.swing.client.LabelControl txtData_Ingred;
-    private org.openswing.swing.client.LabelControl txtNome_Ingred;
-    private org.openswing.swing.client.LabelControl txtPeso_Ingred1;
-    private org.openswing.swing.client.LabelControl txtUnidade_Ingred;
-    private org.openswing.swing.client.LabelControl txtValor_ingred;
+    private org.openswing.swing.client.TextAreaControl textAreaDescricaoClasse;
+    private org.openswing.swing.client.TextControl textCodClasse;
+    private org.openswing.swing.client.TextControl textNomeClasse;
+    private org.openswing.swing.client.TextControl textNomeTipoClasse;
+    private org.openswing.swing.client.LabelControl txtCod_classe;
+    private org.openswing.swing.client.LabelControl txtData_classe;
+    private org.openswing.swing.client.LabelControl txtDescricaoClasse;
+    private org.openswing.swing.client.LabelControl txtNomeClasse1;
+    private org.openswing.swing.client.LabelControl txtNomeTipo;
     // End of variables declaration//GEN-END:variables
 }

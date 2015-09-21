@@ -36,13 +36,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="lbl_Logo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/ata.png"/>
+              <Image iconType="3" name="/images/Bakery_Factory_logo_127x50.png"/>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[50, 50]"/>
+              <Dimension value="[250, 50]"/>
             </Property>
           </Properties>
         </Component>
@@ -54,7 +54,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cadastro de Ingredientes"/>
+            <Property name="text" type="java.lang.String" value="Cadastros"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -73,48 +73,52 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="org.openswing.swing.client.InsertButton" name="insertButtonIngred">
+        <Component class="org.openswing.swing.client.InsertButton" name="insertButton_">
         </Component>
-        <Component class="org.openswing.swing.client.EditButton" name="editButtonIngred">
+        <Component class="org.openswing.swing.client.EditButton" name="editButton_">
         </Component>
-        <Component class="org.openswing.swing.client.DeleteButton" name="deleteButtonIngred">
+        <Component class="org.openswing.swing.client.DeleteButton" name="deleteButton_">
         </Component>
-        <Component class="org.openswing.swing.client.ReloadButton" name="reloadButtonIngred">
+        <Component class="org.openswing.swing.client.ReloadButton" name="reloadButton_">
         </Component>
-        <Component class="org.openswing.swing.client.ExportButton" name="exportButtonIngred">
+        <Component class="org.openswing.swing.client.ExportButton" name="exportButton_">
         </Component>
-        <Component class="org.openswing.swing.client.ImportButton" name="importButtonIngred">
+        <Component class="org.openswing.swing.client.ImportButton" name="importButton_">
         </Component>
-        <Component class="org.openswing.swing.client.NavigatorBar" name="navigatorBarIngred">
+        <Component class="org.openswing.swing.client.NavigatorBar" name="navigatorBar_">
         </Component>
       </SubComponents>
     </Container>
-    <Container class="org.openswing.swing.client.GridControl" name="gridControlIngred">
+    <Container class="org.openswing.swing.client.GridControl" name="gridControl_Temp">
       <Properties>
         <Property name="deleteButton" type="org.openswing.swing.client.DeleteButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="deleteButtonIngred"/>
+          <ComponentRef name="deleteButton_"/>
+        </Property>
+        <Property name="editButton" type="org.openswing.swing.client.EditButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="editButton_"/>
         </Property>
         <Property name="exportButton" type="org.openswing.swing.client.ExportButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="exportButtonIngred"/>
+          <ComponentRef name="exportButton_"/>
         </Property>
-        <Property name="functionId" type="java.lang.String" value="ingredientes"/>
         <Property name="importButton" type="org.openswing.swing.client.ImportButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="importButtonIngred"/>
+          <ComponentRef name="importButton_"/>
         </Property>
         <Property name="insertButton" type="org.openswing.swing.client.InsertButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="insertButtonIngred"/>
+          <ComponentRef name="insertButton_"/>
         </Property>
         <Property name="navBar" type="org.openswing.swing.client.NavigatorBar" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="navigatorBarIngred"/>
+          <ComponentRef name="navigatorBar_"/>
         </Property>
         <Property name="reloadButton" type="org.openswing.swing.client.ReloadButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="reloadButtonIngred"/>
+          <ComponentRef name="reloadButton_"/>
         </Property>
         <Property name="selectionMode" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="ListSelectionModel.MULTIPLE_INTERVAL_SELECTION" type="code"/>
         </Property>
-        <Property name="valueObjectClassName" type="java.lang.String" value="com.bakeryfactory.VO.IngredientesVO"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Cadastro Ingredientes"/>
+      </AccessibilityProperties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
           <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
@@ -122,55 +126,50 @@
       </Constraints>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
-        <Property name="alignment" type="int" value="0"/>
         <Property name="horizontalGap" type="int" value="0"/>
         <Property name="verticalGap" type="int" value="0"/>
       </Layout>
       <SubComponents>
-        <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateDataIngred">
+        <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateData">
           <Properties>
-            <Property name="columnName" type="java.lang.String" value="dataCadastroIngred"/>
             <Property name="columnSortable" type="boolean" value="true"/>
             <Property name="headerColumnName" type="java.lang.String" value="Data"/>
             <Property name="sortVersus" type="java.lang.String" value="ASC"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerCodIngred">
+        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerCod">
           <Properties>
-            <Property name="columnName" type="java.lang.String" value="codigo"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Codigo"/>
+            <Property name="headerColumnName" type="java.lang.String" value="C&#xf3;digo"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textNomeIngred">
+        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textNome_">
           <Properties>
-            <Property name="columnName" type="java.lang.String" value="nomeIngrediente"/>
+            <Property name="additionalHeaderColumnName" type="java.lang.String" value="Nome temp"/>
             <Property name="columnSortable" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Nome dos Ingredientes"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Nome temp"/>
             <Property name="preferredWidth" type="int" value="300"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textTipoIngred">
+        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textTipo_">
           <Properties>
-            <Property name="columnName" type="java.lang.String" value="tipoIngrediente"/>
+            <Property name="columnFilterable" type="boolean" value="true"/>
             <Property name="columnSortable" type="boolean" value="true"/>
             <Property name="headerColumnName" type="java.lang.String" value="Tipo"/>
             <Property name="preferredWidth" type="int" value="200"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalPesoIngred">
+        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalPeso">
           <Properties>
             <Property name="headerColumnName" type="java.lang.String" value="Peso"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalUnidadeIngred">
+        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalUnidade">
           <Properties>
-            <Property name="columnName" type="java.lang.String" value="unidade"/>
             <Property name="headerColumnName" type="java.lang.String" value="Unidades"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalValorIngred">
+        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalValor_Ingred">
           <Properties>
-            <Property name="columnName" type="java.lang.String" value="valor"/>
             <Property name="headerColumnName" type="java.lang.String" value="Valor R$"/>
           </Properties>
         </Component>

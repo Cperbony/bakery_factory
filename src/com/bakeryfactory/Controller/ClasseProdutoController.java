@@ -5,7 +5,9 @@
  */
 package com.bakeryfactory.Controller;
 
+import com.bakeryfactory.VO.ClasseProdutoVO;
 import com.bakeryfactory.VO.IngredientesVO;
+import com.bakeryfactory.view.ClasseProduto;
 import com.bakeryfactory.view.Ingredientes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,15 +34,15 @@ import org.openswing.swing.table.java.GridDataLocator;
  * @email cperbony@gmail.com
  *
  */
-public class IngredientesController extends GridController implements GridDataLocator {
+public class ClasseProdutoController extends GridController implements GridDataLocator {
 
-    private Ingredientes gridIngredientes = null;
+    private ClasseProduto gridClasseProduto = null;
     private Connection conn = null;
 
-    public IngredientesController(Connection conn) {
+    public ClasseProdutoController(Connection conn) {
         this.conn = conn;
-        gridIngredientes = new Ingredientes(conn, this);
-        MDIFrame.add(gridIngredientes, true);
+        gridClasseProduto = new ClasseProduto(conn, this);
+        MDIFrame.add(gridClasseProduto, true);
     }
 
     /**
@@ -81,30 +83,27 @@ public class IngredientesController extends GridController implements GridDataLo
             Map otherGridParams) {
         PreparedStatement stmt = null;
         try {
-            String sql = "select ingredientes.id_ingred,"
-                    + "ingredientes.data_ingred, "
-                    + "ingredientes.nome_ingred,"
-                    + "ingredientes.tipo_ingred"
-                    + "ingredientes.peso_ingred"
-                    + "ingredientes.unidade_ingred"
-                    + "ingredientes.valor_ingred"
-                    + "from ingredientes";
+            String sql = "select classe_Produto.ID_CLASSE_PROD,"
+                    + "classe_Produto.DATA_CLASSE_PROD,"
+                    + "classe_Produto.NOME_CLASSE_PROD, "
+                    + "classe_Produto.TIPO_CLASSE_PROD,"
+                    + "classe_Produto.DESCRICAO_CLASSE_PROD";
+                       
 
             Vector vals = new Vector();
 
             Map mapa = new HashMap();
-            mapa.put("codIngredientes", "ingredientes.id_ingred");
-            mapa.put("dataCadastroIngred", "ingredientes.data_ingred");
-            mapa.put("nomeIngrediente", "ingredientes.nome_ingred");
-            mapa.put("tipoIngrediente", "ingredientes.tipo_ingred");
-            mapa.put("peso", "ingredientes.peso_ingred");
-            mapa.put("unidade", "ingredientes.unidade_ingred");
-            mapa.put("valor", "ingredientes.valor_ingred");
+            mapa.put("codClasseProd", "ID_CLASSE_PROD");
+            mapa.put("dataCadastroClasseProd", "DATA_CLASSE_PROD");
+            mapa.put("nomeClasseProd", "NOME_CLASSE_PROD");
+            mapa.put("tipoClasseProd", "TIPO_CLASSE_PROD");
+            mapa.put("descricaoClasseProd", "DESCRICAO_CLASSE_PROD");
+       
             
 
             if (filteredColumns.size() > 0) {
-                FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeIngrediente");
-                sql += " where ingredientes.nome_ingred" + filtro[0].getOperator() + "?";
+                FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeClasseProd");
+                sql += " where classe_Produto.NOME_CLASSE_PROD" + filtro[0].getOperator() + "?";
                 vals.add(filtro[0].getValue());
             }
 
@@ -121,10 +120,10 @@ public class IngredientesController extends GridController implements GridDataLo
             ResultSet rset = stmt.executeQuery();
 
             ArrayList list = new ArrayList();
-            IngredientesVO vo = null;
+            ClasseProdutoVO vo = null;
             while (rset.next()) {
                 System.out.println();
-                vo = setarIngredientes(rset);
+                vo = setarClasseProduto(rset);
 
                 list.add(vo);
             }
@@ -140,16 +139,13 @@ public class IngredientesController extends GridController implements GridDataLo
 
     }
 
-    public IngredientesVO setarIngredientes(ResultSet rset) throws SQLException {
-        IngredientesVO vo;
-        vo = new IngredientesVO();
-        vo.setCodigo(rset.getInt(1));
-        vo.setDataCadastroIngred(rset.getDate(2));
-        vo.setNomeIngrediente(rset.getString(3));
-        vo.setTipoIngrediente(rset.getString(4));
-        vo.setPeso(rset.getDouble(5));
-        vo.setUnidade(rset.getInt(6));
-        vo.setValor(rset.getDouble(7));
+    public ClasseProdutoVO setarClasseProduto(ResultSet rset) throws SQLException {
+        ClasseProdutoVO vo;
+        vo = new ClasseProdutoVO();
+        vo.setCodClasseProd(rset.getInt(1));
+        vo.setDataCadastroClasseProd(rset.getDate(2));
+        vo.setNomeClasseProd(rset.getString(3));
+        vo.setDescricaoClasseProd(rset.getString(4));
         return vo;
     }
 
@@ -165,10 +161,10 @@ public class IngredientesController extends GridController implements GridDataLo
     public Response deleteRecords(ArrayList persistentObjects) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement("DELETE FROM ingredientes WHERE id_ingred=?");
+            stmt = conn.prepareStatement("DELETE FROM classe_produto WHERE ID_CLASSE_PROD=?");
             for (Object persistentObject : persistentObjects) {
-                IngredientesVO vo = (IngredientesVO) persistentObject;
-                stmt.setInt(1, vo.getCodigoIngred());
+                ClasseProdutoVO vo = (ClasseProdutoVO) persistentObject;
+                stmt.setInt(1, vo.getCodClasseProd());
                 stmt.execute();
             }
             return new VOResponse(new Boolean(true));
