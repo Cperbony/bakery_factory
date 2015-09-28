@@ -2,7 +2,8 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
-    <Property name="title" type="java.lang.String" value="Cadastro de Ingredientes"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="Cadastro de Produtos Congelados"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -17,12 +18,12 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-128,0,0,3,-2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-128,0,0,4,-15"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="jPanelHeader">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="99" type="rgb"/>
@@ -46,7 +47,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="jLabelTitulo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tunga" size="24" style="1"/>
@@ -54,12 +55,15 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cadastros"/>
+            <Property name="text" type="java.lang.String" value="Cadastros de Congelados"/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Cadastro de Congelados"/>
+          </AccessibilityProperties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Container class="javax.swing.JPanel" name="jPanelButtons">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="99" type="rgb"/>
@@ -89,7 +93,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="org.openswing.swing.client.GridControl" name="gridControl_Temp">
+    <Container class="org.openswing.swing.client.GridControl" name="gridControl_Congelados">
       <Properties>
         <Property name="deleteButton" type="org.openswing.swing.client.DeleteButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="deleteButton_"/>
@@ -131,47 +135,60 @@
         <Property name="verticalGap" type="int" value="0"/>
       </Layout>
       <SubComponents>
-        <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateData">
+        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerCodCongelados">
+          <Properties>
+            <Property name="headerColumnName" type="java.lang.String" value="C&#xf3;digo"/>
+          </Properties>
+        </Component>
+        <Component class="org.openswing.swing.table.columns.client.CodLookupColumn" name="codLookupRequisicao">
+          <Properties>
+            <Property name="headerColumnName" type="java.lang.String" value="Requisi&#xe7;&#xe3;o N&#xba;"/>
+          </Properties>
+        </Component>
+        <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateDataCongelados">
           <Properties>
             <Property name="columnSortable" type="boolean" value="true"/>
             <Property name="headerColumnName" type="java.lang.String" value="Data"/>
             <Property name="sortVersus" type="java.lang.String" value="ASC"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerCod">
+        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textProdutoCongelados">
           <Properties>
-            <Property name="headerColumnName" type="java.lang.String" value="C&#xf3;digo"/>
-          </Properties>
-        </Component>
-        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textNome_">
-          <Properties>
-            <Property name="additionalHeaderColumnName" type="java.lang.String" value="Nome temp"/>
             <Property name="columnSortable" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Nome temp"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Produto Descri&#xe7;&#xe3;o"/>
             <Property name="preferredWidth" type="int" value="300"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textTipo_">
+        <Component class="org.openswing.swing.table.columns.client.ComboColumn" name="comboSetorClasseProd">
           <Properties>
-            <Property name="columnFilterable" type="boolean" value="true"/>
+            <Property name="autoFitColumn" type="boolean" value="true"/>
             <Property name="columnSortable" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Tipo"/>
-            <Property name="preferredWidth" type="int" value="200"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Classe de Produtos"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalPeso">
+        <Component class="org.openswing.swing.table.columns.client.ComboColumn" name="comboSetorCongelados">
           <Properties>
-            <Property name="headerColumnName" type="java.lang.String" value="Peso"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Setor Solicitante"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalUnidade">
+        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textRespCongelados">
           <Properties>
-            <Property name="headerColumnName" type="java.lang.String" value="Unidades"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Respons&#xe1;vel"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalValor_Ingred">
+        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalPesoUnid">
           <Properties>
-            <Property name="headerColumnName" type="java.lang.String" value="Valor R$"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Peso Unit&#xe1;rio"/>
+          </Properties>
+        </Component>
+        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalQuantidades">
+          <Properties>
+            <Property name="headerColumnName" type="java.lang.String" value="Quantidades"/>
+          </Properties>
+        </Component>
+        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalPesoTotal">
+          <Properties>
+            <Property name="headerColumnName" type="java.lang.String" value="Peso Total"/>
           </Properties>
         </Component>
       </SubComponents>

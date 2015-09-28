@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.bakeryfactory.Controller;
 
-import com.bakeryfactory.VO.ClasseProdutoVO;
-import com.bakeryfactory.VO.IngredientesVO;
-import com.bakeryfactory.view.ClasseProduto;
-import com.bakeryfactory.view.Ingredientes;
+import com.bakeryfactory.VO.SetorVO;
+import com.bakeryfactory.view.Setor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +21,6 @@ import org.openswing.swing.message.receive.java.ErrorResponse;
 import org.openswing.swing.message.receive.java.Response;
 import org.openswing.swing.message.receive.java.VOListResponse;
 import org.openswing.swing.message.receive.java.VOResponse;
-import org.openswing.swing.message.receive.java.ValueObject;
 import org.openswing.swing.message.send.java.FilterWhereClause;
 import org.openswing.swing.table.client.GridController;
 import org.openswing.swing.table.java.GridDataLocator;
@@ -31,48 +29,21 @@ import org.openswing.swing.table.java.GridDataLocator;
  *
  * @author Claudinei Aparecido Perboni
  * @codigo author 805912
- * @email cperbony@gmail.com
- *
+ * @email cperbony@gmail.com  
+ * 
  */
-public class ClasseProdutoController extends GridController implements GridDataLocator {
+public class SetorController extends GridController implements GridDataLocator {
+    
+    private final Setor gridControl_Setores;
+    private final Connection conn;
 
-    private ClasseProduto gridClasseProduto = null;
-    private Connection conn = null;
-
-    public ClasseProdutoController(Connection conn) {
-        this.conn = conn;
-        gridClasseProduto = new ClasseProduto(conn, this);
-        MDIFrame.add(gridClasseProduto, true);
+    public SetorController(Connection conn) {
+        this.conn = null;
+        gridControl_Setores = new Setor(conn, this);
+        MDIFrame.add(gridControl_Setores, true);
     }
 
-    /**
-     * Callback method invoked when the user has double clicked on the selected
-     * row of the gridIngredientes.
-     *
-     * @param rowNumber selected row index
-     * @param persistentObject v.o. related to the selected row
-     */
-    public void doubleClick(int rowNumber, ValueObject persistentObject) {
-        // IngredientesVO IngrVO = (IngredientesVO) persistentObject;
-        //new IngredienteDetalheController(gridIngredientes.vo.getCodigoIngred().toString(), conn);
-    }
-
-    /**
-     * Callback method invoked to load data on the gridIngredientes.
-     *
-     * @param action fetching versus: PREVIOUS_BLOCK_ACTION, NEXT_BLOCK_ACTION
-     * or LAST_BLOCK_ACTION
-     * @param startPos start position of data fetching in result set
-     * @param filteredColumns filtered columns
-     * @param currentSortedColumns sorted columns
-     * @param currentSortedVersusColumns ordering versus of sorted columns
-     * @param valueObjectType v.o. type
-     * @param otherGridParams other gridIngredientes parameters
-     * @return response from the server: an object of type VOListResponse if
-     * data loading was successfully completed, or an ErrorResponse onject if
-     * some error occours
-     */
-    @Override
+  @Override
     public Response loadData(
             int action,
             int startIndex,
@@ -85,27 +56,25 @@ public class ClasseProdutoController extends GridController implements GridDataL
         PreparedStatement stmt = null;
         
         try {
-            String sql = "select classe_Produto.ID_CLASSE_PROD,"
-                    + "classe_Produto.DATA_CLASSE_PROD,"
-                    + "classe_Produto.NOME_CLASSE_PROD, "
-                    + "classe_Produto.TIPO_CLASSE_PROD,"
-                    + "classe_Produto.DESCRICAO_CLASSE_PROD";
-                       
+            String sql = "select setor.ID_SETOR,"
+                    + "setor.DATACADASTRO_SETOR,"
+                    + "setor.NOME_SETOR_SETOR,"
+                    + "setor.RESPONSAVEL_SETOR";
+            
 
             Vector vals = new Vector();
 
             Map mapa = new HashMap();
-            mapa.put("codClasseProd", "ID_CLASSE_PROD");
-            mapa.put("dataCadastroClasseProd", "DATA_CLASSE_PROD");
-            mapa.put("nomeClasseProd", "NOME_CLASSE_PROD");
-            mapa.put("tipoClasseProd", "TIPO_CLASSE_PROD");
-            mapa.put("descricaoClasseProd", "DESCRICAO_CLASSE_PROD");
+            mapa.put("idSetor", "ID_SETOR");
+            mapa.put("dataSetor", "DATACADASTRO_SETOR,");
+            mapa.put("nomeSetor", "NOME_SETOR_SETOR");
+            mapa.put("RespSetor", "RESPONSAVEL_SETOR");
        
             
 
             if (filteredColumns.size() > 0) {
-                FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeClasseProd");
-                sql += " where classe_Produto.NOME_CLASSE_PROD" + filtro[0].getOperator() + "?";
+                FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeSetor");
+                sql += " where setor.NOME_SETOR_SETOR" + filtro[0].getOperator() + "?";
                 vals.add(filtro[0].getValue());
             }
 
@@ -122,10 +91,10 @@ public class ClasseProdutoController extends GridController implements GridDataL
             ResultSet rset = stmt.executeQuery();
 
             ArrayList list = new ArrayList();
-            ClasseProdutoVO vo = null;
+            SetorVO vo = null;
             while (rset.next()) {
                 System.out.println();
-                vo = setarClasseProduto(rset);
+                vo = setarSetor(rset);
 
                 list.add(vo);
             }
@@ -141,13 +110,13 @@ public class ClasseProdutoController extends GridController implements GridDataL
 
     }
 
-    public ClasseProdutoVO setarClasseProduto(ResultSet rset) throws SQLException {
-        ClasseProdutoVO vo;
-        vo = new ClasseProdutoVO();
-        vo.setCodClasseProd(rset.getInt(1));
-        vo.setDataCadastroClasseProd(rset.getDate(2));
-        vo.setNomeClasseProd(rset.getString(3));
-        vo.setDescricaoClasseProd(rset.getString(4));
+    public SetorVO setarSetor(ResultSet rset) throws SQLException {
+        SetorVO vo;
+        vo = new SetorVO();
+        vo.setIdSetor(rset.getLong(1));
+        vo.setDataSetor(rset.getDate(2));
+        vo.setNomeSetor(rset.getString(3));
+        vo.setRespSetor(rset.getString(4));
         return vo;
     }
 
@@ -163,10 +132,10 @@ public class ClasseProdutoController extends GridController implements GridDataL
     public Response deleteRecords(ArrayList persistentObjects) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement("DELETE FROM classe_produto WHERE ID_CLASSE_PROD=?");
+            stmt = conn.prepareStatement("DELETE FROM setor WHERE ID_SETOR=?");
             for (Object persistentObject : persistentObjects) {
-                ClasseProdutoVO vo = (ClasseProdutoVO) persistentObject;
-                stmt.setInt(1, vo.getCodClasseProd());
+                SetorVO vo = (SetorVO) persistentObject;
+                stmt.setLong(1, vo.getIdSetor());
                 stmt.execute();
             }
             return new VOResponse(new Boolean(true));

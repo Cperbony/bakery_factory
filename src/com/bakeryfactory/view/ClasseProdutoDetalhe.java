@@ -53,6 +53,7 @@ public class ClasseProdutoDetalhe extends InternalFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Classe de Produtos (Inserir/Alterar)");
+        setFrameIcon(null);
         getContentPane().setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

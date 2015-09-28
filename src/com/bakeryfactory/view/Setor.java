@@ -6,6 +6,7 @@
 package com.bakeryfactory.view;
 
 import com.bakeryfactory.Controller.IngredientesController;
+import com.bakeryfactory.Controller.SetorController;
 import java.sql.Connection;
 import javax.swing.ListSelectionModel;
 import org.openswing.swing.mdi.client.InternalFrame;
@@ -19,16 +20,16 @@ public class Setor extends InternalFrame {
     private Connection conn = null;
 
     /**
-     * Creates new form Ingredientes Panificadora
+     * Creates new form 
      */
-    public Setor(Connection conn, IngredientesController ingredController) {
+    public Setor(Connection conn, SetorController setorController) {
         this.conn = conn;
         try {
             initComponents();
             setSize(750, 300);
-            gridControl_Temp.setController(ingredController);
-            gridControl_Temp.setGridDataLocator(ingredController);
-            //gridControlIngred.enableDrag("Grid1");
+            gridControl_Setores.setController(setorController);
+            gridControl_Setores.setGridDataLocator(setorController);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,7 +37,7 @@ public class Setor extends InternalFrame {
     
     
     public void reloadData(){
-        gridControl_Temp.reloadData();
+        gridControl_Setores.reloadData();
     }
 
     /**
@@ -49,39 +50,38 @@ public class Setor extends InternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanelHeader = new javax.swing.JPanel();
         lbl_Logo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        insertButton_ = new org.openswing.swing.client.InsertButton();
-        editButton_ = new org.openswing.swing.client.EditButton();
-        deleteButton_ = new org.openswing.swing.client.DeleteButton();
-        reloadButton_ = new org.openswing.swing.client.ReloadButton();
-        exportButton_ = new org.openswing.swing.client.ExportButton();
-        importButton_ = new org.openswing.swing.client.ImportButton();
-        navigatorBar_ = new org.openswing.swing.client.NavigatorBar();
-        gridControl_Temp = new org.openswing.swing.client.GridControl();
-        dateData = new org.openswing.swing.table.columns.client.DateColumn();
-        integerCod = new org.openswing.swing.table.columns.client.IntegerColumn();
-        textNome_ = new org.openswing.swing.table.columns.client.TextColumn();
-        textTipo_ = new org.openswing.swing.table.columns.client.TextColumn();
-        decimalPeso = new org.openswing.swing.table.columns.client.DecimalColumn();
-        decimalUnidade = new org.openswing.swing.table.columns.client.DecimalColumn();
-        decimalValor_Ingred = new org.openswing.swing.table.columns.client.DecimalColumn();
+        jLabelTituloHeader = new javax.swing.JLabel();
+        jPanelButtonsPlace = new javax.swing.JPanel();
+        codLookupControl1 = new org.openswing.swing.client.CodLookupControl();
+        insertButtonSetor = new org.openswing.swing.client.InsertButton();
+        editButtonSetor = new org.openswing.swing.client.EditButton();
+        deleteButtonSetor = new org.openswing.swing.client.DeleteButton();
+        reloadButtonSetor = new org.openswing.swing.client.ReloadButton();
+        exportButtonSetor = new org.openswing.swing.client.ExportButton();
+        importButtonSetor = new org.openswing.swing.client.ImportButton();
+        navigatorBarSetor = new org.openswing.swing.client.NavigatorBar();
+        gridControl_Setores = new org.openswing.swing.client.GridControl();
+        dateDataSetor = new org.openswing.swing.table.columns.client.DateColumn();
+        integerCodSetor = new org.openswing.swing.table.columns.client.IntegerColumn();
+        textNomeSetores = new org.openswing.swing.table.columns.client.TextColumn();
+        textRespSetor = new org.openswing.swing.table.columns.client.TextColumn();
 
-        setTitle("Cadastro de Ingredientes");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Setores");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+        jPanelHeader.setBackground(new java.awt.Color(153, 0, 0));
 
         lbl_Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Bakery_Factory_logo_127x50.png"))); // NOI18N
         lbl_Logo.setPreferredSize(new java.awt.Dimension(250, 50));
-        jPanel1.add(lbl_Logo);
+        jPanelHeader.add(lbl_Logo);
 
-        jLabel1.setFont(new java.awt.Font("Tunga", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastros");
-        jPanel1.add(jLabel1);
+        jLabelTituloHeader.setFont(new java.awt.Font("Tunga", 1, 24)); // NOI18N
+        jLabelTituloHeader.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTituloHeader.setText("Cadastro de Setores");
+        jPanelHeader.add(jLabelTituloHeader);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -89,16 +89,17 @@ public class Setor extends InternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(jPanelHeader, gridBagConstraints);
 
-        jPanel2.setBackground(new java.awt.Color(153, 0, 0));
-        jPanel2.add(insertButton_);
-        jPanel2.add(editButton_);
-        jPanel2.add(deleteButton_);
-        jPanel2.add(reloadButton_);
-        jPanel2.add(exportButton_);
-        jPanel2.add(importButton_);
-        jPanel2.add(navigatorBar_);
+        jPanelButtonsPlace.setBackground(new java.awt.Color(153, 0, 0));
+        jPanelButtonsPlace.add(codLookupControl1);
+        jPanelButtonsPlace.add(insertButtonSetor);
+        jPanelButtonsPlace.add(editButtonSetor);
+        jPanelButtonsPlace.add(deleteButtonSetor);
+        jPanelButtonsPlace.add(reloadButtonSetor);
+        jPanelButtonsPlace.add(exportButtonSetor);
+        jPanelButtonsPlace.add(importButtonSetor);
+        jPanelButtonsPlace.add(navigatorBarSetor);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -106,47 +107,37 @@ public class Setor extends InternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel2, gridBagConstraints);
+        getContentPane().add(jPanelButtonsPlace, gridBagConstraints);
 
-        gridControl_Temp.setDeleteButton(deleteButton_);
-        gridControl_Temp.setEditButton(editButton_);
-        gridControl_Temp.setExportButton(exportButton_);
-        gridControl_Temp.setFunctionId("ingredientes");
-        gridControl_Temp.setImportButton(importButton_);
-        gridControl_Temp.setInsertButton(insertButton_);
-        gridControl_Temp.setNavBar(navigatorBar_);
-        gridControl_Temp.setReloadButton(reloadButton_);
-        gridControl_Temp.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        gridControl_Temp.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        gridControl_Setores.setDeleteButton(deleteButtonSetor);
+        gridControl_Setores.setEditButton(editButtonSetor);
+        gridControl_Setores.setExportButton(exportButtonSetor);
+        gridControl_Setores.setFunctionId("ingredientes");
+        gridControl_Setores.setImportButton(importButtonSetor);
+        gridControl_Setores.setInsertButton(insertButtonSetor);
+        gridControl_Setores.setNavBar(navigatorBarSetor);
+        gridControl_Setores.setReloadButton(reloadButtonSetor);
+        gridControl_Setores.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        gridControl_Setores.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        dateData.setColumnSortable(true);
-        dateData.setHeaderColumnName("Data");
-        dateData.setSortVersus(org.openswing.swing.util.java.Consts.ASC_SORTED);
-        gridControl_Temp.getColumnContainer().add(dateData);
+        dateDataSetor.setColumnSortable(true);
+        dateDataSetor.setHeaderColumnName("Data");
+        dateDataSetor.setSortVersus(org.openswing.swing.util.java.Consts.ASC_SORTED);
+        gridControl_Setores.getColumnContainer().add(dateDataSetor);
 
-        integerCod.setHeaderColumnName("Código");
-        gridControl_Temp.getColumnContainer().add(integerCod);
+        integerCodSetor.setHeaderColumnName("Código");
+        gridControl_Setores.getColumnContainer().add(integerCodSetor);
 
-        textNome_.setAdditionalHeaderColumnName("Nome temp");
-        textNome_.setColumnSortable(true);
-        textNome_.setHeaderColumnName("Nome temp");
-        textNome_.setPreferredWidth(300);
-        gridControl_Temp.getColumnContainer().add(textNome_);
+        textNomeSetores.setColumnSortable(true);
+        textNomeSetores.setHeaderColumnName("Nome Setor");
+        textNomeSetores.setPreferredWidth(300);
+        gridControl_Setores.getColumnContainer().add(textNomeSetores);
 
-        textTipo_.setColumnFilterable(true);
-        textTipo_.setColumnSortable(true);
-        textTipo_.setHeaderColumnName("Tipo");
-        textTipo_.setPreferredWidth(200);
-        gridControl_Temp.getColumnContainer().add(textTipo_);
-
-        decimalPeso.setHeaderColumnName("Peso");
-        gridControl_Temp.getColumnContainer().add(decimalPeso);
-
-        decimalUnidade.setHeaderColumnName("Unidades");
-        gridControl_Temp.getColumnContainer().add(decimalUnidade);
-
-        decimalValor_Ingred.setHeaderColumnName("Valor R$");
-        gridControl_Temp.getColumnContainer().add(decimalValor_Ingred);
+        textRespSetor.setColumnFilterable(true);
+        textRespSetor.setColumnSortable(true);
+        textRespSetor.setHeaderColumnName("Responsável Setor");
+        textRespSetor.setPreferredWidth(200);
+        gridControl_Setores.getColumnContainer().add(textRespSetor);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -154,32 +145,32 @@ public class Setor extends InternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(gridControl_Temp, gridBagConstraints);
-        gridControl_Temp.getAccessibleContext().setAccessibleName("Cadastro Ingredientes");
+        getContentPane().add(gridControl_Setores, gridBagConstraints);
+        gridControl_Setores.getAccessibleContext().setAccessibleName("Cadastro Ingredientes");
+
+        getAccessibleContext().setAccessibleName("Cadastro de Setores");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.openswing.swing.table.columns.client.DateColumn dateData;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalPeso;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalUnidade;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalValor_Ingred;
-    private org.openswing.swing.client.DeleteButton deleteButton_;
-    private org.openswing.swing.client.EditButton editButton_;
-    private org.openswing.swing.client.ExportButton exportButton_;
-    private org.openswing.swing.client.GridControl gridControl_Temp;
-    private org.openswing.swing.client.ImportButton importButton_;
-    private org.openswing.swing.client.InsertButton insertButton_;
-    private org.openswing.swing.table.columns.client.IntegerColumn integerCod;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private org.openswing.swing.client.CodLookupControl codLookupControl1;
+    private org.openswing.swing.table.columns.client.DateColumn dateDataSetor;
+    private org.openswing.swing.client.DeleteButton deleteButtonSetor;
+    private org.openswing.swing.client.EditButton editButtonSetor;
+    private org.openswing.swing.client.ExportButton exportButtonSetor;
+    private org.openswing.swing.client.GridControl gridControl_Setores;
+    private org.openswing.swing.client.ImportButton importButtonSetor;
+    private org.openswing.swing.client.InsertButton insertButtonSetor;
+    private org.openswing.swing.table.columns.client.IntegerColumn integerCodSetor;
+    private javax.swing.JLabel jLabelTituloHeader;
+    private javax.swing.JPanel jPanelButtonsPlace;
+    private javax.swing.JPanel jPanelHeader;
     private javax.swing.JLabel lbl_Logo;
-    private org.openswing.swing.client.NavigatorBar navigatorBar_;
-    private org.openswing.swing.client.ReloadButton reloadButton_;
-    private org.openswing.swing.table.columns.client.TextColumn textNome_;
-    private org.openswing.swing.table.columns.client.TextColumn textTipo_;
+    private org.openswing.swing.client.NavigatorBar navigatorBarSetor;
+    private org.openswing.swing.client.ReloadButton reloadButtonSetor;
+    private org.openswing.swing.table.columns.client.TextColumn textNomeSetores;
+    private org.openswing.swing.table.columns.client.TextColumn textRespSetor;
     // End of variables declaration//GEN-END:variables
 }

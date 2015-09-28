@@ -26,8 +26,8 @@ public class Congelados extends InternalFrame {
         try {
             initComponents();
             setSize(750, 300);
-            gridControl_Temp.setController(ingredController);
-            gridControl_Temp.setGridDataLocator(ingredController);
+            gridControl_Congelados.setController(ingredController);
+            gridControl_Congelados.setGridDataLocator(ingredController);
             //gridControlIngred.enableDrag("Grid1");
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,7 +36,7 @@ public class Congelados extends InternalFrame {
     
     
     public void reloadData(){
-        gridControl_Temp.reloadData();
+        gridControl_Congelados.reloadData();
     }
 
     /**
@@ -49,10 +49,10 @@ public class Congelados extends InternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanelHeader = new javax.swing.JPanel();
         lbl_Logo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jPanelButtons = new javax.swing.JPanel();
         insertButton_ = new org.openswing.swing.client.InsertButton();
         editButton_ = new org.openswing.swing.client.EditButton();
         deleteButton_ = new org.openswing.swing.client.DeleteButton();
@@ -60,28 +60,33 @@ public class Congelados extends InternalFrame {
         exportButton_ = new org.openswing.swing.client.ExportButton();
         importButton_ = new org.openswing.swing.client.ImportButton();
         navigatorBar_ = new org.openswing.swing.client.NavigatorBar();
-        gridControl_Temp = new org.openswing.swing.client.GridControl();
-        dateData = new org.openswing.swing.table.columns.client.DateColumn();
-        integerCod = new org.openswing.swing.table.columns.client.IntegerColumn();
-        textNome_ = new org.openswing.swing.table.columns.client.TextColumn();
-        textTipo_ = new org.openswing.swing.table.columns.client.TextColumn();
-        decimalPeso = new org.openswing.swing.table.columns.client.DecimalColumn();
-        decimalUnidade = new org.openswing.swing.table.columns.client.DecimalColumn();
-        decimalValor_Ingred = new org.openswing.swing.table.columns.client.DecimalColumn();
+        gridControl_Congelados = new org.openswing.swing.client.GridControl();
+        integerCodCongelados = new org.openswing.swing.table.columns.client.IntegerColumn();
+        codLookupRequisicao = new org.openswing.swing.table.columns.client.CodLookupColumn();
+        dateDataCongelados = new org.openswing.swing.table.columns.client.DateColumn();
+        textProdutoCongelados = new org.openswing.swing.table.columns.client.TextColumn();
+        comboSetorClasseProd = new org.openswing.swing.table.columns.client.ComboColumn();
+        comboSetorCongelados = new org.openswing.swing.table.columns.client.ComboColumn();
+        textRespCongelados = new org.openswing.swing.table.columns.client.TextColumn();
+        decimalPesoUnid = new org.openswing.swing.table.columns.client.DecimalColumn();
+        decimalQuantidades = new org.openswing.swing.table.columns.client.DecimalColumn();
+        decimalPesoTotal = new org.openswing.swing.table.columns.client.DecimalColumn();
 
-        setTitle("Cadastro de Ingredientes");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Produtos Congelados");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+        jPanelHeader.setBackground(new java.awt.Color(153, 0, 0));
 
         lbl_Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Bakery_Factory_logo_127x50.png"))); // NOI18N
         lbl_Logo.setPreferredSize(new java.awt.Dimension(250, 50));
-        jPanel1.add(lbl_Logo);
+        jPanelHeader.add(lbl_Logo);
 
-        jLabel1.setFont(new java.awt.Font("Tunga", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastros");
-        jPanel1.add(jLabel1);
+        jLabelTitulo.setFont(new java.awt.Font("Tunga", 1, 24)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setText("Cadastros de Congelados");
+        jPanelHeader.add(jLabelTitulo);
+        jLabelTitulo.getAccessibleContext().setAccessibleName("Cadastro de Congelados");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -89,16 +94,16 @@ public class Congelados extends InternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(jPanelHeader, gridBagConstraints);
 
-        jPanel2.setBackground(new java.awt.Color(153, 0, 0));
-        jPanel2.add(insertButton_);
-        jPanel2.add(editButton_);
-        jPanel2.add(deleteButton_);
-        jPanel2.add(reloadButton_);
-        jPanel2.add(exportButton_);
-        jPanel2.add(importButton_);
-        jPanel2.add(navigatorBar_);
+        jPanelButtons.setBackground(new java.awt.Color(153, 0, 0));
+        jPanelButtons.add(insertButton_);
+        jPanelButtons.add(editButton_);
+        jPanelButtons.add(deleteButton_);
+        jPanelButtons.add(reloadButton_);
+        jPanelButtons.add(exportButton_);
+        jPanelButtons.add(importButton_);
+        jPanelButtons.add(navigatorBar_);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -106,47 +111,54 @@ public class Congelados extends InternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel2, gridBagConstraints);
+        getContentPane().add(jPanelButtons, gridBagConstraints);
 
-        gridControl_Temp.setDeleteButton(deleteButton_);
-        gridControl_Temp.setEditButton(editButton_);
-        gridControl_Temp.setExportButton(exportButton_);
-        gridControl_Temp.setFunctionId("ingredientes");
-        gridControl_Temp.setImportButton(importButton_);
-        gridControl_Temp.setInsertButton(insertButton_);
-        gridControl_Temp.setNavBar(navigatorBar_);
-        gridControl_Temp.setReloadButton(reloadButton_);
-        gridControl_Temp.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        gridControl_Temp.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        gridControl_Congelados.setDeleteButton(deleteButton_);
+        gridControl_Congelados.setEditButton(editButton_);
+        gridControl_Congelados.setExportButton(exportButton_);
+        gridControl_Congelados.setFunctionId("ingredientes");
+        gridControl_Congelados.setImportButton(importButton_);
+        gridControl_Congelados.setInsertButton(insertButton_);
+        gridControl_Congelados.setNavBar(navigatorBar_);
+        gridControl_Congelados.setReloadButton(reloadButton_);
+        gridControl_Congelados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        gridControl_Congelados.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        dateData.setColumnSortable(true);
-        dateData.setHeaderColumnName("Data");
-        dateData.setSortVersus(org.openswing.swing.util.java.Consts.ASC_SORTED);
-        gridControl_Temp.getColumnContainer().add(dateData);
+        integerCodCongelados.setHeaderColumnName("Código");
+        gridControl_Congelados.getColumnContainer().add(integerCodCongelados);
 
-        integerCod.setHeaderColumnName("Código");
-        gridControl_Temp.getColumnContainer().add(integerCod);
+        codLookupRequisicao.setHeaderColumnName("Requisição Nº");
+        gridControl_Congelados.getColumnContainer().add(codLookupRequisicao);
 
-        textNome_.setAdditionalHeaderColumnName("Nome temp");
-        textNome_.setColumnSortable(true);
-        textNome_.setHeaderColumnName("Nome temp");
-        textNome_.setPreferredWidth(300);
-        gridControl_Temp.getColumnContainer().add(textNome_);
+        dateDataCongelados.setColumnSortable(true);
+        dateDataCongelados.setHeaderColumnName("Data");
+        dateDataCongelados.setSortVersus(org.openswing.swing.util.java.Consts.ASC_SORTED);
+        gridControl_Congelados.getColumnContainer().add(dateDataCongelados);
 
-        textTipo_.setColumnFilterable(true);
-        textTipo_.setColumnSortable(true);
-        textTipo_.setHeaderColumnName("Tipo");
-        textTipo_.setPreferredWidth(200);
-        gridControl_Temp.getColumnContainer().add(textTipo_);
+        textProdutoCongelados.setColumnSortable(true);
+        textProdutoCongelados.setHeaderColumnName("Produto Descrição");
+        textProdutoCongelados.setPreferredWidth(300);
+        gridControl_Congelados.getColumnContainer().add(textProdutoCongelados);
 
-        decimalPeso.setHeaderColumnName("Peso");
-        gridControl_Temp.getColumnContainer().add(decimalPeso);
+        comboSetorClasseProd.setAutoFitColumn(true);
+        comboSetorClasseProd.setColumnSortable(true);
+        comboSetorClasseProd.setHeaderColumnName("Classe de Produtos");
+        gridControl_Congelados.getColumnContainer().add(comboSetorClasseProd);
 
-        decimalUnidade.setHeaderColumnName("Unidades");
-        gridControl_Temp.getColumnContainer().add(decimalUnidade);
+        comboSetorCongelados.setHeaderColumnName("Setor Solicitante");
+        gridControl_Congelados.getColumnContainer().add(comboSetorCongelados);
 
-        decimalValor_Ingred.setHeaderColumnName("Valor R$");
-        gridControl_Temp.getColumnContainer().add(decimalValor_Ingred);
+        textRespCongelados.setHeaderColumnName("Responsável");
+        gridControl_Congelados.getColumnContainer().add(textRespCongelados);
+
+        decimalPesoUnid.setHeaderColumnName("Peso Unitário");
+        gridControl_Congelados.getColumnContainer().add(decimalPesoUnid);
+
+        decimalQuantidades.setHeaderColumnName("Quantidades");
+        gridControl_Congelados.getColumnContainer().add(decimalQuantidades);
+
+        decimalPesoTotal.setHeaderColumnName("Peso Total");
+        gridControl_Congelados.getColumnContainer().add(decimalPesoTotal);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -154,32 +166,35 @@ public class Congelados extends InternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(gridControl_Temp, gridBagConstraints);
-        gridControl_Temp.getAccessibleContext().setAccessibleName("Cadastro Ingredientes");
+        getContentPane().add(gridControl_Congelados, gridBagConstraints);
+        gridControl_Congelados.getAccessibleContext().setAccessibleName("Cadastro Ingredientes");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.openswing.swing.table.columns.client.DateColumn dateData;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalPeso;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalUnidade;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalValor_Ingred;
+    private org.openswing.swing.table.columns.client.CodLookupColumn codLookupRequisicao;
+    private org.openswing.swing.table.columns.client.ComboColumn comboSetorClasseProd;
+    private org.openswing.swing.table.columns.client.ComboColumn comboSetorCongelados;
+    private org.openswing.swing.table.columns.client.DateColumn dateDataCongelados;
+    private org.openswing.swing.table.columns.client.DecimalColumn decimalPesoTotal;
+    private org.openswing.swing.table.columns.client.DecimalColumn decimalPesoUnid;
+    private org.openswing.swing.table.columns.client.DecimalColumn decimalQuantidades;
     private org.openswing.swing.client.DeleteButton deleteButton_;
     private org.openswing.swing.client.EditButton editButton_;
     private org.openswing.swing.client.ExportButton exportButton_;
-    private org.openswing.swing.client.GridControl gridControl_Temp;
+    private org.openswing.swing.client.GridControl gridControl_Congelados;
     private org.openswing.swing.client.ImportButton importButton_;
     private org.openswing.swing.client.InsertButton insertButton_;
-    private org.openswing.swing.table.columns.client.IntegerColumn integerCod;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private org.openswing.swing.table.columns.client.IntegerColumn integerCodCongelados;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanelButtons;
+    private javax.swing.JPanel jPanelHeader;
     private javax.swing.JLabel lbl_Logo;
     private org.openswing.swing.client.NavigatorBar navigatorBar_;
     private org.openswing.swing.client.ReloadButton reloadButton_;
-    private org.openswing.swing.table.columns.client.TextColumn textNome_;
-    private org.openswing.swing.table.columns.client.TextColumn textTipo_;
+    private org.openswing.swing.table.columns.client.TextColumn textProdutoCongelados;
+    private org.openswing.swing.table.columns.client.TextColumn textRespCongelados;
     // End of variables declaration//GEN-END:variables
 }

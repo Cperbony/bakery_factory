@@ -36,6 +36,7 @@ public class IngredientesController extends GridController implements GridDataLo
 
     private Ingredientes gridIngredientes = null;
     private Connection conn = null;
+    private IngredienteDetalheControllerBuilder ingredientesBuilder = null;
 
     public IngredientesController(Connection conn) {
         this.conn = conn;
@@ -50,9 +51,10 @@ public class IngredientesController extends GridController implements GridDataLo
      * @param rowNumber selected row index
      * @param persistentObject v.o. related to the selected row
      */
+    @Override
     public void doubleClick(int rowNumber, ValueObject persistentObject) {
-        // IngredientesVO IngrVO = (IngredientesVO) persistentObject;
-        //new IngredienteDetalheController(gridIngredientes.vo.getCodigoIngred().toString(), conn);
+        IngredientesVO vo  = (IngredientesVO) persistentObject;   
+        new IngredienteDetalheController(ingredientesBuilder);
     }
 
     /**
@@ -100,8 +102,8 @@ public class IngredientesController extends GridController implements GridDataLo
             mapa.put("peso", "ingredientes.peso_ingred");
             mapa.put("unidade", "ingredientes.unidade_ingred");
             mapa.put("valor", "ingredientes.valor_ingred");
-            
 
+//verificar se tem colunas a serem filtradas
             if (filteredColumns.size() > 0) {
                 FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeIngrediente");
                 sql += " where ingredientes.nome_ingred" + filtro[0].getOperator() + "?";

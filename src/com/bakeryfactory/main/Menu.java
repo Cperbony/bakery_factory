@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.bakeryfactory.main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
@@ -34,8 +34,8 @@ import org.openswing.swing.util.java.Consts;
  *
  * @author Claudinei Aparecido Perboni
  * @codigo author 805912
- * @email cperbony@gmail.com  
- * 
+ * @email cperbony@gmail.com
+ *
  */
 public class Menu implements MDIController, LoginController {
 
@@ -44,6 +44,7 @@ public class Menu implements MDIController, LoginController {
     private Hashtable domains = new Hashtable();
     private String username = null;
     private Properties idiomas = new Properties();
+    
 
     public Menu() {
         createConnection();
@@ -58,9 +59,9 @@ public class Menu implements MDIController, LoginController {
                 new XMLResourcesFactory(xmlFiles, false),
                 domains);
 
-        ClientSettings.BACKGROUND = "Wolf 076.jpg";
+        ClientSettings.BACKGROUND = "panificadora.jpg";
         ClientSettings.BACK_IMAGE_DISPOSITION = Consts.BACK_IMAGE_CENTERED;
-        ClientSettings.TREE_BACK = "Wolf 107.jpg";
+        ClientSettings.TREE_BACK = "Tela_Branca.jpg";
         ClientSettings.VIEW_BACKGROUND_SEL_COLOR = true;
         ClientSettings.VIEW_MANDATORY_SYMBOL = true;
         ClientSettings.ALLOW_OR_OPERATOR = false;
@@ -88,14 +89,16 @@ public class Menu implements MDIController, LoginController {
                 null,
                 idiomas,
                 "PT_BR");
+        // d.setSize(600, 400);
 
     }
 
     /**
      * Method called after MDI creation.
+     *
      * @param frame
      */
-   @Override
+    @Override
     public void afterMDIcreation(MDIFrame frame) {
         GenericStatusPanel userPanel = new GenericStatusPanel();
         userPanel.setColumns(12);
@@ -105,10 +108,9 @@ public class Menu implements MDIController, LoginController {
     }
 
     /**
-     * @return 
-     * @see JFrame getExtendedState method
+     * @return @see JFrame getExtendedState method
      */
-   @Override
+    @Override
     public int getExtendedState() {
         return JFrame.MAXIMIZED_BOTH;
     }
@@ -116,7 +118,7 @@ public class Menu implements MDIController, LoginController {
     /**
      * @return client facade, invoked by the MDI Frame tree/menu
      */
-   @Override
+    @Override
     public ClientFacade getClientFacade() {
         return clientFacade;
     }
@@ -124,23 +126,29 @@ public class Menu implements MDIController, LoginController {
     /**
      * Method used to destroy application.
      */
-   @Override
+    @Override
     public void stopApplication() {
         System.exit(0);
     }
 
     /**
-     * Defines if application functions must be viewed inside a tree panel of MDI Frame.
-     * @return <code>true</code> if application functions must be viewed inside a tree panel of MDI Frame, <code>false</code> no tree is viewed
+     * Defines if application functions must be viewed inside a tree panel of
+     * MDI Frame.
+     *
+     * @return <code>true</code> if application functions must be viewed inside
+     * a tree panel of MDI Frame, <code>false</code> no tree is viewed
      */
-   @Override
+    @Override
     public boolean viewFunctionsInTreePanel() {
         return true;
     }
 
     /**
-     * Defines if application functions must be viewed in the menubar of MDI Frame.
-     * @return <code>true</code> if application functions must be viewed in the menubar of MDI Frame, <code>false</code> otherwise
+     * Defines if application functions must be viewed in the menubar of MDI
+     * Frame.
+     *
+     * @return <code>true</code> if application functions must be viewed in the
+     * menubar of MDI Frame, <code>false</code> otherwise
      */
     @Override
     public boolean viewFunctionsInMenuBar() {
@@ -148,9 +156,10 @@ public class Menu implements MDIController, LoginController {
     }
 
     /**
-     * @return <code>true</code> if the MDI frame must show a login menu in the menubar, <code>false</code> no login menu item will be added
+     * @return <code>true</code> if the MDI frame must show a login menu in the
+     * menubar, <code>false</code> no login menu item will be added
      */
-   @Override
+    @Override
     public boolean viewLoginInMenuBar() {
         return true;
     }
@@ -158,9 +167,9 @@ public class Menu implements MDIController, LoginController {
     /**
      * @return application title
      */
-   @Override
+    @Override
     public String getMDIFrameTitle() {
-        return "Bakery Factory - Controle de Produção para panificadoras";
+        return "Bakery Factory - Controle de Produção para Panificadoras";
     }
 
     /**
@@ -168,10 +177,10 @@ public class Menu implements MDIController, LoginController {
      */
     @Override
     public String getAboutText() {
-        return "Bakery Factory - Controle de Produção para panificadoras\n" +
-                "\n" +
-                "Copyright: Copyright (C) 2015\n" +
-                "Autor: Claudinei Aparecido Perboni";
+        return "Bakery Factory - Controle de Produção para Panificadoras\n"
+                + "\n"
+                + "Copyright: Copyright (C) 2015\n"
+                + "Autor: Claudinei Aparecido Perboni";
     }
 
     /**
@@ -184,9 +193,10 @@ public class Menu implements MDIController, LoginController {
 
     /**
      * @param parentFrame parent frame
-     * @return a dialog window to logon the application; the method can return null if viewLoginInMenuBar returns false
+     * @return a dialog window to logon the application; the method can return
+     * null if viewLoginInMenuBar returns false
      */
-   @Override
+    @Override
     public JDialog viewLoginDialog(JFrame parentFrame) {
         JDialog d = new LoginDialog(
                 parentFrame,
@@ -215,71 +225,80 @@ public class Menu implements MDIController, LoginController {
 
     /**
      * Method called by MDI Frame to authenticate the user.
+     *
      * @param loginInfo login information, like username, password, ...
-     * @return <code>true</code> if user is correcly authenticated, <code>false</code> otherwise
+     * @return <code>true</code> if user is correcly authenticated,
+     * <code>false</code> otherwise
      * @throws java.lang.Exception
      */
     @Override
     public boolean authenticateUser(Map loginInfo) throws Exception {
-        if ("ADMIN".equalsIgnoreCase((String) loginInfo.get("username")) &&
-                "ADMIN".equalsIgnoreCase((String) loginInfo.get("password"))) {
-            return true;
-        } else {
-            return false;
-        }
+        return "ADMIN".equalsIgnoreCase((String) loginInfo.get("username"))
+                && "ADMIN".equalsIgnoreCase((String) loginInfo.get("password"))
+                || "MAURO".equalsIgnoreCase((String) loginInfo.get("username"))
+                && "MAURO".equalsIgnoreCase((String) loginInfo.get("password"))
+                || "ALBERT".equalsIgnoreCase((String) loginInfo.get("username"))
+                && "ALBERT".equalsIgnoreCase((String) loginInfo.get("password"));
     }
 
     public static void main(String[] args) {
-       new Menu();
+        new Menu();
     }
 
     /**
      * Method called by LoginDialog to notify the sucessful login.
+     *
      * @param loginInfo login information, like username, password, ...
      */
     @Override
     public void loginSuccessful(Map loginInfo) {
         username = loginInfo.get("username").toString().toUpperCase();
-        if (username.equals("ADMIN")) {
-            ClientSettings.getInstance().setLanguage("EN");
-        } else if (username.equals("ADMIN")) {
-            ClientSettings.getInstance().setLanguage("IT");
-        } else if (username.equals("ADMIN")) {
-            ClientSettings.getInstance().setLanguage("PT_BR");
+        switch (username) {
+            case "ADMIN":
+                ClientSettings.getInstance().setLanguage("EN");
+                break;
+            case "MAURO":
+                ClientSettings.getInstance().setLanguage("IT");
+                break;
+            case "ALBERT":
+                ClientSettings.getInstance().setLanguage("PT_BR");
+                break;
         }
 
         MDIFrame mdi = new MDIFrame(this);
 
         //configura os botões da barra de ferramentas
-        mdi.addButtonToToolBar("condominio.png", "Cadastro de Condomínios");
-        mdi.addButtonToToolBar("fornecedor.png", "Cadastro de Fornecedores");
-        mdi.addButtonToToolBar("ingredientes.png", "Cadastro de Ingredientes");
-        mdi.addButtonToToolBar("inquilino.png", "Cadastro de Inquilinos");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Ingredientes");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Fornecedores");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Bancos");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Inquilinos");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("plano_conta.png", "Cadastro do Centro de Custo (Contas)");
-        mdi.addButtonToToolBar("contrato.png", "Cadastro dos Contratos com Fornecedores");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro do Centro de Custo (Contas)");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro dos Contratos com Fornecedores");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("boleto.png", "Emissão de Boletos");
-        mdi.addButtonToToolBar("gas.png", "Controle do Gás");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Emissão de Boletos");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Controle do Gás");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("pagar.png", "Contas a Pagar");
-        mdi.addButtonToToolBar("receber.png", "Confirma Recebimentos");
-        mdi.addButtonToToolBar("cheque.png", "Conciliação de Cheques");
-        mdi.addButtonToToolBar("bancario.png", "Movimento Bancário");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Contas a Pagar");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Confirma Recebimentos");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Conciliação de Cheques");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Movimento Bancário");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("ata.png", "Controle de Atas");
-        mdi.addButtonToToolBar("carta.png", "Cartas de Cobrança");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Controle de Atas");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cartas de Cobrança");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
         mdi.addButtonToToolBar("sair.png", "Sair da Aplicação");
     }
 
     /**
-     * @return <code>true</code> if the MDI frame must show a change language menu in the menubar, <code>false</code> no change language menu item will be added
+     * @return <code>true</code> if the MDI frame must show a change language
+     * menu in the menubar, <code>false</code> no change language menu item will
+     * be added
      */
     @Override
     public boolean viewChangeLanguageInMenuBar() {
@@ -299,8 +318,12 @@ public class Menu implements MDIController, LoginController {
     }
 
     /**
-     * @return application functions (ApplicationFunction objects), organized as a tree
+     * @return application functions (ApplicationFunction objects), organized as
+     * a tree
      */
+    
+    
+    
     @Override
     public DefaultTreeModel getApplicationFunctions() {
         DefaultMutableTreeNode root = new OpenSwingTreeNode();
@@ -310,9 +333,9 @@ public class Menu implements MDIController, LoginController {
         ApplicationFunction n1 = new ApplicationFunction("Cadastro", null);
         ApplicationFunction n2 = new ApplicationFunction("Movimento", null);
 
-        ApplicationFunction n11 = new ApplicationFunction("Condomínios", "condominio", null, "getCondominio");
+        ApplicationFunction n11 = new ApplicationFunction("Ingredientes", "ingredientes", null, "getIngredientes");
         ApplicationFunction n12 = new ApplicationFunction("Inquilinos", "inquilino", null, "getInquilino");
-        ApplicationFunction n13 = new ApplicationFunction("Ingredientes", "ingredientes", null, "getIngredientes");
+        ApplicationFunction n13 = new ApplicationFunction("Bancos", "banco", null, "getBanco");
         ApplicationFunction n14 = new ApplicationFunction("Fornecedores", "fornecedor", null, "getFornecedor");
         ApplicationFunction n15 = new ApplicationFunction(true);
         ApplicationFunction n16 = new ApplicationFunction("Centro de Custo", "centro_custo", null, "getCentroCusto");
@@ -354,21 +377,25 @@ public class Menu implements MDIController, LoginController {
         return model;
     }
 
+    
     /**
      * Create the database connection
      */
+
     private void createConnection() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bakery_factory?user=root&password=root");
-        } catch (Exception ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
         }
     }
 
     /**
-     * @return <code>true</code> if the MDI frame must show a panel in the bottom, containing last opened window icons, <code>false</code> no panel is showed
+     * @return <code>true</code> if the MDI frame must show a panel in the
+     * bottom, containing last opened window icons, <code>false</code> no panel
+     * is showed
      */
     @Override
     public boolean viewOpenedWindowIcons() {
@@ -377,6 +404,7 @@ public class Menu implements MDIController, LoginController {
 
     @Override
     public boolean viewFileMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return  true;
+        
     }
 }

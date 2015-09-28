@@ -37,4 +37,12 @@ public class IngredienteDetalheControllerBuilder {
         return new IngredienteDetalheController(this);
     }
 
+    @Override
+    public String toString() {
+        return '}' 
+                + "IngredienteDetalheControllerBuilder{" 
+                + "ingredienteFrame=" + ingredienteFrame
+                + ", pk=" + pk
+                + ", conn=" + conn;
+    }
 }

@@ -6,8 +6,11 @@
 package com.bakeryfactory.Controller;
 
 import com.bakeryfactory.VO.IngredientesVO;
+import com.bakeryfactory.VO.SetorVO;
 import com.bakeryfactory.view.IngredienteDetalhe;
 import com.bakeryfactory.view.Ingredientes;
+import com.bakeryfactory.view.Setor;
+import com.bakeryfactory.view.SetorDetalhe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,31 +31,28 @@ import org.openswing.swing.util.java.Consts;
  * @email cperbony@gmail.com
  *
  */
-public class IngredienteDetalheController extends FormController {
+public class SetorDetalheController extends FormController {
 
-    private IngredienteDetalhe ingredDetFrame = null;
+    private SetorDetalhe setorDetFrame = null;
     private final Connection conn = null;
-    private final String pk = null;
-    private final Ingredientes ingredienteFrame = null;
-    private final String sql = "select ingredientes.id_ingred,"
-            + "ingredientes.data_ingred, "
-            + "ingredientes.nome_ingred,"
-            + "ingredientes.tipo_ingred"
-            + "ingredientes.peso_ingred"
-            + "ingredientes.unidade_ingred"
-            + "ingredientes.valor_ingred"
-            + "from ingredientes";
+    private String pk = null;
+    private final Setor setorFrame = null;
+    private String sql = "select setor.ID_SETOR,"
+            + "setor.DATACADASTRO_SETOR,"
+            + "setor.NOME_SETOR_SETOR,"
+            + "setor.RESPONSAVEL_SETOR"
+            + "from setor";
 
-    public IngredienteDetalheController(IngredienteDetalheControllerBuilder ingredientesBuilder) {
-        ingredientesBuilder.createIngredienteDetalheController();
-        ingredDetFrame = new IngredienteDetalhe(conn, this);
-        MDIFrame.add(ingredDetFrame);
+    public SetorDetalheController(SetorDetalheControllerBuilder setorDetalheContollerBuilder) {
+        setorDetalheContollerBuilder.createSetorDetalhe();
+        setorDetFrame = new SetorDetalhe(conn, this);
+        MDIFrame.add(setorDetFrame);
 
         if (pk != null) {
-            ingredDetFrame.getForm1().setMode(Consts.READONLY);
-            ingredDetFrame.getForm1().reload();
+            setorDetFrame.getForm1().setMode(Consts.READONLY);
+            setorDetFrame.getForm1().reload();
         } else {
-            ingredDetFrame.getForm1().setMode(Consts.INSERT);
+            setorDetFrame.getForm1().setMode(Consts.INSERT);
         }
 
     }
@@ -64,15 +64,12 @@ public class IngredienteDetalheController extends FormController {
             stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery(sql + pk);
             if (rset.next()) {
-                IngredientesVO vo = new IngredientesVO();
-                vo.setCodigo(rset.getInt(1));
-                vo.setDataCadastroIngred(rset.getDate(2));
-                vo.setNomeIngrediente(rset.getString(3));
-                vo.setTipoIngrediente(rset.getString(4));
-                vo.setPeso(rset.getDouble(5));
-                vo.setUnidade(rset.getInt(6));
-                vo.setValor(rset.getDouble(7));
+                
+                SetorController vo = new SetorController(conn);
+                vo.setarSetor(rset);
+                
                 return new VOResponse(vo);
+
             } else {
                 return new ErrorResponse(" Nenhum Registro Encontrado");
             }
@@ -98,29 +95,23 @@ public class IngredienteDetalheController extends FormController {
     public Response insertRecord(ValueObject newPersistentObject) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement("insert into ingredientes ("
-                    + "id_ingred,"
-                    + "data_ingred, "
-                    + "nome_ingred,"
-                    + "tipo_ingred"
-                    + "peso_ingred"
-                    + "unidade_ingred"
-                    + "valor_ingred"
-                    + " values(?, ?, ?, ?, ?, ?, ?)");
-            IngredientesVO vo = (IngredientesVO) newPersistentObject;
-            stmt.setInt(1, vo.getCodigoIngred());
-            stmt.setString(2, vo.getDataCadastroIngred().toString());
-            stmt.setString(3, vo.getNomeIngrediente());
-            stmt.setString(4, vo.getTipoIngrediente());
-            stmt.setString(5, vo.getTipoIngrediente());
-            stmt.setDouble(6, vo.getPeso());
-            stmt.setInt(7, vo.getUnidade());
-            stmt.setDouble(8, vo.getValor());
+            stmt = conn.prepareStatement("insert into setor ("
+                    + "ID_SETOR,"
+                    + "DATACADASTRO_SETOR, "
+                    + "NOME_SETOR_SETOR,"
+                    + "RESPONSAVEL_SETOR"
+                    + " values(?, ?, ?, ?)");
+            
+            SetorVO vo = (SetorVO) newPersistentObject;
+            stmt.setLong(1, vo.getIdSetor());
+            stmt.setString(2, vo.getDataSetor().toString());
+            stmt.setString(3, vo.getNomeSetor());
+            stmt.setString(4, vo.getRespSetor());
 
             stmt.execute();
 
-            //pk = vo.getCodigoIngred().toString();
-            ingredienteFrame.reloadData();
+           
+            setorFrame.reloadData();
             return new VOResponse(vo);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -147,29 +138,23 @@ public class IngredienteDetalheController extends FormController {
         PreparedStatement stmt = null;
         try {
             stmt = conn.prepareStatement(""
-                    + "update ingredientes "
-                    + "set id_ingred=?,"
-                    + "data_ingred=?,"
-                    + "nome_ingred=?, "
-                    + "tipo_ingred=?,"
-                    + "peso_ingred=?,"
-                    + "unidade_ingred=?,"
-                    + "valor_ingred=?"
-                    + "where id_ingred=?");
+                    + "update setor "
+                    + "set ID_SETOR=?,"
+                    + "DATACADASTRO_SETOR=?,"
+                    + "NOME_SETOR_SETOR=?, "
+                    + "RESPONSAVEL_SETOR=?"
+                    + "where ID_SETOR=?");
             
-            IngredientesVO vo = (IngredientesVO) persistentObject;
+
+            SetorVO vo = (SetorVO) persistentObject;
             
-            stmt.setInt(1, vo.getCodigoIngred());
-            stmt.setString(2, vo.getDataCadastroIngred().toString());
-            stmt.setString(3, vo.getNomeIngrediente());
-            stmt.setString(4, vo.getTipoIngrediente());
-            stmt.setString(5, vo.getTipoIngrediente());
-            stmt.setDouble(6, vo.getPeso());
-            stmt.setInt(7, vo.getUnidade());
-            stmt.setDouble(8, vo.getValor());
+            stmt.setLong(1, vo.getIdSetor());
+            stmt.setString(2, vo.getDataSetor().toString());
+            stmt.setString(3, vo.getNomeSetor());
+            stmt.setString(4, vo.getRespSetor());
 
             stmt.execute();
-            ingredienteFrame.reloadData();
+            setorFrame.reloadData();
             return new VOResponse(vo);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -193,11 +178,11 @@ public class IngredienteDetalheController extends FormController {
     public Response deleteRecord(ValueObject persistentObject) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement("delete from ingredientes where id_ingred=?");
-            IngredientesVO vo = (IngredientesVO) persistentObject;
-            stmt.setInt(1, vo.getCodigoIngred());
+            stmt = conn.prepareStatement("delete from setor where ID_SETOR=?");
+            SetorVO vo = (SetorVO) persistentObject;
+            stmt.setLong(1, vo.getIdSetor());
             stmt.execute();
-            ingredienteFrame.reloadData();
+            setorFrame.reloadData();
             return new VOResponse(vo);
         } catch (SQLException ex) {
             ex.printStackTrace();
