@@ -6,6 +6,8 @@
 
 package com.bakeryfactory.VO;
 
+import org.openswing.swing.message.receive.java.ValueObjectImpl;
+
 /**
  *
  * @author Claudinei Aparecido Perboni
@@ -13,6 +15,6 @@ package com.bakeryfactory.VO;
  * @email cperbony@gmail.com  
  * 
  */
-public class CongeladosVO {
+public class CongeladosVO extends ValueObjectImpl{
 
 }

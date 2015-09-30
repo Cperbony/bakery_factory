@@ -44,7 +44,6 @@ public class Menu implements MDIController, LoginController {
     private Hashtable domains = new Hashtable();
     private String username = null;
     private Properties idiomas = new Properties();
-    
 
     public Menu() {
         createConnection();
@@ -61,7 +60,7 @@ public class Menu implements MDIController, LoginController {
 
         ClientSettings.BACKGROUND = "panificadora.jpg";
         ClientSettings.BACK_IMAGE_DISPOSITION = Consts.BACK_IMAGE_CENTERED;
-        ClientSettings.TREE_BACK = "Tela_Branca.jpg";
+        ClientSettings.TREE_BACK = "Tela_Tree_Back.jpg";
         ClientSettings.VIEW_BACKGROUND_SEL_COLOR = true;
         ClientSettings.VIEW_MANDATORY_SYMBOL = true;
         ClientSettings.ALLOW_OR_OPERATOR = false;
@@ -266,33 +265,43 @@ public class Menu implements MDIController, LoginController {
         }
 
         MDIFrame mdi = new MDIFrame(this);
+        
+        
 
         //configura os botões da barra de ferramentas
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Usuários");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Empresas");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Endreços");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Telefone");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Setores");
         mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Ingredientes");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Fornecedores");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Bancos");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Inquilinos");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Receitas");
+                mdi.addSeparatorToToolBar();
+        mdi.addSeparatorToToolBar();
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Modo de Preparo");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Classe de Produtos");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Congelados");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Produtos");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Notas de Compras");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro do Centro de Custo (Contas)");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro dos Contratos com Fornecedores");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro do Requisição de Produção");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Calendário de Producão");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Cálculo de Receitas");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Emissão de Boletos");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Controle do Gás");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Kit de Produção");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Produção Final");
+          mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Consultas");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Distribuição");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Contas a Pagar");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Confirma Recebimentos");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Conciliação de Cheques");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Movimento Bancário");
-        mdi.addSeparatorToToolBar();
-        mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Controle de Atas");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cartas de Cobrança");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Relatorio de Produção");
+        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Impressão de Relatórios");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
         mdi.addButtonToToolBar("sair.png", "Sair da Aplicação");
+
     }
 
     /**
@@ -321,67 +330,82 @@ public class Menu implements MDIController, LoginController {
      * @return application functions (ApplicationFunction objects), organized as
      * a tree
      */
-    
-    
-    
-    @Override
+    //@Override
     public DefaultTreeModel getApplicationFunctions() {
         DefaultMutableTreeNode root = new OpenSwingTreeNode();
 
         DefaultTreeModel model = new DefaultTreeModel(root);
 
-        ApplicationFunction n1 = new ApplicationFunction("Cadastro", null);
-        ApplicationFunction n2 = new ApplicationFunction("Movimento", null);
+        ApplicationFunction n1 = new ApplicationFunction("Cadastros", null);
+        ApplicationFunction n2 = new ApplicationFunction("Produção", null);
+        ApplicationFunction n3 = new ApplicationFunction("Movimentos", null);
 
-        ApplicationFunction n11 = new ApplicationFunction("Ingredientes", "ingredientes", null, "getIngredientes");
-        ApplicationFunction n12 = new ApplicationFunction("Inquilinos", "inquilino", null, "getInquilino");
-        ApplicationFunction n13 = new ApplicationFunction("Bancos", "banco", null, "getBanco");
-        ApplicationFunction n14 = new ApplicationFunction("Fornecedores", "fornecedor", null, "getFornecedor");
-        ApplicationFunction n15 = new ApplicationFunction(true);
-        ApplicationFunction n16 = new ApplicationFunction("Centro de Custo", "centro_custo", null, "getCentroCusto");
-        ApplicationFunction n17 = new ApplicationFunction("Contratos", "contrato", null, "getContrato");
+        ApplicationFunction n1a = new ApplicationFunction("Usuarios", "usuarios", null, "getUsuarios");
+        ApplicationFunction n11a = new ApplicationFunction("Empresas", "empresa", null, "getEmpresas");
+        ApplicationFunction n11b = new ApplicationFunction("Enderecos", "endereco", null, "getEnderecos");
+        ApplicationFunction n11c = new ApplicationFunction("Telefones", "telefone", null, "getTelefone");
+        ApplicationFunction n1b = new ApplicationFunction("Setores", "setores", null, "getSetores");
+        ApplicationFunction n1c = new ApplicationFunction("Ingredientes", "ingredientes", null, "getIngredientes");
+        ApplicationFunction n1d = new ApplicationFunction("Receitas de Produção", "receitas", null, "getReceitas");
+        ApplicationFunction n1e = new ApplicationFunction(true);
+        ApplicationFunction n1f = new ApplicationFunction("Modo de Preparo", "modo_preparo", null, "getModoPreparo");
+        ApplicationFunction n1g = new ApplicationFunction("Classe de Produtos", "classe_produtos", null, "getClasseProduto");
+        ApplicationFunction n1h = new ApplicationFunction("Congelados", "congelados", null, "getCongelados");
+        ApplicationFunction n1i = new ApplicationFunction("Produtos", "produtos", null, "getProdutos");
+        ApplicationFunction n1j = new ApplicationFunction(true);
+        ApplicationFunction n1k = new ApplicationFunction("Notas de Compras", "notasCompras", null, "getNotaCompras");
 
-        ApplicationFunction n21 = new ApplicationFunction("Contas a Receber", null);
-        ApplicationFunction n211 = new ApplicationFunction("Emissao de Boletos", "boleto", null, "getBoleto");
-        ApplicationFunction n212 = new ApplicationFunction("Confirma Recebimentos", "receber", null, "getReceber");
-        ApplicationFunction n22 = new ApplicationFunction("Contas a Pagar", "pagar", null, "getPagar");
-        ApplicationFunction n23 = new ApplicationFunction("Controle do Gás", "gas", null, "getGas");
-        ApplicationFunction n24 = new ApplicationFunction("Conciliação de Cheques", "cheque", null, "getCheque");
-        ApplicationFunction n25 = new ApplicationFunction("Movimento Bancário", "bancario", null, "getBancario");
-        ApplicationFunction n26 = new ApplicationFunction(true);
-        ApplicationFunction n27 = new ApplicationFunction("Controle de Atas", "ata", null, "getAta");
-        ApplicationFunction n28 = new ApplicationFunction("Cartas de Cobrança", "cobranca", null, "getCobranca");
+        ApplicationFunction n21 = new ApplicationFunction("Requisição de Produção", "requisicao", null, "getRequisicao");
+        ApplicationFunction n211 = new ApplicationFunction("Calendario de Producao", "calendarioProducao", null, "getCalendarioProducao");
+        ApplicationFunction n212 = new ApplicationFunction("Calculo de Receitas", "calculoReceitas", null, "getCalculoReceitas");
+        ApplicationFunction n22 = new ApplicationFunction(true);
+        ApplicationFunction n23 = new ApplicationFunction("Kit de Produção", "kitProducao", null, "getKitProducao");
+        ApplicationFunction n24 = new ApplicationFunction("Produção Final", "producaoFinal", null, "getProducaoFinal");
+        ApplicationFunction n25 = new ApplicationFunction("Consultas", "consultarProducao", null, "getconsultaProducao");
+        ApplicationFunction n26 = new ApplicationFunction("Distribuição", "distribuicaoProducao", null, "getdistribuicaoProducao");
+        ApplicationFunction n27 = new ApplicationFunction(true);
 
-        n1.add(n11);
-        n1.add(n12);
-        n1.add(n13);
-        n1.add(n14);
-        n1.add(n15);
-        n1.add(n16);
-        n1.add(n17);
+        ApplicationFunction n31 = new ApplicationFunction("Relatorio de Produção", "relatorioProducao", null, "getRelatorioProducao");
+        ApplicationFunction n32 = new ApplicationFunction("Impressão de Relatorios", "impressao", null, "getImpressao");
+
+        n1.add(n1a);
+            n1a.add(n11a);
+            n1a.add(n11b);
+            n1a.add(n11c);
+        n1.add(n1b);
+        n1.add(n1c);
+        n1.add(n1d);
+        n1.add(n1e);
+        n1.add(n1f);
+        n1.add(n1g);
+        n1.add(n1h);
+        n1.add(n1i);
+        n1.add(n1j);
+        n1.add(n1k);
 
         n2.add(n21);
-        n21.add(n211);
-        n21.add(n212);
+            n21.add(n211);
+            n21.add(n212);
         n2.add(n22);
         n2.add(n23);
         n2.add(n24);
         n2.add(n25);
         n2.add(n26);
         n2.add(n27);
-        n2.add(n28);
+
+        n3.add(n31);
+        n3.add(n32);
 
         root.add(n1);
         root.add(n2);
+        root.add(n3);
 
         return model;
     }
 
-    
     /**
      * Create the database connection
      */
-
     private void createConnection() {
 
         try {
@@ -404,7 +428,7 @@ public class Menu implements MDIController, LoginController {
 
     @Override
     public boolean viewFileMenu() {
-        return  true;
-        
+        return true;
+
     }
 }

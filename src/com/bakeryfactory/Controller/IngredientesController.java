@@ -36,8 +36,7 @@ public class IngredientesController extends GridController implements GridDataLo
 
     private Ingredientes gridIngredientes = null;
     private Connection conn = null;
-    private IngredienteDetalheControllerBuilder ingredientesBuilder = null;
-
+    
     public IngredientesController(Connection conn) {
         this.conn = conn;
         gridIngredientes = new Ingredientes(conn, this);
@@ -54,7 +53,8 @@ public class IngredientesController extends GridController implements GridDataLo
     @Override
     public void doubleClick(int rowNumber, ValueObject persistentObject) {
         IngredientesVO vo  = (IngredientesVO) persistentObject;   
-        new IngredienteDetalheController(ingredientesBuilder);
+        IngredienteDetalheController ingredienteDetalheController;
+        ingredienteDetalheController = new IngredienteDetalheController(gridIngredientes, vo.getCodIngredientes().toString(), conn);
     }
 
     /**
@@ -145,7 +145,7 @@ public class IngredientesController extends GridController implements GridDataLo
     public IngredientesVO setarIngredientes(ResultSet rset) throws SQLException {
         IngredientesVO vo;
         vo = new IngredientesVO();
-        vo.setCodigo(rset.getInt(1));
+        vo.setCodIngredientes(rset.getInt(1));
         vo.setDataCadastroIngred(rset.getDate(2));
         vo.setNomeIngrediente(rset.getString(3));
         vo.setTipoIngrediente(rset.getString(4));
@@ -170,7 +170,7 @@ public class IngredientesController extends GridController implements GridDataLo
             stmt = conn.prepareStatement("DELETE FROM ingredientes WHERE id_ingred=?");
             for (Object persistentObject : persistentObjects) {
                 IngredientesVO vo = (IngredientesVO) persistentObject;
-                stmt.setInt(1, vo.getCodigoIngred());
+                stmt.setInt(1, vo.getCodIngredientes());
                 stmt.execute();
             }
             return new VOResponse(new Boolean(true));

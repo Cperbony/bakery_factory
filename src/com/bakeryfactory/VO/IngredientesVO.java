@@ -18,7 +18,7 @@ import org.openswing.swing.message.receive.java.ValueObjectImpl;
  */
 public class IngredientesVO extends ValueObjectImpl{
     
-    private int codIngredientes;
+    private Integer codIngredientes;
     private Date dataCadastroIngred;
     private String nomeIngrediente;
     private String tipoIngrediente;
@@ -29,75 +29,103 @@ public class IngredientesVO extends ValueObjectImpl{
     public IngredientesVO() {
     }
 
-    public int getCodigoIngred() {
+    /**
+     * @return the codIngredientes
+     */
+    public Integer getCodIngredientes() {
         return codIngredientes;
     }
 
-    public void setCodigo(int codigo) {
-        this.codIngredientes = codigo;
+    /**
+     * @param codIngredientes the codIngredientes to set
+     */
+    public void setCodIngredientes(Integer codIngredientes) {
+        this.codIngredientes = codIngredientes;
     }
 
+    /**
+     * @return the dataCadastroIngred
+     */
     public Date getDataCadastroIngred() {
         return dataCadastroIngred;
     }
 
+    /**
+     * @param dataCadastroIngred the dataCadastroIngred to set
+     */
     public void setDataCadastroIngred(Date dataCadastroIngred) {
         this.dataCadastroIngred = dataCadastroIngred;
     }
 
+    /**
+     * @return the nomeIngrediente
+     */
     public String getNomeIngrediente() {
         return nomeIngrediente;
     }
 
+    /**
+     * @param nomeIngrediente the nomeIngrediente to set
+     */
     public void setNomeIngrediente(String nomeIngrediente) {
         this.nomeIngrediente = nomeIngrediente;
     }
 
+    /**
+     * @return the tipoIngrediente
+     */
     public String getTipoIngrediente() {
         return tipoIngrediente;
     }
 
+    /**
+     * @param tipoIngrediente the tipoIngrediente to set
+     */
     public void setTipoIngrediente(String tipoIngrediente) {
         this.tipoIngrediente = tipoIngrediente;
     }
 
+    /**
+     * @return the peso
+     */
     public double getPeso() {
         return peso;
     }
 
+    /**
+     * @param peso the peso to set
+     */
     public void setPeso(double peso) {
         this.peso = peso;
     }
 
+    /**
+     * @return the unidade
+     */
     public int getUnidade() {
         return unidade;
     }
 
+    /**
+     * @param unidade the unidade to set
+     */
     public void setUnidade(int unidade) {
         this.unidade = unidade;
     }
 
+    /**
+     * @return the valor
+     */
     public double getValor() {
         return valor;
     }
 
+    /**
+     * @param valor the valor to set
+     */
     public void setValor(double valor) {
         this.valor = valor;
     }
-
-    @Override
-    public String toString() {
-        return "IngredientesVO{" + "codIngredientes=" + codIngredientes 
-                + ", dataCadastroIngred=" + dataCadastroIngred 
-                + ", nomeIngrediente=" + nomeIngrediente 
-                + ", tipoIngrediente=" + tipoIngrediente
-                + ", peso=" + peso
-                + ", unidade=" + unidade
-                + ", valor=" + valor
-                + '}';
-    }
-    
-    
     
     
 

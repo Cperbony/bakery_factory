@@ -30,10 +30,10 @@ import org.openswing.swing.util.java.Consts;
  */
 public class IngredienteDetalheController extends FormController {
 
-    private IngredienteDetalhe ingredDetFrame = null;
-    private final Connection conn = null;
-    private final String pk = null;
-    private final Ingredientes ingredienteFrame = null;
+    private IngredienteDetalhe frame = null;
+    private Connection conn = null;
+    private String pk = null;
+    private Ingredientes ingredienteFrame = null;
     private final String sql = "select ingredientes.id_ingred,"
             + "ingredientes.data_ingred, "
             + "ingredientes.nome_ingred,"
@@ -43,16 +43,18 @@ public class IngredienteDetalheController extends FormController {
             + "ingredientes.valor_ingred"
             + "from ingredientes";
 
-    public IngredienteDetalheController(IngredienteDetalheControllerBuilder ingredientesBuilder) {
-        ingredientesBuilder.createIngredienteDetalheController();
-        ingredDetFrame = new IngredienteDetalhe(conn, this);
-        MDIFrame.add(ingredDetFrame);
+    public IngredienteDetalheController(Ingredientes ingredienteFrame, String pk, Connection conn) {
+        this.ingredienteFrame = ingredienteFrame;
+        this.pk = pk;
+        this.conn = conn;
+        frame = new IngredienteDetalhe(conn, this);
+        MDIFrame.add(frame);
 
         if (pk != null) {
-            ingredDetFrame.getForm1().setMode(Consts.READONLY);
-            ingredDetFrame.getForm1().reload();
+            frame.getForm1().setMode(Consts.READONLY);
+            frame.getForm1().reload();
         } else {
-            ingredDetFrame.getForm1().setMode(Consts.INSERT);
+            frame.getForm1().setMode(Consts.INSERT);
         }
 
     }
@@ -65,7 +67,7 @@ public class IngredienteDetalheController extends FormController {
             ResultSet rset = stmt.executeQuery(sql + pk);
             if (rset.next()) {
                 IngredientesVO vo = new IngredientesVO();
-                vo.setCodigo(rset.getInt(1));
+                vo.setCodIngredientes(rset.getInt(1));
                 vo.setDataCadastroIngred(rset.getDate(2));
                 vo.setNomeIngrediente(rset.getString(3));
                 vo.setTipoIngrediente(rset.getString(4));
@@ -108,7 +110,7 @@ public class IngredienteDetalheController extends FormController {
                     + "valor_ingred"
                     + " values(?, ?, ?, ?, ?, ?, ?)");
             IngredientesVO vo = (IngredientesVO) newPersistentObject;
-            stmt.setInt(1, vo.getCodigoIngred());
+            stmt.setInt(1, vo.getCodIngredientes());
             stmt.setString(2, vo.getDataCadastroIngred().toString());
             stmt.setString(3, vo.getNomeIngrediente());
             stmt.setString(4, vo.getTipoIngrediente());
@@ -159,7 +161,7 @@ public class IngredienteDetalheController extends FormController {
             
             IngredientesVO vo = (IngredientesVO) persistentObject;
             
-            stmt.setInt(1, vo.getCodigoIngred());
+            stmt.setInt(1, vo.getCodIngredientes());
             stmt.setString(2, vo.getDataCadastroIngred().toString());
             stmt.setString(3, vo.getNomeIngrediente());
             stmt.setString(4, vo.getTipoIngrediente());
@@ -195,7 +197,7 @@ public class IngredienteDetalheController extends FormController {
         try {
             stmt = conn.prepareStatement("delete from ingredientes where id_ingred=?");
             IngredientesVO vo = (IngredientesVO) persistentObject;
-            stmt.setInt(1, vo.getCodigoIngred());
+            stmt.setInt(1, vo.getCodIngredientes());
             stmt.execute();
             ingredienteFrame.reloadData();
             return new VOResponse(vo);

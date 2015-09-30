@@ -5,8 +5,8 @@
  */
 package com.bakeryfactory.view;
 
+import com.bakeryfactory.Controller.IngredienteDetalheController;
 import com.bakeryfactory.Controller.IngredientesController;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import javax.swing.ListSelectionModel;
@@ -19,7 +19,7 @@ import org.openswing.swing.mdi.client.InternalFrame;
 public class Ingredientes extends InternalFrame implements ActionListener{
 
     private Connection conn = null;
-
+   
     /**
      * Creates new form Ingredientes Panificadora
      */
@@ -91,9 +91,16 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jPanelHeader, gridBagConstraints);
 
         jPanelButtons.setBackground(new java.awt.Color(153, 0, 0));
+
+        insertButtonIngred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertButtonIngredActionPerformed(evt);
+            }
+        });
         jPanelButtons.add(insertButtonIngred);
         jPanelButtons.add(editButtonIngred);
         jPanelButtons.add(deleteButtonIngred);
@@ -108,6 +115,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jPanelButtons, gridBagConstraints);
 
         gridControlIngred.setDeleteButton(deleteButtonIngred);
@@ -115,6 +123,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridControlIngred.setExportButton(exportButtonIngred);
         gridControlIngred.setFunctionId("ingredientes");
         gridControlIngred.setImportButton(importButtonIngred);
+        gridControlIngred.setInsertButton(insertButtonIngred);
         gridControlIngred.setNavBar(navigatorBarIngred);
         gridControlIngred.setReloadButton(reloadButtonIngred);
         gridControlIngred.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -131,6 +140,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         integerCod_Ingred.setHeaderColumnName("Código");
         gridControlIngred.getColumnContainer().add(integerCod_Ingred);
 
+        textNome_Ingred.setColumnFilterable(true);
         textNome_Ingred.setColumnName(textNome_Ingred.getColumnName());
         textNome_Ingred.setColumnSortable(true);
         textNome_Ingred.setHeaderColumnName("Nome dos Ingredientes");
@@ -138,7 +148,6 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridControlIngred.getColumnContainer().add(textNome_Ingred);
 
         textTipo_Ingred.setColumnFilterable(true);
-        textTipo_Ingred.setColumnName(textTipo_Ingred.getColumnName());
         textTipo_Ingred.setColumnSortable(true);
         textTipo_Ingred.setHeaderColumnName("Tipo");
         textTipo_Ingred.setPreferredWidth(200);
@@ -169,6 +178,13 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    private void insertButtonIngredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonIngredActionPerformed
+     new IngredienteDetalheController(this, null, conn);
+      
+    }//GEN-LAST:event_insertButtonIngredActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.openswing.swing.table.columns.client.CurrencyColumn currencyValor_Ingred;
@@ -193,7 +209,11 @@ public class Ingredientes extends InternalFrame implements ActionListener{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+       if (evt.getSource() == insertButtonIngred){
+           Ingredientes.this.insertButtonIngredActionPerformed(evt);
+       }
     }
+
+
 }

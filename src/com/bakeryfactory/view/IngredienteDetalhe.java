@@ -5,6 +5,7 @@
  */
 package com.bakeryfactory.view;
 
+import com.bakeryfactory.Controller.IngredienteDetalheController;
 import com.bakeryfactory.view.Ingredientes;
 import java.sql.Connection;
 import org.openswing.swing.client.DeleteButton;
@@ -33,6 +34,7 @@ public class IngredienteDetalhe extends InternalFrame {
             e.printStackTrace();
         }
     }
+
     
     public Form getForm1(){
         return formIngredientes;
@@ -136,6 +138,8 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         formIngredientes.add(textNomeIngred, gridBagConstraints);
+
+        textCodIngred.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
