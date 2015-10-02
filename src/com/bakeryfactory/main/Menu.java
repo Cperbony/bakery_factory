@@ -67,6 +67,7 @@ public class Menu implements MDIController, LoginController {
         ClientSettings.INCLUDE_IN_OPERATOR = false;
         ClientSettings.SHOW_SCROLLBARS_IN_MDI = false;
         ClientSettings.FILTER_PANEL_ON_GRID = true;
+        ClientSettings.SHOW_PAGINATION_BUTTONS_ON_GRID = true;
 
         ClientSettings.getInstance().setLanguage("PT_BR");
 
@@ -265,8 +266,6 @@ public class Menu implements MDIController, LoginController {
         }
 
         MDIFrame mdi = new MDIFrame(this);
-        
-        
 
         //configura os botões da barra de ferramentas
         mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Usuários");
@@ -276,7 +275,7 @@ public class Menu implements MDIController, LoginController {
         mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Setores");
         mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Ingredientes");
         mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Receitas");
-                mdi.addSeparatorToToolBar();
+        mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
         mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Modo de Preparo");
         mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Classe de Produtos");
@@ -341,9 +340,9 @@ public class Menu implements MDIController, LoginController {
         ApplicationFunction n3 = new ApplicationFunction("Movimentos", null);
 
         ApplicationFunction n1a = new ApplicationFunction("Usuarios", "usuarios", null, "getUsuarios");
-        ApplicationFunction n11a = new ApplicationFunction("Empresas", "empresa", null, "getEmpresas");
-        ApplicationFunction n11b = new ApplicationFunction("Enderecos", "endereco", null, "getEnderecos");
-        ApplicationFunction n11c = new ApplicationFunction("Telefones", "telefone", null, "getTelefone");
+        ApplicationFunction n111 = new ApplicationFunction("Empresas", "empresa", null, "getEmpresas");
+        ApplicationFunction n112 = new ApplicationFunction("Enderecos", "endereco", null, "getEnderecos");
+        ApplicationFunction n113 = new ApplicationFunction("Telefones", "telefone", null, "getTelefone");
         ApplicationFunction n1b = new ApplicationFunction("Setores", "setores", null, "getSetores");
         ApplicationFunction n1c = new ApplicationFunction("Ingredientes", "ingredientes", null, "getIngredientes");
         ApplicationFunction n1d = new ApplicationFunction("Receitas de Produção", "receitas", null, "getReceitas");
@@ -369,9 +368,9 @@ public class Menu implements MDIController, LoginController {
         ApplicationFunction n32 = new ApplicationFunction("Impressão de Relatorios", "impressao", null, "getImpressao");
 
         n1.add(n1a);
-            n1a.add(n11a);
-            n1a.add(n11b);
-            n1a.add(n11c);
+            n1.add(n111);
+            n1.add(n112);
+            n1.add(n113);
         n1.add(n1b);
         n1.add(n1c);
         n1.add(n1d);
@@ -384,8 +383,8 @@ public class Menu implements MDIController, LoginController {
         n1.add(n1k);
 
         n2.add(n21);
-            n21.add(n211);
-            n21.add(n212);
+            n2.add(n211);
+            n2.add(n212);
         n2.add(n22);
         n2.add(n23);
         n2.add(n24);
@@ -410,7 +409,7 @@ public class Menu implements MDIController, LoginController {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/bakery_factory?user=root&password=root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bakery_factory?user=root&password=root");
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
         }

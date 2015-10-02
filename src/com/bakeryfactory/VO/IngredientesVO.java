@@ -20,8 +20,8 @@ public class IngredientesVO extends ValueObjectImpl{
     
     private Integer codIngredientes;
     private Date dataCadastroIngred;
-    private String nomeIngrediente;
     private String tipoIngrediente;
+    private String nomeIngrediente;
     private double peso;
     private int unidade;
     private double valor;
@@ -58,20 +58,6 @@ public class IngredientesVO extends ValueObjectImpl{
     }
 
     /**
-     * @return the nomeIngrediente
-     */
-    public String getNomeIngrediente() {
-        return nomeIngrediente;
-    }
-
-    /**
-     * @param nomeIngrediente the nomeIngrediente to set
-     */
-    public void setNomeIngrediente(String nomeIngrediente) {
-        this.nomeIngrediente = nomeIngrediente;
-    }
-
-    /**
      * @return the tipoIngrediente
      */
     public String getTipoIngrediente() {
@@ -83,6 +69,20 @@ public class IngredientesVO extends ValueObjectImpl{
      */
     public void setTipoIngrediente(String tipoIngrediente) {
         this.tipoIngrediente = tipoIngrediente;
+    }
+
+    /**
+     * @return the nomeIngrediente
+     */
+    public String getNomeIngrediente() {
+        return nomeIngrediente;
+    }
+
+    /**
+     * @param nomeIngrediente the nomeIngrediente to set
+     */
+    public void setNomeIngrediente(String nomeIngrediente) {
+        this.nomeIngrediente = nomeIngrediente;
     }
 
     /**
@@ -128,5 +128,7 @@ public class IngredientesVO extends ValueObjectImpl{
     }
     
     
+
+  
 
 }

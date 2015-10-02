@@ -28,8 +28,9 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         try {
             initComponents();
             setSize(750, 300);
-            gridControlIngred.setController(ingredController);
-            gridControlIngred.setGridDataLocator(ingredController);
+            gridControlIngredientes.setController(ingredController);
+            gridControlIngredientes.setGridDataLocator(ingredController);
+            
             //gridControlIngred.enableDrag("Grid1");
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,7 +39,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
     
     
     public void reloadData(){
-        gridControlIngred.reloadData();
+        gridControlIngredientes.reloadData();
     }
 
     /**
@@ -55,21 +56,21 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         jLabelLogo = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
         jPanelButtons = new javax.swing.JPanel();
-        insertButtonIngred = new org.openswing.swing.client.InsertButton();
-        editButtonIngred = new org.openswing.swing.client.EditButton();
-        deleteButtonIngred = new org.openswing.swing.client.DeleteButton();
-        reloadButtonIngred = new org.openswing.swing.client.ReloadButton();
-        exportButtonIngred = new org.openswing.swing.client.ExportButton();
-        importButtonIngred = new org.openswing.swing.client.ImportButton();
+        insertButton1 = new org.openswing.swing.client.InsertButton();
+        editButton1 = new org.openswing.swing.client.EditButton();
+        deleteButton1 = new org.openswing.swing.client.DeleteButton();
+        reloadButton1 = new org.openswing.swing.client.ReloadButton();
+        exportButton1 = new org.openswing.swing.client.ExportButton();
+        importButton1 = new org.openswing.swing.client.ImportButton();
         navigatorBarIngred = new org.openswing.swing.client.NavigatorBar();
-        gridControlIngred = new org.openswing.swing.client.GridControl();
-        dateData_Ingred = new org.openswing.swing.table.columns.client.DateColumn();
-        integerCod_Ingred = new org.openswing.swing.table.columns.client.IntegerColumn();
-        textNome_Ingred = new org.openswing.swing.table.columns.client.TextColumn();
-        textTipo_Ingred = new org.openswing.swing.table.columns.client.TextColumn();
-        decimalPeso_Ingred = new org.openswing.swing.table.columns.client.DecimalColumn();
-        decimalUnidade_Ingred = new org.openswing.swing.table.columns.client.DecimalColumn();
-        currencyValor_Ingred = new org.openswing.swing.table.columns.client.CurrencyColumn();
+        gridControlIngredientes = new org.openswing.swing.client.GridControl();
+        integerColumn1 = new org.openswing.swing.table.columns.client.IntegerColumn();
+        dateColumn1 = new org.openswing.swing.table.columns.client.DateColumn();
+        textColumn2 = new org.openswing.swing.table.columns.client.TextColumn();
+        textColumn1 = new org.openswing.swing.table.columns.client.TextColumn();
+        decimalColumn1 = new org.openswing.swing.table.columns.client.DecimalColumn();
+        decimalColumn2 = new org.openswing.swing.table.columns.client.DecimalColumn();
+        currencyColumn1 = new org.openswing.swing.table.columns.client.CurrencyColumn();
 
         setTitle("Cadastro de Ingredientes");
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -86,27 +87,23 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         jPanelHeader.add(jLabelTitulo);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jPanelHeader, gridBagConstraints);
 
         jPanelButtons.setBackground(new java.awt.Color(153, 0, 0));
 
-        insertButtonIngred.addActionListener(new java.awt.event.ActionListener() {
+        insertButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertButtonIngredActionPerformed(evt);
+                insertButton1ActionPerformed(evt);
             }
         });
-        jPanelButtons.add(insertButtonIngred);
-        jPanelButtons.add(editButtonIngred);
-        jPanelButtons.add(deleteButtonIngred);
-        jPanelButtons.add(reloadButtonIngred);
-        jPanelButtons.add(exportButtonIngred);
-        jPanelButtons.add(importButtonIngred);
+        jPanelButtons.add(insertButton1);
+        jPanelButtons.add(editButton1);
+        jPanelButtons.add(deleteButton1);
+        jPanelButtons.add(reloadButton1);
+        jPanelButtons.add(exportButton1);
+        jPanelButtons.add(importButton1);
         jPanelButtons.add(navigatorBarIngred);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -114,56 +111,68 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jPanelButtons, gridBagConstraints);
 
-        gridControlIngred.setDeleteButton(deleteButtonIngred);
-        gridControlIngred.setEditButton(editButtonIngred);
-        gridControlIngred.setExportButton(exportButtonIngred);
-        gridControlIngred.setFunctionId("ingredientes");
-        gridControlIngred.setImportButton(importButtonIngred);
-        gridControlIngred.setInsertButton(insertButtonIngred);
-        gridControlIngred.setNavBar(navigatorBarIngred);
-        gridControlIngred.setReloadButton(reloadButtonIngred);
-        gridControlIngred.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        gridControlIngred.setValueObjectClassName("com.bakeryfactory.VO.IngredientesVO");
-        gridControlIngred.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        gridControlIngredientes.setDeleteButton(deleteButton1);
+        gridControlIngredientes.setEditButton(editButton1);
+        gridControlIngredientes.setExportButton(exportButton1);
+        gridControlIngredientes.setFunctionId("ingredientes");
+        gridControlIngredientes.setImportButton(importButton1);
+        gridControlIngredientes.setNavBar(navigatorBarIngred);
+        gridControlIngredientes.setReloadButton(reloadButton1);
+        gridControlIngredientes.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        gridControlIngredientes.setValueObjectClassName("com.bakeryfactory.VO.IngredientesVO");
+        gridControlIngredientes.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        dateData_Ingred.setColumnName(dateData_Ingred.getColumnName());
-        dateData_Ingred.setColumnSortable(true);
-        dateData_Ingred.setHeaderColumnName("Data");
-        dateData_Ingred.setSortVersus(org.openswing.swing.util.java.Consts.ASC_SORTED);
-        gridControlIngred.getColumnContainer().add(dateData_Ingred);
+        integerColumn1.setColumnFilterable(true);
+        integerColumn1.setColumnName("codIngredientes");
+        integerColumn1.setColumnSortable(true);
+        integerColumn1.setHeaderColumnName("Código");
+        gridControlIngredientes.getColumnContainer().add(integerColumn1);
 
-        integerCod_Ingred.setColumnName(integerCod_Ingred.getColumnName());
-        integerCod_Ingred.setHeaderColumnName("Código");
-        gridControlIngred.getColumnContainer().add(integerCod_Ingred);
+        dateColumn1.setColumnName("dataCadastroIngred");
+        dateColumn1.setColumnSortable(true);
+        dateColumn1.setHeaderColumnName("Data Cadastro");
+        gridControlIngredientes.getColumnContainer().add(dateColumn1);
 
-        textNome_Ingred.setColumnFilterable(true);
-        textNome_Ingred.setColumnName(textNome_Ingred.getColumnName());
-        textNome_Ingred.setColumnSortable(true);
-        textNome_Ingred.setHeaderColumnName("Nome dos Ingredientes");
-        textNome_Ingred.setPreferredWidth(300);
-        gridControlIngred.getColumnContainer().add(textNome_Ingred);
+        textColumn2.setColumnFilterable(true);
+        textColumn2.setColumnName("tipoIngrediente");
+        textColumn2.setColumnSortable(true);
+        textColumn2.setEditableOnEdit(true);
+        textColumn2.setHeaderColumnName("Tipo Ingredientes");
+        textColumn2.setPreferredWidth(255);
+        gridControlIngredientes.getColumnContainer().add(textColumn2);
 
-        textTipo_Ingred.setColumnFilterable(true);
-        textTipo_Ingred.setColumnSortable(true);
-        textTipo_Ingred.setHeaderColumnName("Tipo");
-        textTipo_Ingred.setPreferredWidth(200);
-        gridControlIngred.getColumnContainer().add(textTipo_Ingred);
+        textColumn1.setAutoFitColumn(true);
+        textColumn1.setColumnFilterable(true);
+        textColumn1.setColumnName("nomeIngrediente");
+        textColumn1.setColumnSortable(true);
+        textColumn1.setEditableOnEdit(true);
+        textColumn1.setEditableOnInsert(true);
+        textColumn1.setHeaderColumnName("Nome Ingredientes");
+        textColumn1.setPreferredWidth(255);
+        gridControlIngredientes.getColumnContainer().add(textColumn1);
 
-        decimalPeso_Ingred.setColumnName(decimalPeso_Ingred.getColumnName());
-        decimalPeso_Ingred.setHeaderColumnName("Peso");
-        gridControlIngred.getColumnContainer().add(decimalPeso_Ingred);
+        decimalColumn1.setColumnFilterable(true);
+        decimalColumn1.setColumnName("peso");
+        decimalColumn1.setDecimals(2);
+        decimalColumn1.setHeaderColumnName("Peso");
+        gridControlIngredientes.getColumnContainer().add(decimalColumn1);
 
-        decimalUnidade_Ingred.setColumnName(decimalUnidade_Ingred.getColumnName());
-        decimalUnidade_Ingred.setHeaderColumnName("Unidades");
-        gridControlIngred.getColumnContainer().add(decimalUnidade_Ingred);
+        decimalColumn2.setColumnName("unidade");
+        decimalColumn2.setColumnSortable(true);
+        decimalColumn2.setEditableOnEdit(true);
+        decimalColumn2.setEditableOnInsert(true);
+        decimalColumn2.setHeaderColumnName("Unidades");
+        gridControlIngredientes.getColumnContainer().add(decimalColumn2);
 
-        currencyValor_Ingred.setDecimals(2);
-        currencyValor_Ingred.setHeaderColumnName("Valor R$");
-        gridControlIngred.getColumnContainer().add(currencyValor_Ingred);
+        currencyColumn1.setColumnName("valor");
+        currencyColumn1.setCurrencySymbol("R$");
+        currencyColumn1.setDecimals(2);
+        currencyColumn1.setEditableOnEdit(true);
+        currencyColumn1.setEditableOnInsert(true);
+        currencyColumn1.setHeaderColumnName("Valor R$");
+        gridControlIngredientes.getColumnContainer().add(currencyColumn1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -171,49 +180,44 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(gridControlIngred, gridBagConstraints);
-        gridControlIngred.getAccessibleContext().setAccessibleName("Cadastro Ingredientes");
+        getContentPane().add(gridControlIngredientes, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    private void insertButtonIngredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonIngredActionPerformed
-     new IngredienteDetalheController(this, null, conn);
-      
-    }//GEN-LAST:event_insertButtonIngredActionPerformed
+    private void insertButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButton1ActionPerformed
+        new IngredienteDetalheController(this, null, conn);
+    }//GEN-LAST:event_insertButton1ActionPerformed
 
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.openswing.swing.table.columns.client.CurrencyColumn currencyValor_Ingred;
-    private org.openswing.swing.table.columns.client.DateColumn dateData_Ingred;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalPeso_Ingred;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalUnidade_Ingred;
-    private org.openswing.swing.client.DeleteButton deleteButtonIngred;
-    private org.openswing.swing.client.EditButton editButtonIngred;
-    private org.openswing.swing.client.ExportButton exportButtonIngred;
-    private org.openswing.swing.client.GridControl gridControlIngred;
-    private org.openswing.swing.client.ImportButton importButtonIngred;
-    private org.openswing.swing.client.InsertButton insertButtonIngred;
-    private org.openswing.swing.table.columns.client.IntegerColumn integerCod_Ingred;
+    private org.openswing.swing.table.columns.client.CurrencyColumn currencyColumn1;
+    private org.openswing.swing.table.columns.client.DateColumn dateColumn1;
+    private org.openswing.swing.table.columns.client.DecimalColumn decimalColumn1;
+    private org.openswing.swing.table.columns.client.DecimalColumn decimalColumn2;
+    private org.openswing.swing.client.DeleteButton deleteButton1;
+    private org.openswing.swing.client.EditButton editButton1;
+    private org.openswing.swing.client.ExportButton exportButton1;
+    private org.openswing.swing.client.GridControl gridControlIngredientes;
+    private org.openswing.swing.client.ImportButton importButton1;
+    private org.openswing.swing.client.InsertButton insertButton1;
+    private org.openswing.swing.table.columns.client.IntegerColumn integerColumn1;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelButtons;
     private javax.swing.JPanel jPanelHeader;
     private org.openswing.swing.client.NavigatorBar navigatorBarIngred;
-    private org.openswing.swing.client.ReloadButton reloadButtonIngred;
-    private org.openswing.swing.table.columns.client.TextColumn textNome_Ingred;
-    private org.openswing.swing.table.columns.client.TextColumn textTipo_Ingred;
+    private org.openswing.swing.client.ReloadButton reloadButton1;
+    private org.openswing.swing.table.columns.client.TextColumn textColumn1;
+    private org.openswing.swing.table.columns.client.TextColumn textColumn2;
     // End of variables declaration//GEN-END:variables
 
-    @Override
+        @Override
     public void actionPerformed(java.awt.event.ActionEvent evt) {
-       if (evt.getSource() == insertButtonIngred){
-           Ingredientes.this.insertButtonIngredActionPerformed(evt);
+       if(evt.getSource() == insertButton1){
+           Ingredientes.this.insertButton1ActionPerformed(evt);
        }
     }
-
-
 }

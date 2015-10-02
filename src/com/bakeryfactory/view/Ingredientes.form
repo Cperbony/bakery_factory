@@ -17,7 +17,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-10,0,0,3,-2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,72,0,0,3,-2"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
@@ -30,7 +30,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="1.0" weightY="1.0"/>
+          <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="0.0"/>
         </Constraint>
       </Constraints>
 
@@ -67,66 +67,60 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="1.0" weightY="1.0"/>
+          <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="0.0"/>
         </Constraint>
       </Constraints>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="org.openswing.swing.client.InsertButton" name="insertButtonIngred">
+        <Component class="org.openswing.swing.client.InsertButton" name="insertButton1">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertButtonIngredActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertButton1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="org.openswing.swing.client.EditButton" name="editButtonIngred">
+        <Component class="org.openswing.swing.client.EditButton" name="editButton1">
         </Component>
-        <Component class="org.openswing.swing.client.DeleteButton" name="deleteButtonIngred">
+        <Component class="org.openswing.swing.client.DeleteButton" name="deleteButton1">
         </Component>
-        <Component class="org.openswing.swing.client.ReloadButton" name="reloadButtonIngred">
+        <Component class="org.openswing.swing.client.ReloadButton" name="reloadButton1">
         </Component>
-        <Component class="org.openswing.swing.client.ExportButton" name="exportButtonIngred">
+        <Component class="org.openswing.swing.client.ExportButton" name="exportButton1">
         </Component>
-        <Component class="org.openswing.swing.client.ImportButton" name="importButtonIngred">
+        <Component class="org.openswing.swing.client.ImportButton" name="importButton1">
         </Component>
         <Component class="org.openswing.swing.client.NavigatorBar" name="navigatorBarIngred">
         </Component>
       </SubComponents>
     </Container>
-    <Container class="org.openswing.swing.client.GridControl" name="gridControlIngred">
+    <Container class="org.openswing.swing.client.GridControl" name="gridControlIngredientes">
       <Properties>
         <Property name="deleteButton" type="org.openswing.swing.client.DeleteButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="deleteButtonIngred"/>
+          <ComponentRef name="deleteButton1"/>
         </Property>
         <Property name="editButton" type="org.openswing.swing.client.EditButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="editButtonIngred"/>
+          <ComponentRef name="editButton1"/>
         </Property>
         <Property name="exportButton" type="org.openswing.swing.client.ExportButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="exportButtonIngred"/>
+          <ComponentRef name="exportButton1"/>
         </Property>
         <Property name="functionId" type="java.lang.String" value="ingredientes"/>
         <Property name="importButton" type="org.openswing.swing.client.ImportButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="importButtonIngred"/>
-        </Property>
-        <Property name="insertButton" type="org.openswing.swing.client.InsertButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="insertButtonIngred"/>
+          <ComponentRef name="importButton1"/>
         </Property>
         <Property name="navBar" type="org.openswing.swing.client.NavigatorBar" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="navigatorBarIngred"/>
         </Property>
         <Property name="reloadButton" type="org.openswing.swing.client.ReloadButton" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="reloadButtonIngred"/>
+          <ComponentRef name="reloadButton1"/>
         </Property>
         <Property name="selectionMode" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="ListSelectionModel.MULTIPLE_INTERVAL_SELECTION" type="code"/>
         </Property>
         <Property name="valueObjectClassName" type="java.lang.String" value="com.bakeryfactory.VO.IngredientesVO"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Cadastro Ingredientes"/>
-      </AccessibilityProperties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="1.0" weightY="1.0"/>
+          <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
         </Constraint>
       </Constraints>
 
@@ -135,62 +129,67 @@
         <Property name="verticalGap" type="int" value="0"/>
       </Layout>
       <SubComponents>
-        <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateData_Ingred">
+        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerColumn1">
           <Properties>
-            <Property name="columnName" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection component="dateData_Ingred" name="columnName" type="property"/>
-            </Property>
+            <Property name="columnFilterable" type="boolean" value="true"/>
+            <Property name="columnName" type="java.lang.String" value="codIngredientes"/>
             <Property name="columnSortable" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Data"/>
-            <Property name="sortVersus" type="java.lang.String" value="ASC"/>
-          </Properties>
-        </Component>
-        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerCod_Ingred">
-          <Properties>
-            <Property name="columnName" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection component="integerCod_Ingred" name="columnName" type="property"/>
-            </Property>
             <Property name="headerColumnName" type="java.lang.String" value="C&#xf3;digo"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textNome_Ingred">
+        <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateColumn1">
           <Properties>
-            <Property name="columnFilterable" type="boolean" value="true"/>
-            <Property name="columnName" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection component="textNome_Ingred" name="columnName" type="property"/>
-            </Property>
+            <Property name="columnName" type="java.lang.String" value="dataCadastroIngred"/>
             <Property name="columnSortable" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Nome dos Ingredientes"/>
-            <Property name="preferredWidth" type="int" value="300"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Data Cadastro"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textTipo_Ingred">
+        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textColumn2">
           <Properties>
             <Property name="columnFilterable" type="boolean" value="true"/>
+            <Property name="columnName" type="java.lang.String" value="tipoIngrediente"/>
             <Property name="columnSortable" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Tipo"/>
-            <Property name="preferredWidth" type="int" value="200"/>
+            <Property name="editableOnEdit" type="boolean" value="true"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Tipo Ingredientes"/>
+            <Property name="preferredWidth" type="int" value="255"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalPeso_Ingred">
+        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textColumn1">
           <Properties>
-            <Property name="columnName" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection component="decimalPeso_Ingred" name="columnName" type="property"/>
-            </Property>
+            <Property name="autoFitColumn" type="boolean" value="true"/>
+            <Property name="columnFilterable" type="boolean" value="true"/>
+            <Property name="columnName" type="java.lang.String" value="nomeIngrediente"/>
+            <Property name="columnSortable" type="boolean" value="true"/>
+            <Property name="editableOnEdit" type="boolean" value="true"/>
+            <Property name="editableOnInsert" type="boolean" value="true"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Nome Ingredientes"/>
+            <Property name="preferredWidth" type="int" value="255"/>
+          </Properties>
+        </Component>
+        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalColumn1">
+          <Properties>
+            <Property name="columnFilterable" type="boolean" value="true"/>
+            <Property name="columnName" type="java.lang.String" value="peso"/>
+            <Property name="decimals" type="int" value="2"/>
             <Property name="headerColumnName" type="java.lang.String" value="Peso"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalUnidade_Ingred">
+        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalColumn2">
           <Properties>
-            <Property name="columnName" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection component="decimalUnidade_Ingred" name="columnName" type="property"/>
-            </Property>
+            <Property name="columnName" type="java.lang.String" value="unidade"/>
+            <Property name="columnSortable" type="boolean" value="true"/>
+            <Property name="editableOnEdit" type="boolean" value="true"/>
+            <Property name="editableOnInsert" type="boolean" value="true"/>
             <Property name="headerColumnName" type="java.lang.String" value="Unidades"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.CurrencyColumn" name="currencyValor_Ingred">
+        <Component class="org.openswing.swing.table.columns.client.CurrencyColumn" name="currencyColumn1">
           <Properties>
+            <Property name="columnName" type="java.lang.String" value="valor"/>
+            <Property name="currencySymbol" type="java.lang.String" value="R$"/>
             <Property name="decimals" type="int" value="2"/>
+            <Property name="editableOnEdit" type="boolean" value="true"/>
+            <Property name="editableOnInsert" type="boolean" value="true"/>
             <Property name="headerColumnName" type="java.lang.String" value="Valor R$"/>
           </Properties>
         </Component>

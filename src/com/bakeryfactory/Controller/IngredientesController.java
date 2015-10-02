@@ -34,31 +34,30 @@ import org.openswing.swing.table.java.GridDataLocator;
  */
 public class IngredientesController extends GridController implements GridDataLocator {
 
-    private Ingredientes gridIngredientes = null;
+    private Ingredientes grid = null;
     private Connection conn = null;
-    
+
     public IngredientesController(Connection conn) {
         this.conn = conn;
-        gridIngredientes = new Ingredientes(conn, this);
-        MDIFrame.add(gridIngredientes, true);
+        grid = new Ingredientes(conn, this);
+        MDIFrame.add(grid, true);
     }
 
     /**
      * Callback method invoked when the user has double clicked on the selected
-     * row of the gridIngredientes.
+     * row of the grid.
      *
      * @param rowNumber selected row index
      * @param persistentObject v.o. related to the selected row
      */
     @Override
     public void doubleClick(int rowNumber, ValueObject persistentObject) {
-        IngredientesVO vo  = (IngredientesVO) persistentObject;   
-        IngredienteDetalheController ingredienteDetalheController;
-        ingredienteDetalheController = new IngredienteDetalheController(gridIngredientes, vo.getCodIngredientes().toString(), conn);
+        IngredientesVO vo = (IngredientesVO) persistentObject;
+        new IngredienteDetalheController(grid, vo.getCodIngredientes().toString(), conn);
     }
 
     /**
-     * Callback method invoked to load data on the gridIngredientes.
+     * Callback method invoked to load data on the grid.
      *
      * @param action fetching versus: PREVIOUS_BLOCK_ACTION, NEXT_BLOCK_ACTION
      * or LAST_BLOCK_ACTION
@@ -67,7 +66,7 @@ public class IngredientesController extends GridController implements GridDataLo
      * @param currentSortedColumns sorted columns
      * @param currentSortedVersusColumns ordering versus of sorted columns
      * @param valueObjectType v.o. type
-     * @param otherGridParams other gridIngredientes parameters
+     * @param otherGridParams other grid parameters
      * @return response from the server: an object of type VOListResponse if
      * data loading was successfully completed, or an ErrorResponse onject if
      * some error occours
@@ -83,30 +82,31 @@ public class IngredientesController extends GridController implements GridDataLo
             Map otherGridParams) {
         PreparedStatement stmt = null;
         try {
-            String sql = "select ingredientes.id_ingred,"
-                    + "ingredientes.data_ingred, "
-                    + "ingredientes.nome_ingred,"
-                    + "ingredientes.tipo_ingred"
-                    + "ingredientes.peso_ingred"
-                    + "ingredientes.unidade_ingred"
-                    + "ingredientes.valor_ingred"
+            String sql = "SELECT "
+                    + "ingredientes.ID_INGRED,"
+                    + "ingredientes.DATA_INGRED,"
+                    + "ingredientes.TIPO_INGRED,"
+                    + "ingredientes.NOME_INGRED,"
+                    + "ingredientes.PESO_INGRED,"
+                    + "ingredientes.UNIDADE_INGRED,"
+                    + "ingredientes.VALOR_INGRED"
                     + "from ingredientes";
 
             Vector vals = new Vector();
 
             Map mapa = new HashMap();
-            mapa.put("codIngredientes", "ingredientes.id_ingred");
-            mapa.put("dataCadastroIngred", "ingredientes.data_ingred");
-            mapa.put("nomeIngrediente", "ingredientes.nome_ingred");
-            mapa.put("tipoIngrediente", "ingredientes.tipo_ingred");
-            mapa.put("peso", "ingredientes.peso_ingred");
-            mapa.put("unidade", "ingredientes.unidade_ingred");
-            mapa.put("valor", "ingredientes.valor_ingred");
+            mapa.put("codIngredientes", "ingredientes.ID_INGRED");
+            mapa.put("dataCadastroIngred", "ingredientes.DATA_INGRED");
+            mapa.put("tipoIngrediente", "ingredientes.TIPO_INGRED");
+            mapa.put("nomeIngrediente", "ingredientes.NOME_INGRED");
+            mapa.put("peso", "ingredientes.PESO_INGRED");
+            mapa.put("unidade", "ingredientes.UNIDADE_INGRED");
+            mapa.put("valor", "ingredientes.VALOR_INGRED");
 
 //verificar se tem colunas a serem filtradas
             if (filteredColumns.size() > 0) {
                 FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeIngrediente");
-                sql += " where ingredientes.nome_ingred" + filtro[0].getOperator() + "?";
+                sql += "where ingredientes.nome_ingred" + filtro[0].getOperator() + "?";
                 vals.add(filtro[0].getValue());
             }
 
@@ -126,7 +126,14 @@ public class IngredientesController extends GridController implements GridDataLo
             IngredientesVO vo = null;
             while (rset.next()) {
                 System.out.println();
-                vo = setarIngredientes(rset);
+                vo = new IngredientesVO();
+                vo.setCodIngredientes(rset.getInt(1));
+                vo.setDataCadastroIngred(rset.getDate(2));
+                vo.setTipoIngrediente(rset.getString(3));
+                vo.setNomeIngrediente(rset.getString(4));
+                vo.setPeso(rset.getDouble(5));
+                vo.setUnidade(rset.getInt(6));
+                vo.setValor(rset.getDouble(7));
 
                 list.add(vo);
             }
@@ -142,22 +149,9 @@ public class IngredientesController extends GridController implements GridDataLo
 
     }
 
-    public IngredientesVO setarIngredientes(ResultSet rset) throws SQLException {
-        IngredientesVO vo;
-        vo = new IngredientesVO();
-        vo.setCodIngredientes(rset.getInt(1));
-        vo.setDataCadastroIngred(rset.getDate(2));
-        vo.setNomeIngrediente(rset.getString(3));
-        vo.setTipoIngrediente(rset.getString(4));
-        vo.setPeso(rset.getDouble(5));
-        vo.setUnidade(rset.getInt(6));
-        vo.setValor(rset.getDouble(7));
-        return vo;
-    }
-
     /**
-     * Method invoked when the user has clicked on delete button and the
-     * gridIngredientes is in READONLY mode.
+     * Method invoked when the user has clicked on delete button and the grid is
+     * in READONLY mode.
      *
      * @param persistentObjects value objects to delete (related to the
      * currently selected rows)
