@@ -114,6 +114,7 @@ public class ClasseProduto extends InternalFrame {
         gridControlClasseProd.setNavBar(navigatorBarClasse);
         gridControlClasseProd.setReloadButton(reloadButtonClasse);
         gridControlClasseProd.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        gridControlClasseProd.setValueObjectClassName("com.bakeryfactory.VO.ClasseProdutoVO");
         gridControlClasseProd.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
         dateClasseProd.setColumnSortable(true);

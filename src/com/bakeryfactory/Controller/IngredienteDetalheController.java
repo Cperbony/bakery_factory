@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import org.openswing.swing.form.client.FormController;
 import org.openswing.swing.mdi.client.MDIFrame;
 import org.openswing.swing.message.receive.java.ErrorResponse;
@@ -40,7 +41,7 @@ public class IngredienteDetalheController extends FormController {
         this.pk = pk;
         this.conn = conn;
         frame = new IngredienteDetalhe(conn, this);
-        MDIFrame.add(frame);
+        MDIFrame.add(frame, true);
 
         if (pk != null) {
             frame.getForm1().setMode(Consts.READONLY);
@@ -51,7 +52,7 @@ public class IngredienteDetalheController extends FormController {
 
     }
 
-    @Override
+   // @Override
     public Response loadData(Class valueObjectClass) {
 
         Statement stmt = null;
@@ -59,35 +60,40 @@ public class IngredienteDetalheController extends FormController {
             stmt = conn.createStatement();
 
             ResultSet rset = stmt.executeQuery(
-                    "SELECT"
-                    + "ingredientes.ID_INGRED,"
-                    + "ingredientes.DATA_INGRED,"
-                    + "ingredientes.TIPO_INGRED,"
-                    + "ingredientes.NOME_INGRED,"
-                    + "ingredientes.PESO_INGRED,"
-                    + "ingredientes.UNIDADE_INGRED,"
-                    + "ingredientes.VALOR_INGRED"
-                    + "from ingredientes WHERE ID_INGRED =" + pk);
+                    "SELECT ingredientes.ID_INGRED, ingredientes.DATA_INGRED, ingredientes.TIPO_INGRED, ingredientes.NOME_INGRED, ingredientes.PESO_INGRED, ingredientes.UNIDADE_INGRED, ingredientes.VALOR_INGRED from ingredientes WHERE ID_INGRED =" 
+                     + pk);
+            
+            JOptionPane.showMessageDialog(null, "Comando LoadData");
+                 
+            
+            
 
             if (rset.next()) {
                 IngredientesVO vo = new IngredientesVO();
                 vo.setCodIngredientes(rset.getInt(1));
-                vo.setDataCadastroIngred(rset.getDate(2));
+                vo.setDataCadastroIngred(rset.getString(2));
                 vo.setTipoIngrediente(rset.getString(3));
                 vo.setNomeIngrediente(rset.getString(4));
                 vo.setPeso(rset.getDouble(5));
                 vo.setUnidade(rset.getInt(6));
                 vo.setValor(rset.getDouble(7));
                 return new VOResponse(vo);
+                
             } else {
-                return new ErrorResponse(" Nenhum Registro Encontrado");
+                return new ErrorResponse("Nenhum Registro Encontrado");
+                
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
             return new ErrorResponse(ex.getMessage());
         } finally {
             try {
+                JOptionPane.showMessageDialog(null, "Comando LoadData");
+                 
                 stmt.close();
+                
+                 JOptionPane.showMessageDialog(null, "Comando LoadData");
+                 
             } catch (SQLException ex1) {
 
             }
@@ -101,29 +107,24 @@ public class IngredienteDetalheController extends FormController {
      * @return an ErrorResponse value object in case of errors, VOResponse if
      * the operation is successfully completed
      */
-    @Override
+    //Override
     public Response insertRecord(ValueObject newPersistentObject) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement("insert into ingredientes ("
-                    + "DATA_INGRED,"
-                    + "TIPO_INGRED,"
-                    + "NOME_INGRED,"
-                    + "PESO_INGRED,"
-                    + "UNIDADE_INGRED,"
-                    + "VALOR_INGRED)"
-                    + " values(?, ?, ?, ?, ?, ?)");
+            stmt = conn.prepareStatement(insertIngredientes());
             
             IngredientesVO vo = (IngredientesVO) newPersistentObject;
-            stmt.setInt(1, vo.getCodIngredientes());
-            stmt.setString(2, vo.getDataCadastroIngred().toString());
-            stmt.setString(3, vo.getTipoIngrediente());
-            stmt.setString(4, vo.getNomeIngrediente());
-            stmt.setDouble(5, vo.getPeso());
-            stmt.setInt(6, vo.getUnidade());
-            stmt.setDouble(7, vo.getValor());
+            //stmt.setInt(1, vo.getCodIngredientes());
+           stmt.setString(1, vo.getDataCadastroIngred());
+            stmt.setString(2, vo.getTipoIngrediente());
+            stmt.setString(3, vo.getNomeIngrediente());
+            stmt.setDouble(4, vo.getPeso());
+            stmt.setInt(5, vo.getUnidade());
+            stmt.setDouble(6, vo.getValor());
 
             stmt.execute();
+            
+             JOptionPane.showMessageDialog(null, "Dados Inseridos com Sucesso!");
 
             //pk = vo.getCodigoIngred().toString();
             ingredienteFrame.reloadData();
@@ -141,6 +142,10 @@ public class IngredienteDetalheController extends FormController {
 
     }
 
+    public static String insertIngredientes() {
+        return "insert into ingredientes (DATA_INGRED, TIPO_INGRED, NOME_INGRED, PESO_INGRED, UNIDADE_INGRED, VALOR_INGRED) values(?, ?, ?, ?, ?, ?)";
+    }
+
     /**
      * Method called by the Form panel to update existing data.
      *
@@ -149,25 +154,16 @@ public class IngredienteDetalheController extends FormController {
      * @return an ErrorResponse value object in case of errors, VOResponse if
      * the operation is successfully completed
      */
-    @Override
+    //@Override
     public Response updateRecord(ValueObject oldPersistentObject, ValueObject persistentObject) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement(""
-                    + "update ingredientes set "
-                    //+ "set id_ingred=?,"
-                    + "DATA_INGRED = ?,"
-                    + "TIPO_INGRED = ?,"
-                    + "NOME_INGRED = ?,"
-                    + "PESO_INGRED = ?,"
-                    + "UNIDADE_INGRED = ?,"
-                    + "VALOR_INGRED = ?"
-                    + "where ID_INGRED =?");
+            stmt = conn.prepareStatement(updateIngredientes());
 
             IngredientesVO vo = (IngredientesVO) persistentObject;
 
             // stmt.setInt(1, vo.getCodIngredientes());
-            stmt.setString(1, vo.getDataCadastroIngred().toString());
+            stmt.setString(1, vo.getDataCadastroIngred());
             stmt.setString(2, vo.getTipoIngrediente());
             stmt.setString(3, vo.getNomeIngrediente());
             stmt.setDouble(4, vo.getPeso());
@@ -175,6 +171,8 @@ public class IngredienteDetalheController extends FormController {
             stmt.setDouble(6, vo.getValor());
 
             stmt.execute();
+            
+             JOptionPane.showMessageDialog(null, "Cheguei no update");
 
             ingredienteFrame.reloadData();
 
@@ -191,6 +189,11 @@ public class IngredienteDetalheController extends FormController {
         }
     }
 
+    public static String updateIngredientes() {
+        return "update ingredientes set DATA_INGRED = ?,TIPO_INGRED = ?, NOME_INGRED = ?, PESO_INGRED = ?, UNIDADE_INGRED = ?, VALOR_INGRED = ?"
+                + "where ID_INGRED =?";
+    }
+
     /**
      * Method called by the Form panel to delete existing data.
      *
@@ -198,11 +201,11 @@ public class IngredienteDetalheController extends FormController {
      * @return an ErrorResponse value object in case of errors, VOResponse if
      * the operation is successfully completed
      */
-    @Override
+    //@Override
     public Response deleteRecord(ValueObject persistentObject) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement("delete from ingredientes where ID_INGRED = ?");
+            stmt = conn.prepareStatement(deleteIngredientes());
             IngredientesVO vo = (IngredientesVO) persistentObject;
             stmt.setInt(1, vo.getCodIngredientes());
             stmt.execute();
@@ -215,8 +218,13 @@ public class IngredienteDetalheController extends FormController {
             try {
                 stmt.close();
                 conn.commit();
+                 JOptionPane.showMessageDialog(null, "Registro Deletado com Sucesso");
             } catch (SQLException ex1) {
             }
         }
+    }
+
+    public static String deleteIngredientes() {
+        return "delete from ingredientes where ID_INGRED = ?";
     }
 }

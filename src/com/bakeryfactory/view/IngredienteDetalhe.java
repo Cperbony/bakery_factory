@@ -90,8 +90,8 @@ public class IngredienteDetalhe extends InternalFrame {
         textTipoIngred1 = new org.openswing.swing.client.TextControl();
         txtNome_Ingred1 = new org.openswing.swing.client.LabelControl();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Ingredientes (Inserir/Alterar)");
+        setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -112,6 +112,8 @@ public class IngredienteDetalhe extends InternalFrame {
         jPanel1.add(editButton1);
         jPanel1.add(deleteButton1);
         jPanel1.add(reloadButton1);
+
+        saveButton1.setAttributeName("nomeIngrediente");
         jPanel1.add(saveButton1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -122,7 +124,7 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
 
-        formIngredientes.setVOClassName("com.bakeryfactory.VO.IngredienteVO");
+        formIngredientes.setVOClassName("com.bakeryfactory.VO.IngredientesVO");
         formIngredientes.setCopyButton(copyButtonIngrediente);
         formIngredientes.setDeleteButton(deleteButton1);
         formIngredientes.setEditButton(editButton1);
@@ -142,6 +144,8 @@ public class IngredienteDetalhe extends InternalFrame {
         formIngredientes.add(textTipoIngred, gridBagConstraints);
 
         textCodIngred.setEnabled(false);
+        textCodIngred.setEnabledOnEdit(false);
+        textCodIngred.setEnabledOnInsert(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;

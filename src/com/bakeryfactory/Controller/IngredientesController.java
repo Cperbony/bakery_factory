@@ -34,13 +34,15 @@ import org.openswing.swing.table.java.GridDataLocator;
  */
 public class IngredientesController extends GridController implements GridDataLocator {
 
-    private Ingredientes grid = null;
+    private Ingredientes gridIngredientes;
     private Connection conn = null;
-
+   
+    
     public IngredientesController(Connection conn) {
+        this.gridIngredientes = null;
         this.conn = conn;
-        grid = new Ingredientes(conn, this);
-        MDIFrame.add(grid, true);
+        gridIngredientes = new Ingredientes(conn, this);
+        MDIFrame.add(gridIngredientes, true);
     }
 
     /**
@@ -50,10 +52,10 @@ public class IngredientesController extends GridController implements GridDataLo
      * @param rowNumber selected row index
      * @param persistentObject v.o. related to the selected row
      */
-    @Override
+   // @Override
     public void doubleClick(int rowNumber, ValueObject persistentObject) {
         IngredientesVO vo = (IngredientesVO) persistentObject;
-        new IngredienteDetalheController(grid, vo.getCodIngredientes().toString(), conn);
+        new IngredienteDetalheController(gridIngredientes, vo.getCodIngredientes().toString(), conn);
     }
 
     /**
@@ -71,7 +73,7 @@ public class IngredientesController extends GridController implements GridDataLo
      * data loading was successfully completed, or an ErrorResponse onject if
      * some error occours
      */
-    @Override
+    //@Override
     public Response loadData(
             int action,
             int startIndex,
@@ -82,15 +84,7 @@ public class IngredientesController extends GridController implements GridDataLo
             Map otherGridParams) {
         PreparedStatement stmt = null;
         try {
-            String sql = "SELECT "
-                    + "ingredientes.ID_INGRED,"
-                    + "ingredientes.DATA_INGRED,"
-                    + "ingredientes.TIPO_INGRED,"
-                    + "ingredientes.NOME_INGRED,"
-                    + "ingredientes.PESO_INGRED,"
-                    + "ingredientes.UNIDADE_INGRED,"
-                    + "ingredientes.VALOR_INGRED"
-                    + "from ingredientes";
+            String sql = "select ingredientes.ID_INGRED,ingredientes.DATA_INGRED,ingredientes.TIPO_INGRED,ingredientes.NOME_INGRED,ingredientes.PESO_INGRED,ingredientes.UNIDADE_INGRED,ingredientes.VALOR_INGRED from ingredientes";
 
             Vector vals = new Vector();
 
@@ -106,7 +100,7 @@ public class IngredientesController extends GridController implements GridDataLo
 //verificar se tem colunas a serem filtradas
             if (filteredColumns.size() > 0) {
                 FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeIngrediente");
-                sql += "where ingredientes.nome_ingred" + filtro[0].getOperator() + "?";
+                sql += " where ingredientes.NOME_INGRED " + filtro[0].getOperator() + "?";
                 vals.add(filtro[0].getValue());
             }
 
@@ -128,7 +122,7 @@ public class IngredientesController extends GridController implements GridDataLo
                 System.out.println();
                 vo = new IngredientesVO();
                 vo.setCodIngredientes(rset.getInt(1));
-                vo.setDataCadastroIngred(rset.getDate(2));
+                vo.setDataCadastroIngred(rset.getString(2));
                 vo.setTipoIngrediente(rset.getString(3));
                 vo.setNomeIngrediente(rset.getString(4));
                 vo.setPeso(rset.getDouble(5));
@@ -161,10 +155,10 @@ public class IngredientesController extends GridController implements GridDataLo
     public Response deleteRecords(ArrayList persistentObjects) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement("DELETE FROM ingredientes WHERE id_ingred=?");
+            stmt = conn.prepareStatement("DELETE FROM ingredientes WHERE ID_INGRED = ?");
             for (Object persistentObject : persistentObjects) {
                 IngredientesVO vo = (IngredientesVO) persistentObject;
-                stmt.setInt(1, vo.getCodIngredientes());
+                stmt.setString(1, vo.getCodIngredientes().toString());
                 stmt.execute();
             }
             return new VOResponse(new Boolean(true));

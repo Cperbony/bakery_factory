@@ -9,6 +9,7 @@ import com.bakeryfactory.Controller.ClasseProdutoController;
 import com.bakeryfactory.Controller.IngredientesController;
 import com.bakeryfactory.VO.UsuarioVO;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 import org.openswing.swing.mdi.client.ClientFacade;
 
 /**
@@ -26,7 +27,8 @@ public class ClienteFachada implements ClientFacade {
     }
 
     public void getIngredientes() {
-        new IngredientesController(conn);
+        IngredientesController ingredientesController = new IngredientesController(conn);
+        JOptionPane.showMessageDialog(null, "Ingredientes");
     }
 
     public void getClasseProdutos() {
@@ -36,6 +38,5 @@ public class ClienteFachada implements ClientFacade {
     public void setUsuario(UsuarioVO usuario) {
         this.usuario = usuario;
 
-        
     }
 }

@@ -19,7 +19,7 @@ import org.openswing.swing.message.receive.java.ValueObjectImpl;
 public class IngredientesVO extends ValueObjectImpl{
     
     private Integer codIngredientes;
-    private Date dataCadastroIngred;
+    private String dataCadastroIngred;
     private String tipoIngrediente;
     private String nomeIngrediente;
     private double peso;
@@ -46,14 +46,14 @@ public class IngredientesVO extends ValueObjectImpl{
     /**
      * @return the dataCadastroIngred
      */
-    public Date getDataCadastroIngred() {
+    public String getDataCadastroIngred() {
         return dataCadastroIngred;
     }
 
     /**
      * @param dataCadastroIngred the dataCadastroIngred to set
      */
-    public void setDataCadastroIngred(Date dataCadastroIngred) {
+    public void setDataCadastroIngred(String dataCadastroIngred) {
         this.dataCadastroIngred = dataCadastroIngred;
     }
 
@@ -126,9 +126,4 @@ public class IngredientesVO extends ValueObjectImpl{
     public void setValor(double valor) {
         this.valor = valor;
     }
-    
-    
-
-  
-
 }

@@ -73,6 +73,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         currencyColumn1 = new org.openswing.swing.table.columns.client.CurrencyColumn();
 
         setTitle("Cadastro de Ingredientes");
+        setPreferredSize(new java.awt.Dimension(900, 200));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanelHeader.setBackground(new java.awt.Color(153, 0, 0));
@@ -118,9 +119,11 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridControlIngredientes.setExportButton(exportButton1);
         gridControlIngredientes.setFunctionId("ingredientes");
         gridControlIngredientes.setImportButton(importButton1);
+        gridControlIngredientes.setInsertButton(insertButton1);
         gridControlIngredientes.setNavBar(navigatorBarIngred);
         gridControlIngredientes.setReloadButton(reloadButton1);
         gridControlIngredientes.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        gridControlIngredientes.setShowFilterPanelOnGrid(true);
         gridControlIngredientes.setValueObjectClassName("com.bakeryfactory.VO.IngredientesVO");
         gridControlIngredientes.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
