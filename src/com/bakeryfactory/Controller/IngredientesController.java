@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import org.openswing.swing.mdi.client.MDIController;
 import org.openswing.swing.mdi.client.MDIFrame;
 import org.openswing.swing.message.receive.java.ErrorResponse;
 import org.openswing.swing.message.receive.java.Response;
@@ -122,7 +123,7 @@ public class IngredientesController extends GridController implements GridDataLo
                 System.out.println();
                 vo = new IngredientesVO();
                 vo.setCodIngredientes(rset.getInt(1));
-                vo.setDataCadastroIngred(rset.getString(2));
+                vo.setDataCadastroIngred(rset.getDate(2));
                 vo.setTipoIngrediente(rset.getString(3));
                 vo.setNomeIngrediente(rset.getString(4));
                 vo.setPeso(rset.getDouble(5));

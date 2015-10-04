@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import org.openswing.swing.form.client.FormController;
 import org.openswing.swing.mdi.client.MDIFrame;
@@ -63,7 +64,7 @@ public class IngredienteDetalheController extends FormController {
                     "SELECT ingredientes.ID_INGRED, ingredientes.DATA_INGRED, ingredientes.TIPO_INGRED, ingredientes.NOME_INGRED, ingredientes.PESO_INGRED, ingredientes.UNIDADE_INGRED, ingredientes.VALOR_INGRED from ingredientes WHERE ID_INGRED =" 
                      + pk);
             
-            JOptionPane.showMessageDialog(null, "Comando LoadData");
+           // JOptionPane.showMessageDialog(null, "Comando LoadData");
                  
             
             
@@ -71,7 +72,7 @@ public class IngredienteDetalheController extends FormController {
             if (rset.next()) {
                 IngredientesVO vo = new IngredientesVO();
                 vo.setCodIngredientes(rset.getInt(1));
-                vo.setDataCadastroIngred(rset.getString(2));
+                vo.setDataCadastroIngred(rset.getDate(2));
                 vo.setTipoIngrediente(rset.getString(3));
                 vo.setNomeIngrediente(rset.getString(4));
                 vo.setPeso(rset.getDouble(5));
@@ -88,12 +89,9 @@ public class IngredienteDetalheController extends FormController {
             return new ErrorResponse(ex.getMessage());
         } finally {
             try {
-                JOptionPane.showMessageDialog(null, "Comando LoadData");
-                 
+
                 stmt.close();
-                
-                 JOptionPane.showMessageDialog(null, "Comando LoadData");
-                 
+              
             } catch (SQLException ex1) {
 
             }
@@ -115,7 +113,9 @@ public class IngredienteDetalheController extends FormController {
             
             IngredientesVO vo = (IngredientesVO) newPersistentObject;
             //stmt.setInt(1, vo.getCodIngredientes());
-           stmt.setString(1, vo.getDataCadastroIngred());
+           Date dataCadastro = new Date();
+           
+           stmt.setDate(1, vo.getDataCadastroIngred());
             stmt.setString(2, vo.getTipoIngrediente());
             stmt.setString(3, vo.getNomeIngrediente());
             stmt.setDouble(4, vo.getPeso());
@@ -162,18 +162,16 @@ public class IngredienteDetalheController extends FormController {
 
             IngredientesVO vo = (IngredientesVO) persistentObject;
 
-            // stmt.setInt(1, vo.getCodIngredientes());
-            stmt.setString(1, vo.getDataCadastroIngred());
+            stmt.setDate(1, vo.getDataCadastroIngred());
             stmt.setString(2, vo.getTipoIngrediente());
             stmt.setString(3, vo.getNomeIngrediente());
             stmt.setDouble(4, vo.getPeso());
             stmt.setInt(5, vo.getUnidade());
             stmt.setDouble(6, vo.getValor());
+            stmt.setInt(7, vo.getCodIngredientes());
 
             stmt.execute();
             
-             JOptionPane.showMessageDialog(null, "Cheguei no update");
-
             ingredienteFrame.reloadData();
 
             return new VOResponse(vo);

@@ -114,6 +114,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jPanelButtons, gridBagConstraints);
 
+        gridControlIngredientes.setAllowInsertInEdit(true);
         gridControlIngredientes.setDeleteButton(deleteButton1);
         gridControlIngredientes.setEditButton(editButton1);
         gridControlIngredientes.setExportButton(exportButton1);
@@ -135,13 +136,17 @@ public class Ingredientes extends InternalFrame implements ActionListener{
 
         dateColumn1.setColumnName("dataCadastroIngred");
         dateColumn1.setColumnSortable(true);
+        dateColumn1.setEditableOnEdit(true);
+        dateColumn1.setEditableOnInsert(true);
         dateColumn1.setHeaderColumnName("Data Cadastro");
         gridControlIngredientes.getColumnContainer().add(dateColumn1);
 
         textColumn2.setColumnFilterable(true);
         textColumn2.setColumnName("tipoIngrediente");
+        textColumn2.setColumnRequired(false);
         textColumn2.setColumnSortable(true);
         textColumn2.setEditableOnEdit(true);
+        textColumn2.setEditableOnInsert(true);
         textColumn2.setHeaderColumnName("Tipo Ingredientes");
         textColumn2.setPreferredWidth(255);
         gridControlIngredientes.getColumnContainer().add(textColumn2);
@@ -159,6 +164,8 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         decimalColumn1.setColumnFilterable(true);
         decimalColumn1.setColumnName("peso");
         decimalColumn1.setDecimals(2);
+        decimalColumn1.setEditableOnEdit(true);
+        decimalColumn1.setEditableOnInsert(true);
         decimalColumn1.setHeaderColumnName("Peso");
         gridControlIngredientes.getColumnContainer().add(decimalColumn1);
 
@@ -169,9 +176,10 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         decimalColumn2.setHeaderColumnName("Unidades");
         gridControlIngredientes.getColumnContainer().add(decimalColumn2);
 
+        currencyColumn1.setAdditionalHeaderColumnName("");
         currencyColumn1.setColumnName("valor");
-        currencyColumn1.setCurrencySymbol("R$");
-        currencyColumn1.setDecimals(2);
+        currencyColumn1.setCurrencySymbol("");
+        currencyColumn1.setDecimals(4);
         currencyColumn1.setEditableOnEdit(true);
         currencyColumn1.setEditableOnInsert(true);
         currencyColumn1.setHeaderColumnName("Valor R$");

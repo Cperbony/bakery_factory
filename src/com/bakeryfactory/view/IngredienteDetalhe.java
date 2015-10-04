@@ -132,6 +132,8 @@ public class IngredienteDetalhe extends InternalFrame {
         formIngredientes.setReloadButton(reloadButton1);
         formIngredientes.setSaveButton(saveButton1);
         formIngredientes.setLayout(new java.awt.GridBagLayout());
+
+        textTipoIngred.setAttributeName("tipoIngrediente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -143,6 +145,7 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         formIngredientes.add(textTipoIngred, gridBagConstraints);
 
+        textCodIngred.setAttributeName("codIngredientes");
         textCodIngred.setEnabled(false);
         textCodIngred.setEnabledOnEdit(false);
         textCodIngred.setEnabledOnInsert(false);
@@ -157,6 +160,8 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 250);
         formIngredientes.add(textCodIngred, gridBagConstraints);
+
+        numericUnidadeIngred.setAttributeName("unidade");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -190,6 +195,8 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         formIngredientes.add(txtUnidade_Ingred, gridBagConstraints);
+
+        numericPesoIngred.setAttributeName("peso");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -216,6 +223,7 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         formIngredientes.add(txtValor_ingred, gridBagConstraints);
 
+        dateControlIngred.setAttributeName("dataCadastroIngred");
         dateControlIngred.setCanCopy(false);
         dateControlIngred.setRequired(true);
         dateControlIngred.setToolTipText("Inserir Data de Cadastro do Ingrediente");
@@ -235,7 +243,9 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         formIngredientes.add(txtCod_Ingred1, gridBagConstraints);
 
-        currencyControl1.setCurrencySymbol("R$");
+        currencyControl1.setAttributeName("valor");
+        currencyControl1.setCurrencySymbol("");
+        currencyControl1.setDecimals(2);
         currencyControl1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 currencyControl1ActionPerformed(evt);
@@ -248,6 +258,8 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         formIngredientes.add(currencyControl1, gridBagConstraints);
+
+        textTipoIngred1.setAttributeName("nomeIngrediente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;

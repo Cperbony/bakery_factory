@@ -6,7 +6,8 @@
 
 package com.bakeryfactory.VO;
 
-import java.util.Date;
+
+import java.sql.Date;
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
 
 /**
@@ -19,7 +20,7 @@ import org.openswing.swing.message.receive.java.ValueObjectImpl;
 public class IngredientesVO extends ValueObjectImpl{
     
     private Integer codIngredientes;
-    private String dataCadastroIngred;
+    private Date dataCadastroIngred;
     private String tipoIngrediente;
     private String nomeIngrediente;
     private double peso;
@@ -46,14 +47,14 @@ public class IngredientesVO extends ValueObjectImpl{
     /**
      * @return the dataCadastroIngred
      */
-    public String getDataCadastroIngred() {
+    public Date getDataCadastroIngred() {
         return dataCadastroIngred;
     }
 
     /**
      * @param dataCadastroIngred the dataCadastroIngred to set
      */
-    public void setDataCadastroIngred(String dataCadastroIngred) {
+    public void setDataCadastroIngred(Date dataCadastroIngred) {
         this.dataCadastroIngred = dataCadastroIngred;
     }
 
@@ -126,4 +127,8 @@ public class IngredientesVO extends ValueObjectImpl{
     public void setValor(double valor) {
         this.valor = valor;
     }
+    
+    
+
+   
 }
