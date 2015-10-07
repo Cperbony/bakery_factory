@@ -7,6 +7,7 @@ package com.bakeryfactory.view;
 
 import com.bakeryfactory.Controller.IngredienteDetalheController;
 import com.bakeryfactory.Controller.IngredientesController;
+import com.bakeryfactory.Controller.ReceitaProducaoController;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import javax.swing.ListSelectionModel;
@@ -16,20 +17,20 @@ import org.openswing.swing.mdi.client.InternalFrame;
  *
  * @author Claudinei Aparecido Perboni
  */
-public class Ingredientes extends InternalFrame implements ActionListener{
+public class ReceitaProducao extends InternalFrame implements ActionListener{
 
     private Connection conn = null;
    
     /**
      * Creates new form Ingredientes Panificadora
      */
-    public Ingredientes(Connection conn, IngredientesController ingredController) {
+    public ReceitaProducao(Connection conn, ReceitaProducaoController receitaProdController) {
         this.conn = conn;
         try {
             initComponents();
             setSize(750, 300);
-            gridControlIngredientes.setController(ingredController);
-            gridControlIngredientes.setGridDataLocator(ingredController);
+            gridReceitaProducao.setController(receitaProdController);
+            gridReceitaProducao.setGridDataLocator(receitaProdController);
             
             //gridControlIngred.enableDrag("Grid1");
         } catch (Exception e) {
@@ -39,7 +40,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
     
     
     public void reloadData(){
-        gridControlIngredientes.reloadData();
+        gridReceitaProducao.reloadData();
     }
 
     /**
@@ -63,7 +64,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         exportButton1 = new org.openswing.swing.client.ExportButton();
         importButton1 = new org.openswing.swing.client.ImportButton();
         navigatorBarIngred = new org.openswing.swing.client.NavigatorBar();
-        gridControlIngredientes = new org.openswing.swing.client.GridControl();
+        gridReceitaProducao = new org.openswing.swing.client.GridControl();
         integerColumn1 = new org.openswing.swing.table.columns.client.IntegerColumn();
         dateColumn1 = new org.openswing.swing.table.columns.client.DateColumn();
         textColumn2 = new org.openswing.swing.table.columns.client.TextColumn();
@@ -114,32 +115,32 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jPanelButtons, gridBagConstraints);
 
-        gridControlIngredientes.setAllowInsertInEdit(true);
-        gridControlIngredientes.setDeleteButton(deleteButton1);
-        gridControlIngredientes.setEditButton(editButton1);
-        gridControlIngredientes.setExportButton(exportButton1);
-        gridControlIngredientes.setFunctionId("ingredientes");
-        gridControlIngredientes.setImportButton(importButton1);
-        gridControlIngredientes.setInsertButton(insertButton1);
-        gridControlIngredientes.setNavBar(navigatorBarIngred);
-        gridControlIngredientes.setReloadButton(reloadButton1);
-        gridControlIngredientes.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        gridControlIngredientes.setShowFilterPanelOnGrid(true);
-        gridControlIngredientes.setValueObjectClassName("com.bakeryfactory.VO.IngredientesVO");
-        gridControlIngredientes.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        gridReceitaProducao.setAllowInsertInEdit(true);
+        gridReceitaProducao.setDeleteButton(deleteButton1);
+        gridReceitaProducao.setEditButton(editButton1);
+        gridReceitaProducao.setExportButton(exportButton1);
+        gridReceitaProducao.setFunctionId("ingredientes");
+        gridReceitaProducao.setImportButton(importButton1);
+        gridReceitaProducao.setInsertButton(insertButton1);
+        gridReceitaProducao.setNavBar(navigatorBarIngred);
+        gridReceitaProducao.setReloadButton(reloadButton1);
+        gridReceitaProducao.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        gridReceitaProducao.setShowFilterPanelOnGrid(true);
+        gridReceitaProducao.setValueObjectClassName("com.bakeryfactory.VO.IngredientesVO");
+        gridReceitaProducao.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
         integerColumn1.setColumnFilterable(true);
         integerColumn1.setColumnName("codIngredientes");
         integerColumn1.setColumnSortable(true);
         integerColumn1.setHeaderColumnName("Código");
-        gridControlIngredientes.getColumnContainer().add(integerColumn1);
+        gridReceitaProducao.getColumnContainer().add(integerColumn1);
 
         dateColumn1.setColumnName("dataCadastroIngred");
         dateColumn1.setColumnSortable(true);
         dateColumn1.setEditableOnEdit(true);
         dateColumn1.setEditableOnInsert(true);
         dateColumn1.setHeaderColumnName("Data Cadastro");
-        gridControlIngredientes.getColumnContainer().add(dateColumn1);
+        gridReceitaProducao.getColumnContainer().add(dateColumn1);
 
         textColumn2.setColumnFilterable(true);
         textColumn2.setColumnName("tipoIngrediente");
@@ -149,7 +150,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         textColumn2.setEditableOnInsert(true);
         textColumn2.setHeaderColumnName("Tipo Ingredientes");
         textColumn2.setPreferredWidth(255);
-        gridControlIngredientes.getColumnContainer().add(textColumn2);
+        gridReceitaProducao.getColumnContainer().add(textColumn2);
 
         textColumn1.setAutoFitColumn(true);
         textColumn1.setColumnFilterable(true);
@@ -159,7 +160,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         textColumn1.setEditableOnInsert(true);
         textColumn1.setHeaderColumnName("Nome Ingredientes");
         textColumn1.setPreferredWidth(255);
-        gridControlIngredientes.getColumnContainer().add(textColumn1);
+        gridReceitaProducao.getColumnContainer().add(textColumn1);
 
         decimalColumn1.setColumnFilterable(true);
         decimalColumn1.setColumnName("peso");
@@ -167,14 +168,14 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         decimalColumn1.setEditableOnEdit(true);
         decimalColumn1.setEditableOnInsert(true);
         decimalColumn1.setHeaderColumnName("Peso");
-        gridControlIngredientes.getColumnContainer().add(decimalColumn1);
+        gridReceitaProducao.getColumnContainer().add(decimalColumn1);
 
         decimalColumn2.setColumnName("unidade");
         decimalColumn2.setColumnSortable(true);
         decimalColumn2.setEditableOnEdit(true);
         decimalColumn2.setEditableOnInsert(true);
         decimalColumn2.setHeaderColumnName("Unidades");
-        gridControlIngredientes.getColumnContainer().add(decimalColumn2);
+        gridReceitaProducao.getColumnContainer().add(decimalColumn2);
 
         currencyColumn1.setColumnName("valor");
         currencyColumn1.setCurrencySymbol("");
@@ -182,7 +183,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         currencyColumn1.setEditableOnEdit(true);
         currencyColumn1.setEditableOnInsert(true);
         currencyColumn1.setHeaderColumnName("Valor R$");
-        gridControlIngredientes.getColumnContainer().add(currencyColumn1);
+        gridReceitaProducao.getColumnContainer().add(currencyColumn1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -190,13 +191,13 @@ public class Ingredientes extends InternalFrame implements ActionListener{
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(gridControlIngredientes, gridBagConstraints);
+        getContentPane().add(gridReceitaProducao, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void insertButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButton1ActionPerformed
-        new IngredienteDetalheController(this, null, conn);
+        new ReceitaProducaoController(this, null, conn);
     }//GEN-LAST:event_insertButton1ActionPerformed
 
     
@@ -210,7 +211,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
     private org.openswing.swing.client.DeleteButton deleteButton1;
     private org.openswing.swing.client.EditButton editButton1;
     private org.openswing.swing.client.ExportButton exportButton1;
-    private org.openswing.swing.client.GridControl gridControlIngredientes;
+    private org.openswing.swing.client.GridControl gridReceitaProducao;
     private org.openswing.swing.client.ImportButton importButton1;
     private org.openswing.swing.client.InsertButton insertButton1;
     private org.openswing.swing.table.columns.client.IntegerColumn integerColumn1;
@@ -227,7 +228,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
     @Override
     public void actionPerformed(java.awt.event.ActionEvent evt) {
        if(evt.getSource() == insertButton1){
-           Ingredientes.this.insertButton1ActionPerformed(evt);
+           ReceitaProducao.this.insertButton1ActionPerformed(evt);
        }
     }
 }

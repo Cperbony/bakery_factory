@@ -6,6 +6,8 @@
 package com.bakeryfactory.view;
 
 import com.bakeryfactory.Controller.ClasseProdutoController;
+import com.bakeryfactory.Controller.ClasseProdutoDetalheController;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import javax.swing.ListSelectionModel;
 import org.openswing.swing.mdi.client.InternalFrame;
@@ -14,7 +16,7 @@ import org.openswing.swing.mdi.client.InternalFrame;
  *
  * @author Claudinei Aparecido Perboni
  */
-public class ClasseProduto extends InternalFrame {
+public class ClasseProduto extends InternalFrame implements ActionListener {
 
     private Connection conn = null;
 
@@ -33,9 +35,8 @@ public class ClasseProduto extends InternalFrame {
             e.printStackTrace();
         }
     }
-    
-    
-    public void reloadData(){
+
+    public void reloadData() {
         gridControlClasseProd.reloadData();
     }
 
@@ -61,8 +62,8 @@ public class ClasseProduto extends InternalFrame {
         importButtonClasse = new org.openswing.swing.client.ImportButton();
         navigatorBarClasse = new org.openswing.swing.client.NavigatorBar();
         gridControlClasseProd = new org.openswing.swing.client.GridControl();
-        dateClasseProd = new org.openswing.swing.table.columns.client.DateColumn();
         integerCodClasse = new org.openswing.swing.table.columns.client.IntegerColumn();
+        dateClasseProd = new org.openswing.swing.table.columns.client.DateColumn();
         textNomeClasseProd = new org.openswing.swing.table.columns.client.TextColumn();
         textColumnTipoClasseProd = new org.openswing.swing.table.columns.client.TextColumn();
         textDescricaoClasse = new org.openswing.swing.table.columns.client.TextColumn();
@@ -86,10 +87,15 @@ public class ClasseProduto extends InternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(153, 0, 0));
+
+        insertButtonClasse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertButtonClasseActionPerformed(evt);
+            }
+        });
         jPanel2.add(insertButtonClasse);
         jPanel2.add(editButtonClasse);
         jPanel2.add(deleteButtonClasse);
@@ -117,22 +123,27 @@ public class ClasseProduto extends InternalFrame {
         gridControlClasseProd.setValueObjectClassName("com.bakeryfactory.VO.ClasseProdutoVO");
         gridControlClasseProd.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
+        integerCodClasse.setColumnName("codClasseProd");
+        integerCodClasse.setHeaderColumnName("Codigo");
+        gridControlClasseProd.getColumnContainer().add(integerCodClasse);
+
+        dateClasseProd.setColumnName("dataCadastroClasseProd");
         dateClasseProd.setColumnSortable(true);
         dateClasseProd.setHeaderColumnName("Data");
         dateClasseProd.setSortVersus(org.openswing.swing.util.java.Consts.ASC_SORTED);
         gridControlClasseProd.getColumnContainer().add(dateClasseProd);
 
-        integerCodClasse.setHeaderColumnName("Codigo");
-        gridControlClasseProd.getColumnContainer().add(integerCodClasse);
-
+        textNomeClasseProd.setColumnName("nomeClasseProd");
         textNomeClasseProd.setColumnSortable(true);
         textNomeClasseProd.setHeaderColumnName("Nome Classe de Produtos");
         textNomeClasseProd.setPreferredWidth(300);
         gridControlClasseProd.getColumnContainer().add(textNomeClasseProd);
 
+        textColumnTipoClasseProd.setColumnName("tipoClasseProd");
         textColumnTipoClasseProd.setHeaderColumnName("Tipo Classe");
         gridControlClasseProd.getColumnContainer().add(textColumnTipoClasseProd);
 
+        textDescricaoClasse.setColumnName("descricaoClasseProd");
         textDescricaoClasse.setColumnSortable(true);
         textDescricaoClasse.setHeaderColumnName("Descrição Classe Produtos");
         textDescricaoClasse.setPreferredWidth(200);
@@ -148,6 +159,10 @@ public class ClasseProduto extends InternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void insertButtonClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonClasseActionPerformed
+        new ClasseProdutoDetalheController(this, null, conn);
+    }//GEN-LAST:event_insertButtonClasseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -169,4 +184,11 @@ public class ClasseProduto extends InternalFrame {
     private org.openswing.swing.table.columns.client.TextColumn textDescricaoClasse;
     private org.openswing.swing.table.columns.client.TextColumn textNomeClasseProd;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        if (evt.getSource() == insertButtonClasse) {
+            ClasseProduto.this.insertButtonClasseActionPerformed(evt);
+        }
+    }
 }

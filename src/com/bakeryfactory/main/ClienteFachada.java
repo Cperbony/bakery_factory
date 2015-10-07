@@ -28,7 +28,7 @@ public class ClienteFachada implements ClientFacade {
 
     public void getIngredientes() {
         IngredientesController ingredientesController = new IngredientesController(conn);
-        JOptionPane.showMessageDialog(null, "Ingredientes");
+        //JOptionPane.showMessageDialog(null, "Ingredientes");
     }
 
     public void getClasseProdutos() {

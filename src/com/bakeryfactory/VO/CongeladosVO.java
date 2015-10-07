@@ -6,6 +6,7 @@
 
 package com.bakeryfactory.VO;
 
+import java.sql.Date;
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
 
 /**
@@ -16,5 +17,17 @@ import org.openswing.swing.message.receive.java.ValueObjectImpl;
  * 
  */
 public class CongeladosVO extends ValueObjectImpl{
+    private Integer codCongelado;
+    private Date dataCongelados;
+    private Integer codRequisicao;
+    private String produto;
+    private String descricao;
+    private String classeProduto;
+    private String setorSolicitante;
+    private String responsavel;
+    private int quantidade;
+    private Double pesoUnitario;
+    private Double pesoTotal;
+    
 
 }

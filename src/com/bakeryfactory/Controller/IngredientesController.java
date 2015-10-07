@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-import org.openswing.swing.mdi.client.MDIController;
 import org.openswing.swing.mdi.client.MDIFrame;
 import org.openswing.swing.message.receive.java.ErrorResponse;
 import org.openswing.swing.message.receive.java.Response;
@@ -85,7 +84,14 @@ public class IngredientesController extends GridController implements GridDataLo
             Map otherGridParams) {
         PreparedStatement stmt = null;
         try {
-            String sql = "select ingredientes.ID_INGRED,ingredientes.DATA_INGRED,ingredientes.TIPO_INGRED,ingredientes.NOME_INGRED,ingredientes.PESO_INGRED,ingredientes.UNIDADE_INGRED,ingredientes.VALOR_INGRED from ingredientes";
+            String sql = "select ingredientes.ID_INGRED,"
+                    + "ingredientes.DATA_INGRED,"
+                    + "ingredientes.TIPO_INGRED,"
+                    + "ingredientes.NOME_INGRED,"
+                    + "ingredientes.PESO_INGRED,"
+                    + "ingredientes.UNIDADE_INGRED,"
+                    + "ingredientes.VALOR_INGRED "
+                    + "from ingredientes";
 
             Vector vals = new Vector();
 

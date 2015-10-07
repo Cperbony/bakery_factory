@@ -5,6 +5,12 @@
  */
 package com.bakeryfactory.view;
 
+import java.sql.Connection;
+import org.openswing.swing.client.DeleteButton;
+import org.openswing.swing.client.EditButton;
+import org.openswing.swing.client.SaveButton;
+import org.openswing.swing.form.client.Form;
+import org.openswing.swing.form.client.FormController;
 import org.openswing.swing.mdi.client.InternalFrame;
 
 /**
@@ -13,11 +19,38 @@ import org.openswing.swing.mdi.client.InternalFrame;
  */
 public class ClasseProdutoDetalhe extends InternalFrame {
 
+    private Connection conn = null;
+
     /**
      * Creates new form IngredienteDetalhe
      */
-    public ClasseProdutoDetalhe() {
-        initComponents();
+    public ClasseProdutoDetalhe(Connection conn, FormController dataController) {
+        try {
+            this.conn = conn;
+            initComponents();
+            formDetalheClasseProd.setFormController(dataController);
+            setSize(800, 600);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Form getForm1() {
+        return formDetalheClasseProd;
+
+    }
+
+    public SaveButton getSaveButton() {
+        return saveButton;
+    }
+
+    public DeleteButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public EditButton getEditButton() {
+        return editButton;
     }
 
     /**
@@ -30,15 +63,14 @@ public class ClasseProdutoDetalhe extends InternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         insertButton1 = new org.openswing.swing.client.InsertButton();
-        copyButtonIngrediente = new org.openswing.swing.client.CopyButton();
-        editButton1 = new org.openswing.swing.client.EditButton();
-        deleteButton1 = new org.openswing.swing.client.DeleteButton();
-        reloadButton1 = new org.openswing.swing.client.ReloadButton();
-        saveButton1 = new org.openswing.swing.client.SaveButton();
+        copyButton = new org.openswing.swing.client.CopyButton();
+        editButton = new org.openswing.swing.client.EditButton();
+        deleteButton = new org.openswing.swing.client.DeleteButton();
+        reloadButton = new org.openswing.swing.client.ReloadButton();
+        saveButton = new org.openswing.swing.client.SaveButton();
         formDetalheClasseProd = new org.openswing.swing.form.client.Form();
         textNomeTipoClasse = new org.openswing.swing.client.TextControl();
         textCodClasse = new org.openswing.swing.client.TextControl();
@@ -52,60 +84,56 @@ public class ClasseProdutoDetalhe extends InternalFrame {
         textNomeClasse = new org.openswing.swing.client.TextControl();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Classe de Produtos (Inserir/Alterar)");
+        setTitle("Cadastro das Classe de Produtos (Inserir/Alterar)");
         setFrameIcon(null);
         getContentPane().setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
-        getContentPane().add(jPanel2, gridBagConstraints);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(204, 102, 0));
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Bakery_Factory_logo_127x50.png"))); // NOI18N
         lblLogo.setPreferredSize(new java.awt.Dimension(250, 50));
         jPanel1.add(lblLogo);
         jPanel1.add(insertButton1);
-        jPanel1.add(copyButtonIngrediente);
-        jPanel1.add(editButton1);
-        jPanel1.add(deleteButton1);
-        jPanel1.add(reloadButton1);
-        jPanel1.add(saveButton1);
+        jPanel1.add(copyButton);
+        jPanel1.add(editButton);
+        jPanel1.add(deleteButton);
+        jPanel1.add(reloadButton);
+        jPanel1.add(saveButton);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
 
-        formDetalheClasseProd.setVOClassName("com.bakeryfactory.VO.IngredienteVO");
-        formDetalheClasseProd.setCopyButton(copyButtonIngrediente);
-        formDetalheClasseProd.setDeleteButton(deleteButton1);
-        formDetalheClasseProd.setEditButton(editButton1);
+        formDetalheClasseProd.setVOClassName("com.bakeryfactory.VO.ClasseProdutoVO");
+        formDetalheClasseProd.setCopyButton(copyButton);
+        formDetalheClasseProd.setDeleteButton(deleteButton);
+        formDetalheClasseProd.setEditButton(editButton);
+        formDetalheClasseProd.setFunctionId("classe_produtos");
         formDetalheClasseProd.setInsertButton(insertButton1);
-        formDetalheClasseProd.setReloadButton(reloadButton1);
-        formDetalheClasseProd.setSaveButton(saveButton1);
+        formDetalheClasseProd.setReloadButton(reloadButton);
+        formDetalheClasseProd.setSaveButton(saveButton);
         formDetalheClasseProd.setLayout(new java.awt.GridBagLayout());
+
+        textNomeTipoClasse.setAttributeName("tipoClasseProd");
+        textNomeTipoClasse.setMaxCharacters(60);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         formDetalheClasseProd.add(textNomeTipoClasse, gridBagConstraints);
+
+        textCodClasse.setAttributeName();
+        textCodClasse.setEnabled(false);
+        textCodClasse.setEnabledOnEdit(false);
+        textCodClasse.setEnabledOnInsert(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 1;
@@ -138,6 +166,7 @@ public class ClasseProdutoDetalhe extends InternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         formDetalheClasseProd.add(txtDescricaoClasse, gridBagConstraints);
 
+        dateControlClasse.setAttributeName("dataCadastroClasseProd");
         dateControlClasse.setCanCopy(false);
         dateControlClasse.setRequired(true);
         dateControlClasse.setToolTipText("Inserir Data de Cadastro do Ingrediente");
@@ -156,10 +185,12 @@ public class ClasseProdutoDetalhe extends InternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         formDetalheClasseProd.add(txtCod_classe, gridBagConstraints);
+
+        textAreaDescricaoClasse.setAttributeName("descricaoClasseProd");
+        textAreaDescricaoClasse.setToolTipText("Insira a Descrição quando necessário");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
@@ -174,12 +205,13 @@ public class ClasseProdutoDetalhe extends InternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         formDetalheClasseProd.add(txtNomeClasse1, gridBagConstraints);
+
+        textNomeClasse.setAttributeName("nomeClasseProd");
+        textNomeClasse.setMaxCharacters(60);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
@@ -187,8 +219,8 @@ public class ClasseProdutoDetalhe extends InternalFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 9;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 1;
@@ -197,61 +229,19 @@ public class ClasseProdutoDetalhe extends InternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClasseProdutoDetalhe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClasseProdutoDetalhe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClasseProdutoDetalhe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClasseProdutoDetalhe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ClasseProdutoDetalhe().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.openswing.swing.client.CopyButton copyButtonIngrediente;
+    private org.openswing.swing.client.CopyButton copyButton;
     private org.openswing.swing.client.DateControl dateControlClasse;
-    private org.openswing.swing.client.DeleteButton deleteButton1;
-    private org.openswing.swing.client.EditButton editButton1;
+    private org.openswing.swing.client.DeleteButton deleteButton;
+    private org.openswing.swing.client.EditButton editButton;
     private org.openswing.swing.form.client.Form formDetalheClasseProd;
     private org.openswing.swing.client.InsertButton insertButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblLogo;
-    private org.openswing.swing.client.ReloadButton reloadButton1;
-    private org.openswing.swing.client.SaveButton saveButton1;
+    private org.openswing.swing.client.ReloadButton reloadButton;
+    private org.openswing.swing.client.SaveButton saveButton;
     private org.openswing.swing.client.TextAreaControl textAreaDescricaoClasse;
     private org.openswing.swing.client.TextControl textCodClasse;
     private org.openswing.swing.client.TextControl textNomeClasse;

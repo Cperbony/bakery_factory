@@ -6,7 +6,8 @@
 
 package com.bakeryfactory.VO;
 
-import java.util.Date;
+
+import java.sql.Date;
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
 
 /**
@@ -18,7 +19,7 @@ import org.openswing.swing.message.receive.java.ValueObjectImpl;
  */
 public class ClasseProdutoVO extends ValueObjectImpl{
     
-    private int codClasseProd;
+    private Integer codClasseProd;
     private Date dataCadastroClasseProd;
     private String nomeClasseProd;
     private String tipoClasseProd;
@@ -27,63 +28,74 @@ public class ClasseProdutoVO extends ValueObjectImpl{
     public ClasseProdutoVO() {
     }
 
-    public int getCodClasseProd() {
+    /**
+     * @return the codClasseProd
+     */
+    public Integer getCodClasseProd() {
         return codClasseProd;
     }
 
-    public void setCodClasseProd(int codClasseProd) {
+    /**
+     * @param codClasseProd the codClasseProd to set
+     */
+    public void setCodClasseProd(Integer codClasseProd) {
         this.codClasseProd = codClasseProd;
     }
 
+    /**
+     * @return the dataCadastroClasseProd
+     */
     public Date getDataCadastroClasseProd() {
         return dataCadastroClasseProd;
     }
 
+    /**
+     * @param dataCadastroClasseProd the dataCadastroClasseProd to set
+     */
     public void setDataCadastroClasseProd(Date dataCadastroClasseProd) {
         this.dataCadastroClasseProd = dataCadastroClasseProd;
     }
 
+    /**
+     * @return the nomeClasseProd
+     */
     public String getNomeClasseProd() {
         return nomeClasseProd;
     }
 
+    /**
+     * @param nomeClasseProd the nomeClasseProd to set
+     */
     public void setNomeClasseProd(String nomeClasseProd) {
         this.nomeClasseProd = nomeClasseProd;
     }
 
+    /**
+     * @return the tipoClasseProd
+     */
     public String getTipoClasseProd() {
         return tipoClasseProd;
     }
 
+    /**
+     * @param tipoClasseProd the tipoClasseProd to set
+     */
     public void setTipoClasseProd(String tipoClasseProd) {
         this.tipoClasseProd = tipoClasseProd;
     }
 
+    /**
+     * @return the descricaoClasseProd
+     */
     public String getDescricaoClasseProd() {
         return descricaoClasseProd;
     }
 
+    /**
+     * @param descricaoClasseProd the descricaoClasseProd to set
+     */
     public void setDescricaoClasseProd(String descricaoClasseProd) {
         this.descricaoClasseProd = descricaoClasseProd;
     }
-
-    @Override
-    public String toString() {
-        return + '}' +
-                "ClasseProdutoVO{"
-                + "codClasseProd=" + codClasseProd + ","
-                + " dataCadastroClasseProd=" + dataCadastroClasseProd + ","
-                + " nomeClasseProd=" + nomeClasseProd + ","
-                + " tipoClasseProd=" + tipoClasseProd + ","
-                + " descricaoClasseProd=" + descricaoClasseProd;
-    }
-
     
-
-    
-    
-    
-    
-    
-
 }

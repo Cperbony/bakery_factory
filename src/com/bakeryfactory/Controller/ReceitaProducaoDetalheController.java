@@ -1,18 +1,21 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.bakeryfactory.Controller;
 
-import com.bakeryfactory.VO.ClasseProdutoVO;
-import com.bakeryfactory.view.ClasseProduto;
-import com.bakeryfactory.view.ClasseProdutoDetalhe;
+import com.bakeryfactory.VO.IngredientesVO;
+import com.bakeryfactory.view.IngredienteDetalhe;
+import com.bakeryfactory.view.Ingredientes;
+import com.bakeryfactory.view.ReceitaProducao;
+import com.bakeryfactory.view.ReceitaProducaoDetalhe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import org.openswing.swing.form.client.FormController;
 import org.openswing.swing.mdi.client.MDIFrame;
@@ -29,18 +32,18 @@ import org.openswing.swing.util.java.Consts;
  * @email cperbony@gmail.com
  *
  */
-public class ClasseProdutoDetalheController extends FormController {
+public class ReceitaProducaoDetalheController extends FormController {
 
-    private ClasseProdutoDetalhe frame = null;
+    private ReceitaProducaoDetalhe frame = null;
     private Connection conn = null;
     private String pk = null;
-    private ClasseProduto classeProdutoFrame = null;
+    private ReceitaProducao receitaProducaoFrame = null;
 
-    public ClasseProdutoDetalheController(ClasseProduto classeProdutoFrame, String pk, Connection conn) {
-        this.classeProdutoFrame = classeProdutoFrame;
+    public ReceitaProducaoDetalheController(ReceitaProducao receitaProducaoFrame, String pk, Connection conn) {
+        this.receitaProducaoFrame = receitaProducaoFrame;
         this.pk = pk;
         this.conn = conn;
-        frame = new ClasseProdutoDetalhe(conn, this);
+        frame = new ReceitaProducaoDetalhe(conn, this);
         MDIFrame.add(frame, true);
 
         if (pk != null) {
@@ -49,6 +52,7 @@ public class ClasseProdutoDetalheController extends FormController {
         } else {
             frame.getForm1().setMode(Consts.INSERT);
         }
+
     }
 
     @Override
@@ -58,26 +62,26 @@ public class ClasseProdutoDetalheController extends FormController {
         try {
             stmt = conn.createStatement();
 
-            ResultSet rset = stmt.executeQuery("select " 
-                    + "classe_produto.ID_CLASSE_PROD,"
-                    + "classe_produto.DATA_CLASSE_PROD,"
-                    + "classe_produto.NOME_CLASSE_PROD,"
-                    + "classe_produto.TIPO_CLASSE_PROD,"
-                    + "classe_produto.DESCRICAO_CLASSE_PROD"
-                    + "from classe_produto where ID_CLASSE_PROD = "
-                    + pk);
+            ResultSet rset = stmt.executeQuery("SELECT "
+                    + "ingredientes.ID_INGRED,"
+                    + "ingredientes.DATA_INGRED,"
+                    + "ingredientes.TIPO_INGRED,"
+                    + "ingredientes.NOME_INGRED,"
+                    + "ingredientes.PESO_INGRED,"
+                    + "ingredientes.UNIDADE_INGRED,"
+                    + "ingredientes.VALOR_INGRED"
+                    + " from ingredientes where ID_INGRED = " + pk);
 
-            // JOptionPane.showMessageDialog(null,"Comando LoadData");
+            // JOptionPane.showMessageDialog(null, "Comando LoadData");
             if (rset.next()) {
-
-                ClasseProdutoVO vo = new ClasseProdutoVO();
-
-                vo.setCodClasseProd(rset.getInt(1));
-                vo.setDataCadastroClasseProd(rset.getDate(2));
-                vo.setNomeClasseProd(rset.getString(3));
-                vo.setTipoClasseProd(rset.getString(4));
-                vo.setDescricaoClasseProd(rset.getString(5));
-
+                IngredientesVO vo = new IngredientesVO();
+                vo.setCodIngredientes(rset.getInt(1));
+                vo.setDataCadastroIngred(rset.getDate(2));
+                vo.setTipoIngrediente(rset.getString(3));
+                vo.setNomeIngrediente(rset.getString(4));
+                vo.setPeso(rset.getDouble(5));
+                vo.setUnidade(rset.getInt(6));
+                vo.setValor(rset.getDouble(7));
                 return new VOResponse(vo);
 
             } else {
@@ -105,25 +109,29 @@ public class ClasseProdutoDetalheController extends FormController {
      * @return an ErrorResponse value object in case of errors, VOResponse if
      * the operation is successfully completed
      */
-    @Override
+    //Override
     public Response insertRecord(ValueObject newPersistentObject) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement(insertClasseProdutos());
+            stmt = conn.prepareStatement(insertIngredientes());
 
-            ClasseProdutoVO vo = (ClasseProdutoVO) newPersistentObject;
+            IngredientesVO vo = (IngredientesVO) newPersistentObject;
+            //stmt.setInt(1, vo.getCodIngredientes());
+            //Date dataCadastro = new Date();
 
-            //stmt.setInt(1, vo.getCodClasseProd());
-            stmt.setDate(1, vo.getDataCadastroClasseProd());
-            stmt.setString(2, vo.getNomeClasseProd());
-            stmt.setString(3, vo.getTipoClasseProd());
-            stmt.setString(4, vo.getDescricaoClasseProd());
+            stmt.setDate(1, vo.getDataCadastroIngred());
+            stmt.setString(2, vo.getTipoIngrediente());
+            stmt.setString(3, vo.getNomeIngrediente());
+            stmt.setDouble(4, vo.getPeso());
+            stmt.setInt(5, vo.getUnidade());
+            stmt.setDouble(6, vo.getValor());
 
             stmt.execute();
 
             JOptionPane.showMessageDialog(null, "Dados Inseridos com Sucesso!");
 
-            classeProdutoFrame.reloadData();
+            //pk = vo.getCodigoIngred().toString();
+            receitaProducaoFrame.reloadData();
             return new VOResponse(vo);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -138,14 +146,15 @@ public class ClasseProdutoDetalheController extends FormController {
 
     }
 
-    public static String insertClasseProdutos() {
-        return "insert into classe_produto("
-                + "DATA_CLASSE_PROD,"
-                + "NOME_CLASSE_PROD,"
-                + "TIPO_CLASSE_PROD,"
-                + "DESCRICAO_CLASSE_PROD)"
-                + "values(?, ?, ?, ?)";
-
+    public static String insertIngredientes() {
+        return "insert into ingredientes ("
+                + "DATA_INGRED, "
+                + "TIPO_INGRED, "
+                + "NOME_INGRED, "
+                + "PESO_INGRED, "
+                + "UNIDADE_INGRED, "
+                + "VALOR_INGRED) "
+                + "values(?, ?, ?, ?, ?, ?)";
     }
 
     /**
@@ -156,23 +165,25 @@ public class ClasseProdutoDetalheController extends FormController {
      * @return an ErrorResponse value object in case of errors, VOResponse if
      * the operation is successfully completed
      */
-    @Override
+    //@Override
     public Response updateRecord(ValueObject oldPersistentObject, ValueObject persistentObject) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement(updateClasseProduto());
+            stmt = conn.prepareStatement(updateIngredientes());
 
-            ClasseProdutoVO vo = (ClasseProdutoVO) persistentObject;
+            IngredientesVO vo = (IngredientesVO) persistentObject;
 
-            stmt.setDate(1, vo.getDataCadastroClasseProd());
-            stmt.setString(2, vo.getNomeClasseProd());
-            stmt.setString(3, vo.getTipoClasseProd());
-            stmt.setString(4, vo.getDescricaoClasseProd());
-            stmt.setInt(5, vo.getCodClasseProd());
+            stmt.setDate(1, vo.getDataCadastroIngred());
+            stmt.setString(2, vo.getTipoIngrediente());
+            stmt.setString(3, vo.getNomeIngrediente());
+            stmt.setDouble(4, vo.getPeso());
+            stmt.setInt(5, vo.getUnidade());
+            stmt.setDouble(6, vo.getValor());
+            stmt.setInt(7, vo.getCodIngredientes());
 
             stmt.execute();
 
-            classeProdutoFrame.reloadData();
+            receitaProducaoFrame.reloadData();
 
             return new VOResponse(vo);
         } catch (SQLException ex) {
@@ -187,14 +198,15 @@ public class ClasseProdutoDetalheController extends FormController {
         }
     }
 
-    public static String updateClasseProduto() {
-        return "update classe_produto set "
-                + "DATA_CLASSE_PROD = ?,"
-                + "NOME_CLASSE_PROD = ?,"
-                + "TIPO_CLASSE_PROD = ?,"
-                + "DESCRICAO_CLASSE_PROD = ?"
-                + "where ID_CLASSE_PROD = ?";
-
+    public static String updateIngredientes() {
+        return "update ingredientes set "
+                + "DATA_INGRED = ?,"
+                + "TIPO_INGRED = ?,"
+                + "NOME_INGRED = ?,"
+                + "PESO_INGRED = ?,"
+                + "UNIDADE_INGRED = ?,"
+                + "VALOR_INGRED = ?"
+                + "where ID_INGRED =?";
     }
 
     /**
@@ -204,15 +216,15 @@ public class ClasseProdutoDetalheController extends FormController {
      * @return an ErrorResponse value object in case of errors, VOResponse if
      * the operation is successfully completed
      */
-    @Override
+    //@Override
     public Response deleteRecord(ValueObject persistentObject) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement(deleteClasseProduto());
-            ClasseProdutoVO vo = (ClasseProdutoVO) persistentObject;
-            stmt.setInt(1, vo.getCodClasseProd());
+            stmt = conn.prepareStatement(deleteIngredientes());
+            IngredientesVO vo = (IngredientesVO) persistentObject;
+            stmt.setInt(1, vo.getCodIngredientes());
             stmt.execute();
-            classeProdutoFrame.reloadData();
+            ingredienteFrame.reloadData();
             return new VOResponse(vo);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -227,7 +239,7 @@ public class ClasseProdutoDetalheController extends FormController {
         }
     }
 
-    public static String deleteClasseProduto() {
-        return "delete from classe_produto where ID_CLASSE_PROD = ?";
+    public static String deleteIngredientes() {
+        return "delete from ingredientes where ID_INGRED = ?";
     }
 }

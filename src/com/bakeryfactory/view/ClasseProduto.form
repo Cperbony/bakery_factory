@@ -30,7 +30,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="1.0"/>
+          <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="1.0" weightY="0.0"/>
         </Constraint>
       </Constraints>
 
@@ -74,6 +74,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
         <Component class="org.openswing.swing.client.InsertButton" name="insertButtonClasse">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertButtonClasseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="org.openswing.swing.client.EditButton" name="editButtonClasse">
         </Component>
@@ -126,20 +129,23 @@
         <Property name="verticalGap" type="int" value="0"/>
       </Layout>
       <SubComponents>
+        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerCodClasse">
+          <Properties>
+            <Property name="columnName" type="java.lang.String" value="codClasseProd"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Codigo"/>
+          </Properties>
+        </Component>
         <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateClasseProd">
           <Properties>
+            <Property name="columnName" type="java.lang.String" value="dataCadastroClasseProd"/>
             <Property name="columnSortable" type="boolean" value="true"/>
             <Property name="headerColumnName" type="java.lang.String" value="Data"/>
             <Property name="sortVersus" type="java.lang.String" value="ASC"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerCodClasse">
-          <Properties>
-            <Property name="headerColumnName" type="java.lang.String" value="Codigo"/>
-          </Properties>
-        </Component>
         <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textNomeClasseProd">
           <Properties>
+            <Property name="columnName" type="java.lang.String" value="nomeClasseProd"/>
             <Property name="columnSortable" type="boolean" value="true"/>
             <Property name="headerColumnName" type="java.lang.String" value="Nome Classe de Produtos"/>
             <Property name="preferredWidth" type="int" value="300"/>
@@ -147,11 +153,13 @@
         </Component>
         <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textColumnTipoClasseProd">
           <Properties>
+            <Property name="columnName" type="java.lang.String" value="tipoClasseProd"/>
             <Property name="headerColumnName" type="java.lang.String" value="Tipo Classe"/>
           </Properties>
         </Component>
         <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textDescricaoClasse">
           <Properties>
+            <Property name="columnName" type="java.lang.String" value="descricaoClasseProd"/>
             <Property name="columnSortable" type="boolean" value="true"/>
             <Property name="headerColumnName" type="java.lang.String" value="Descri&#xe7;&#xe3;o Classe Produtos"/>
             <Property name="preferredWidth" type="int" value="200"/>

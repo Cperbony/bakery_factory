@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import org.openswing.swing.internationalization.java.Language;
@@ -68,6 +69,7 @@ public class Menu implements MDIController, LoginController {
         ClientSettings.SHOW_SCROLLBARS_IN_MDI = false;
         ClientSettings.FILTER_PANEL_ON_GRID = true;
         ClientSettings.SHOW_PAGINATION_BUTTONS_ON_GRID = true;
+        ClientSettings.SHOW_POPUP_MENU_CLOSE = true;
 
         ClientSettings.getInstance().setLanguage("PT_BR");
 
@@ -105,6 +107,7 @@ public class Menu implements MDIController, LoginController {
         MDIFrame.addStatusComponent(userPanel);
         userPanel.setText(username);
         MDIFrame.addStatusComponent(new Clock());
+
     }
 
     /**
@@ -235,10 +238,10 @@ public class Menu implements MDIController, LoginController {
     public boolean authenticateUser(Map loginInfo) throws Exception {
         return "ADMIN".equalsIgnoreCase((String) loginInfo.get("username"))
                 && "ADMIN".equalsIgnoreCase((String) loginInfo.get("password"))
-                || "MAURO".equalsIgnoreCase((String) loginInfo.get("username"))
-                && "MAURO".equalsIgnoreCase((String) loginInfo.get("password"))
-                || "ALBERT".equalsIgnoreCase((String) loginInfo.get("username"))
-                && "ALBERT".equalsIgnoreCase((String) loginInfo.get("password"));
+                || "PABLO".equalsIgnoreCase((String) loginInfo.get("username"))
+                && "PABLO".equalsIgnoreCase((String) loginInfo.get("password"))
+                || "CLAUS".equalsIgnoreCase((String) loginInfo.get("username"))
+                && "CLAUS".equalsIgnoreCase((String) loginInfo.get("password"));
     }
 
     public static void main(String[] args) {
@@ -257,10 +260,10 @@ public class Menu implements MDIController, LoginController {
             case "ADMIN":
                 ClientSettings.getInstance().setLanguage("EN");
                 break;
-            case "MAURO":
+            case "PABLO":
                 ClientSettings.getInstance().setLanguage("IT");
                 break;
-            case "ALBERT":
+            case "CLAUS":
                 ClientSettings.getInstance().setLanguage("PT_BR");
                 break;
         }
@@ -268,35 +271,34 @@ public class Menu implements MDIController, LoginController {
         MDIFrame mdi = new MDIFrame(this);
 
         //configura os botões da barra de ferramentas
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Usuários");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Empresas");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Endreços");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Telefone");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Setores");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Ingredientes");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Receitas");
+        mdi.addButtonToToolBar("account_user.png", "Cadastro de Usuários");
+        mdi.addButtonToToolBar("empresa.png", "Cadastro de Empresas");
+        mdi.addButtonToToolBar("enderecos.png", "Cadastro de Endreços");
+        mdi.addButtonToToolBar("telefone.png", "Cadastro de Telefone");
+        mdi.addButtonToToolBar("setores.png", "Cadastro de Setores");
+        mdi.addButtonToToolBar("ingredientes.png", "Cadastro de Ingredientes");
+        mdi.addButtonToToolBar("receitas.png", "Cadastro de Receitas");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Modo de Preparo");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Classe de Produtos");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Congelados");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Produtos");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Notas de Compras");
+        mdi.addButtonToToolBar("modo_preparo_note.png", "Cadastro de Modo de Preparo");
+        mdi.addButtonToToolBar("classe_prod.png", "Cadastro de Classe de Produtos");
+        mdi.addButtonToToolBar("congelados.png", "Cadastro de Congelados");
+        mdi.addButtonToToolBar("produtos.png", "Cadastro de Produtos");
+        mdi.addButtonToToolBar("nota_compras.png", "Cadastro de Notas de Compras");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro do Requisição de Produção");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Calendário de Producão");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Cadastro de Cálculo de Receitas");
+        mdi.addButtonToToolBar("requisicao.png", "Cadastro do Requisição de Produção");
+        mdi.addButtonToToolBar("calendario_prod.png", "Cadastro de Calendário de Producão");
+        mdi.addButtonToToolBar("calculo_receitas.png", "Cadastro de Cálculo de Receitas");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Kit de Produção");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Produção Final");
-          mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Consultas");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Distribuição");
+        mdi.addButtonToToolBar("kit_producao.png", "Produção Final");
+        mdi.addButtonToToolBar("calendar3.png", "Consultas");
+        mdi.addButtonToToolBar("distribuicao.png", "Distribuição");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Relatorio de Produção");
-        mdi.addButtonToToolBar("Bakery_Factory_logo_30x32.png", "Impressão de Relatórios");
+        mdi.addButtonToToolBar("relatorios.png", "Relatorio de Produção");
+        mdi.addButtonToToolBar("printer.png", "Impressão de Relatórios");
         mdi.addSeparatorToToolBar();
         mdi.addSeparatorToToolBar();
         mdi.addButtonToToolBar("sair.png", "Sair da Aplicação");
@@ -329,7 +331,7 @@ public class Menu implements MDIController, LoginController {
      * @return application functions (ApplicationFunction objects), organized as
      * a tree
      */
-    //@Override
+    @Override
     public DefaultTreeModel getApplicationFunctions() {
         DefaultMutableTreeNode root = new OpenSwingTreeNode();
 
@@ -348,7 +350,7 @@ public class Menu implements MDIController, LoginController {
         ApplicationFunction n1d = new ApplicationFunction("Receitas de Produção", "receitas", null, "getReceitas");
         ApplicationFunction n1e = new ApplicationFunction(true);
         ApplicationFunction n1f = new ApplicationFunction("Modo de Preparo", "modo_preparo", null, "getModoPreparo");
-        ApplicationFunction n1g = new ApplicationFunction("Classe de Produtos", "classe_produtos", null, "getClasseProduto");
+        ApplicationFunction n1g = new ApplicationFunction("Classe de Produtos", "classe_produtos", null, "getClasseProdutos");
         ApplicationFunction n1h = new ApplicationFunction("Congelados", "congelados", null, "getCongelados");
         ApplicationFunction n1i = new ApplicationFunction("Produtos", "produtos", null, "getProdutos");
         ApplicationFunction n1j = new ApplicationFunction(true);
@@ -368,9 +370,9 @@ public class Menu implements MDIController, LoginController {
         ApplicationFunction n32 = new ApplicationFunction("Impressão de Relatorios", "impressao", null, "getImpressao");
 
         n1.add(n1a);
-            n1.add(n111);
-            n1.add(n112);
-            n1.add(n113);
+        n1.add(n111);
+        n1.add(n112);
+        n1.add(n113);
         n1.add(n1b);
         n1.add(n1c);
         n1.add(n1d);
@@ -383,8 +385,8 @@ public class Menu implements MDIController, LoginController {
         n1.add(n1k);
 
         n2.add(n21);
-            n2.add(n211);
-            n2.add(n212);
+        n2.add(n211);
+        n2.add(n212);
         n2.add(n22);
         n2.add(n23);
         n2.add(n24);

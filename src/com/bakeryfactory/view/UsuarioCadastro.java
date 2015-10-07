@@ -79,7 +79,7 @@ public class UsuarioCadastro extends InternalFrame {
 
         jLabelTitulo.setFont(new java.awt.Font("Tunga", 1, 24)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setText("Cadastros de Usuários");
+        jLabelTitulo.setText("Usuários");
         jPanelHeader.add(jLabelTitulo);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

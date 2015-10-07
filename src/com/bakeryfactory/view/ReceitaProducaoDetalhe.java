@@ -19,11 +19,11 @@ import org.openswing.swing.mdi.client.InternalFrame;
  *
  * @author Claudinei Aparecido Perboni
  */
-public class IngredienteDetalhe extends InternalFrame {
+public class ReceitaProducaoDetalhe extends InternalFrame {
     
     private Connection conn = null;
 
-    public IngredienteDetalhe(Connection conn, FormController dataController) {
+    public ReceitaProducaoDetalhe(Connection conn, FormController dataController) {
         try {
             this.conn = conn;
              initComponents();
@@ -90,7 +90,7 @@ public class IngredienteDetalhe extends InternalFrame {
         txtNome_Ingred1 = new org.openswing.swing.client.LabelControl();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Ingredientes (Inserir/Alterar)");
+        setTitle("Cadastro de Receitas de Produção (Inserir/Alterar)");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -135,7 +135,7 @@ public class IngredienteDetalhe extends InternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         formIngredientes.add(textTipoIngred, gridBagConstraints);
 
-        textCodIngred.setAttributeName("codIngredientes");
+        textCodIngred.setAttributeName();
         textCodIngred.setEnabled(false);
         textCodIngred.setEnabledOnEdit(false);
         textCodIngred.setEnabledOnInsert(false);

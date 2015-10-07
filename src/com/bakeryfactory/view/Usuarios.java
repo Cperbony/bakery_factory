@@ -16,14 +16,14 @@ import org.openswing.swing.mdi.client.InternalFrame;
  *
  * @author Claudinei Aparecido Perboni
  */
-public class Ingredientes extends InternalFrame implements ActionListener{
+public class Usuarios extends InternalFrame implements ActionListener{
 
     private Connection conn = null;
    
     /**
      * Creates new form Ingredientes Panificadora
      */
-    public Ingredientes(Connection conn, IngredientesController ingredController) {
+    public Usuarios(Connection conn, IngredientesController ingredController) {
         this.conn = conn;
         try {
             initComponents();
@@ -84,7 +84,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
 
         jLabelTitulo.setFont(new java.awt.Font("Tunga", 1, 24)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setText("Ingredientes");
+        jLabelTitulo.setText("Cadastro de Ingredientes");
         jPanelHeader.add(jLabelTitulo);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -227,7 +227,7 @@ public class Ingredientes extends InternalFrame implements ActionListener{
     @Override
     public void actionPerformed(java.awt.event.ActionEvent evt) {
        if(evt.getSource() == insertButton1){
-           Ingredientes.this.insertButton1ActionPerformed(evt);
+           Usuarios.this.insertButton1ActionPerformed(evt);
        }
     }
 }

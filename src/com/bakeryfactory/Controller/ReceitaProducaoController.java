@@ -5,8 +5,10 @@
  */
 package com.bakeryfactory.Controller;
 
-import com.bakeryfactory.VO.ClasseProdutoVO;
-import com.bakeryfactory.view.ClasseProduto;
+import com.bakeryfactory.VO.IngredientesVO;
+import com.bakeryfactory.VO.ReceitaProducaoVO;
+import com.bakeryfactory.view.Ingredientes;
+import com.bakeryfactory.view.ReceitaProducao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,32 +34,34 @@ import org.openswing.swing.table.java.GridDataLocator;
  * @email cperbony@gmail.com
  *
  */
-public class ClasseProdutoController extends GridController implements GridDataLocator {
+public class ReceitaProducaoController extends GridController implements GridDataLocator {
 
-    private ClasseProduto gridClasseProduto = null;
+    private ReceitaProducao gridReceitaProducao;
     private Connection conn = null;
-
-    public ClasseProdutoController(Connection conn) {
+   
+    
+    public ReceitaProducaoController(Connection conn) {
+        this.gridReceitaProducao = null;
         this.conn = conn;
-        gridClasseProduto = new ClasseProduto(conn, this);
-        MDIFrame.add(gridClasseProduto, true);
+        gridReceitaProducao = new ReceitaProducao(conn, this);
+        MDIFrame.add(gridReceitaProducao, true);
     }
 
     /**
      * Callback method invoked when the user has double clicked on the selected
-     * row of the gridIngredientes.
+     * row of the grid.
      *
      * @param rowNumber selected row index
      * @param persistentObject v.o. related to the selected row
      */
-    @Override
+   // @Override
     public void doubleClick(int rowNumber, ValueObject persistentObject) {
-        ClasseProdutoVO vo = (ClasseProdutoVO) persistentObject;
-        new ClasseProdutoDetalheController(gridClasseProduto, vo.getCodClasseProd().toString(), conn);
+        ReceitaProducaoVO vo = (ReceitaProducaoVO) persistentObject;
+        new IngredienteDetalheController(gridReceitaProducao, vo.getCodIngredientes().toString(), conn);
     }
 
     /**
-     * Callback method invoked to load data on the gridIngredientes.
+     * Callback method invoked to load data on the grid.
      *
      * @param action fetching versus: PREVIOUS_BLOCK_ACTION, NEXT_BLOCK_ACTION
      * or LAST_BLOCK_ACTION
@@ -66,12 +70,12 @@ public class ClasseProdutoController extends GridController implements GridDataL
      * @param currentSortedColumns sorted columns
      * @param currentSortedVersusColumns ordering versus of sorted columns
      * @param valueObjectType v.o. type
-     * @param otherGridParams other gridIngredientes parameters
+     * @param otherGridParams other grid parameters
      * @return response from the server: an object of type VOListResponse if
      * data loading was successfully completed, or an ErrorResponse onject if
      * some error occours
      */
-    @Override
+    //@Override
     public Response loadData(
             int action,
             int startIndex,
@@ -80,37 +84,37 @@ public class ClasseProdutoController extends GridController implements GridDataL
             ArrayList currentSortedVersusColumns,
             Class valueObjectType,
             Map otherGridParams) {
-
         PreparedStatement stmt = null;
-
         try {
-            String sql = "select "
-                    + "classe_produto.ID_CLASSE_PROD,"
-                    + "classe_produto.DATA_CLASSE_PROD,"
-                    + "classe_produto.NOME_CLASSE_PROD,"
-                    + "classe_produto.TIPO_CLASSE_PROD,"
-                    + "classe_produto.DESCRICAO_CLASSE_PROD"
-                    + "from classe_produto";
+            String sql = "select ingredientes.ID_INGRED,"
+                    + "ingredientes.DATA_INGRED,"
+                    + "ingredientes.TIPO_INGRED,"
+                    + "ingredientes.NOME_INGRED,"
+                    + "ingredientes.PESO_INGRED,"
+                    + "ingredientes.UNIDADE_INGRED,"
+                    + "ingredientes.VALOR_INGRED "
+                    + "from ingredientes";
 
             Vector vals = new Vector();
 
             Map mapa = new HashMap();
-            mapa.put("codClasseProd", "classe_produto.ID_CLASSE_PROD");
-            mapa.put("dataCadastroClasseProd", "classe_produto.DATA_CLASSE_PROD");
-            mapa.put("nomeClasseProd", "classe_produto.NOME_CLASSE_PROD");
-            mapa.put("tipoClasseProd", "classe_produto.TIPO_CLASSE_PROD");
-            mapa.put("descricaoClasseProd", "classe_produto.DESCRICAO_CLASSE_PROD");
+            mapa.put("codIngredientes", "ingredientes.ID_INGRED");
+            mapa.put("dataCadastroIngred", "ingredientes.DATA_INGRED");
+            mapa.put("tipoIngrediente", "ingredientes.TIPO_INGRED");
+            mapa.put("nomeIngrediente", "ingredientes.NOME_INGRED");
+            mapa.put("peso", "ingredientes.PESO_INGRED");
+            mapa.put("unidade", "ingredientes.UNIDADE_INGRED");
+            mapa.put("valor", "ingredientes.VALOR_INGRED");
 
+//verificar se tem colunas a serem filtradas
             if (filteredColumns.size() > 0) {
-                FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeClasseProd");
-                sql += " where classe_produto.NOME_CLASSE_PROD" + filtro[0].getOperator() + "?";
+                FilterWhereClause[] filtro = (FilterWhereClause[]) filteredColumns.get("nomeIngrediente");
+                sql += " where ingredientes.NOME_INGRED " + filtro[0].getOperator() + "?";
                 vals.add(filtro[0].getValue());
             }
 
             if (currentSortedColumns.size() > 0) {
-                sql += " order by " + mapa.get(
-                        currentSortedColumns.get(0).toString()) + " "
-                        + currentSortedVersusColumns.get(0);
+                sql += " order by " + mapa.get(currentSortedColumns.get(0).toString()) + " " + currentSortedVersusColumns.get(0);
             }
 
             stmt = conn.prepareStatement(sql);
@@ -122,15 +126,17 @@ public class ClasseProdutoController extends GridController implements GridDataL
             ResultSet rset = stmt.executeQuery();
 
             ArrayList list = new ArrayList();
-            ClasseProdutoVO vo = null;
+            IngredientesVO vo = null;
             while (rset.next()) {
                 System.out.println();
-                vo = new ClasseProdutoVO();
-                vo.setCodClasseProd(rset.getInt(1));
-                vo.setDataCadastroClasseProd(rset.getDate(2));
-                vo.setNomeClasseProd(rset.getString(3));
-                vo.setTipoClasseProd(rset.getString(4));
-                vo.setDescricaoClasseProd(rset.getString(5));
+                vo = new IngredientesVO();
+                vo.setCodIngredientes(rset.getInt(1));
+                vo.setDataCadastroIngred(rset.getDate(2));
+                vo.setTipoIngrediente(rset.getString(3));
+                vo.setNomeIngrediente(rset.getString(4));
+                vo.setPeso(rset.getDouble(5));
+                vo.setUnidade(rset.getInt(6));
+                vo.setValor(rset.getDouble(7));
 
                 list.add(vo);
             }
@@ -147,22 +153,21 @@ public class ClasseProdutoController extends GridController implements GridDataL
     }
 
     /**
-     * Method invoked when the user has clicked on delete button and the
-     * gridIngredientes is in READONLY mode.
+     * Method invoked when the user has clicked on delete button and the grid is
+     * in READONLY mode.
      *
      * @param persistentObjects value objects to delete (related to the
      * currently selected rows)
      * @return an ErrorResponse value object in case of errors, VOResponse if
      * the operation is successfully completed
      */
-    @Override
     public Response deleteRecords(ArrayList persistentObjects) throws Exception {
         PreparedStatement stmt = null;
         try {
-            stmt = conn.prepareStatement("DELETE FROM classe_produto WHERE ID_CLASSE_PROD = ?");
+            stmt = conn.prepareStatement("DELETE FROM ingredientes WHERE ID_INGRED = ?");
             for (Object persistentObject : persistentObjects) {
-                ClasseProdutoVO vo = (ClasseProdutoVO) persistentObject;
-                stmt.setString(1, vo.getCodClasseProd().toString());
+                IngredientesVO vo = (IngredientesVO) persistentObject;
+                stmt.setString(1, vo.getCodIngredientes().toString());
                 stmt.execute();
             }
             return new VOResponse(new Boolean(true));
