@@ -9,7 +9,7 @@ import com.bakeryfactory.VO.IngredientesVO;
 import com.bakeryfactory.view.IngredienteDetalhe;
 import com.bakeryfactory.view.Ingredientes;
 import com.bakeryfactory.view.ReceitaProducao;
-import com.bakeryfactory.view.ReceitaProducaoDetalhe;
+import com.bakeryfactory.view.detalhe.ReceitaProducaoDetalhe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

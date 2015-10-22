@@ -101,7 +101,6 @@ public class ClasseProdutoDetalhe extends InternalFrame {
         jPanel1.add(saveButton);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
@@ -127,7 +126,7 @@ public class ClasseProdutoDetalhe extends InternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         formDetalheClasseProd.add(textNomeTipoClasse, gridBagConstraints);
 
-        textCodClasse.setAttributeName();
+        textCodClasse.setAttributeName("codClasseProd");
         textCodClasse.setEnabled(false);
         textCodClasse.setEnabledOnEdit(false);
         textCodClasse.setEnabledOnInsert(false);

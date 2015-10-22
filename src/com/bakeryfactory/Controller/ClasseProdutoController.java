@@ -89,8 +89,7 @@ public class ClasseProdutoController extends GridController implements GridDataL
                     + "classe_produto.DATA_CLASSE_PROD,"
                     + "classe_produto.NOME_CLASSE_PROD,"
                     + "classe_produto.TIPO_CLASSE_PROD,"
-                    + "classe_produto.DESCRICAO_CLASSE_PROD"
-                    + "from classe_produto";
+                    + "classe_produto.DESCRICAO_CLASSE_PROD from classe_produto";
 
             Vector vals = new Vector();
 

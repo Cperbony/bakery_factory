@@ -6,6 +6,7 @@
 
 package com.bakeryfactory.VO;
 
+import java.sql.Date;
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
 
 /**
@@ -15,6 +16,15 @@ import org.openswing.swing.message.receive.java.ValueObjectImpl;
  * @email cperbony@gmail.com  
  * 
  */
-public class ReceitaProducaoVO extends ValueObjectImpl{
+public class FornecedorVO extends ValueObjectImpl{
+    
+    private String idFornecedor;
+    private Date dataCadastroFornecedor;
+    private String nomeFornecedor;
+    private String razaoSocialFornecedor;
+    private String IEFornecedor;
+    private String observacaoFornecedor;
+    
+  
 
 }

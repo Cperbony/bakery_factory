@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bakeryfactory.view;
+package com.bakeryfactory.view.detalhe;
 
 import com.bakeryfactory.Controller.IngredienteDetalheController;
 import com.bakeryfactory.view.Ingredientes;

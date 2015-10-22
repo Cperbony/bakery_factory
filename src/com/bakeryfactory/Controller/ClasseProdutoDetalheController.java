@@ -63,9 +63,8 @@ public class ClasseProdutoDetalheController extends FormController {
                     + "classe_produto.DATA_CLASSE_PROD,"
                     + "classe_produto.NOME_CLASSE_PROD,"
                     + "classe_produto.TIPO_CLASSE_PROD,"
-                    + "classe_produto.DESCRICAO_CLASSE_PROD"
-                    + "from classe_produto where ID_CLASSE_PROD = "
-                    + pk);
+                    + "classe_produto.DESCRICAO_CLASSE_PROD "
+                    + "from classe_produto where ID_CLASSE_PROD = " + pk);
 
             // JOptionPane.showMessageDialog(null,"Comando LoadData");
             if (rset.next()) {

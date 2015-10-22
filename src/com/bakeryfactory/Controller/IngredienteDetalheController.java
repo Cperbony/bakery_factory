@@ -204,7 +204,7 @@ public class IngredienteDetalheController extends FormController {
                 + "PESO_INGRED = ?,"
                 + "UNIDADE_INGRED = ?,"
                 + "VALOR_INGRED = ?"
-                + "where ID_INGRED =?";
+                + "where ID_INGRED = ?";
     }
 
     /**

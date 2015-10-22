@@ -7,6 +7,9 @@
       <Dimension value="[900, 200]"/>
     </Property>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Cadastro de Receitas"/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -57,7 +60,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ingredientes"/>
+            <Property name="text" type="java.lang.String" value="Cadastro de Receitas"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -137,7 +140,7 @@
         <Property name="verticalGap" type="int" value="0"/>
       </Layout>
       <SubComponents>
-        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerColumn1">
+        <Component class="org.openswing.swing.table.columns.client.IntegerColumn" name="integerColumnCodReceita">
           <Properties>
             <Property name="columnFilterable" type="boolean" value="true"/>
             <Property name="columnName" type="java.lang.String" value="codIngredientes"/>
@@ -145,7 +148,7 @@
             <Property name="headerColumnName" type="java.lang.String" value="C&#xf3;digo"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateColumn1">
+        <Component class="org.openswing.swing.table.columns.client.DateColumn" name="dateReceita">
           <Properties>
             <Property name="columnName" type="java.lang.String" value="dataCadastroIngred"/>
             <Property name="columnSortable" type="boolean" value="true"/>
@@ -154,7 +157,7 @@
             <Property name="headerColumnName" type="java.lang.String" value="Data Cadastro"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textColumn2">
+        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="txtNomeReceita">
           <Properties>
             <Property name="columnFilterable" type="boolean" value="true"/>
             <Property name="columnName" type="java.lang.String" value="tipoIngrediente"/>
@@ -162,7 +165,7 @@
             <Property name="columnSortable" type="boolean" value="true"/>
             <Property name="editableOnEdit" type="boolean" value="true"/>
             <Property name="editableOnInsert" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Tipo Ingredientes"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Nome Receita"/>
             <Property name="preferredWidth" type="int" value="255"/>
           </Properties>
         </Component>
@@ -174,39 +177,14 @@
             <Property name="columnSortable" type="boolean" value="true"/>
             <Property name="editableOnEdit" type="boolean" value="true"/>
             <Property name="editableOnInsert" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Nome Ingredientes"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Tipo Receita"/>
             <Property name="preferredWidth" type="int" value="255"/>
           </Properties>
         </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalColumn1">
+        <Component class="org.openswing.swing.table.columns.client.TextColumn" name="textColumn2">
           <Properties>
-            <Property name="columnFilterable" type="boolean" value="true"/>
-            <Property name="columnName" type="java.lang.String" value="peso"/>
-            <Property name="decimals" type="int" value="2"/>
-            <Property name="editableOnEdit" type="boolean" value="true"/>
-            <Property name="editableOnInsert" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Peso"/>
-          </Properties>
-        </Component>
-        <Component class="org.openswing.swing.table.columns.client.DecimalColumn" name="decimalColumn2">
-          <Properties>
-            <Property name="columnName" type="java.lang.String" value="unidade"/>
-            <Property name="columnSortable" type="boolean" value="true"/>
-            <Property name="editableOnEdit" type="boolean" value="true"/>
-            <Property name="editableOnInsert" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Unidades"/>
-          </Properties>
-        </Component>
-        <Component class="org.openswing.swing.table.columns.client.CurrencyColumn" name="currencyColumn1">
-          <Properties>
-            <Property name="columnName" type="java.lang.String" value="valor"/>
-            <Property name="currencySymbol" type="java.lang.String" value=""/>
-            <Property name="decimals" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="4" type="code"/>
-            </Property>
-            <Property name="editableOnEdit" type="boolean" value="true"/>
-            <Property name="editableOnInsert" type="boolean" value="true"/>
-            <Property name="headerColumnName" type="java.lang.String" value="Valor R$"/>
+            <Property name="headerColumnName" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
+            <Property name="preferredWidth" type="int" value="255"/>
           </Properties>
         </Component>
       </SubComponents>

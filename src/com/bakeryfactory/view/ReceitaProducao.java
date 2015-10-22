@@ -65,13 +65,11 @@ public class ReceitaProducao extends InternalFrame implements ActionListener{
         importButton1 = new org.openswing.swing.client.ImportButton();
         navigatorBarIngred = new org.openswing.swing.client.NavigatorBar();
         gridReceitaProducao = new org.openswing.swing.client.GridControl();
-        integerColumn1 = new org.openswing.swing.table.columns.client.IntegerColumn();
-        dateColumn1 = new org.openswing.swing.table.columns.client.DateColumn();
-        textColumn2 = new org.openswing.swing.table.columns.client.TextColumn();
+        integerColumnCodReceita = new org.openswing.swing.table.columns.client.IntegerColumn();
+        dateReceita = new org.openswing.swing.table.columns.client.DateColumn();
+        txtNomeReceita = new org.openswing.swing.table.columns.client.TextColumn();
         textColumn1 = new org.openswing.swing.table.columns.client.TextColumn();
-        decimalColumn1 = new org.openswing.swing.table.columns.client.DecimalColumn();
-        decimalColumn2 = new org.openswing.swing.table.columns.client.DecimalColumn();
-        currencyColumn1 = new org.openswing.swing.table.columns.client.CurrencyColumn();
+        textColumn2 = new org.openswing.swing.table.columns.client.TextColumn();
 
         setTitle("Cadastro de Ingredientes");
         setPreferredSize(new java.awt.Dimension(900, 200));
@@ -85,7 +83,7 @@ public class ReceitaProducao extends InternalFrame implements ActionListener{
 
         jLabelTitulo.setFont(new java.awt.Font("Tunga", 1, 24)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setText("Ingredientes");
+        jLabelTitulo.setText("Cadastro de Receitas");
         jPanelHeader.add(jLabelTitulo);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -129,28 +127,28 @@ public class ReceitaProducao extends InternalFrame implements ActionListener{
         gridReceitaProducao.setValueObjectClassName("com.bakeryfactory.VO.IngredientesVO");
         gridReceitaProducao.getColumnContainer().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        integerColumn1.setColumnFilterable(true);
-        integerColumn1.setColumnName("codIngredientes");
-        integerColumn1.setColumnSortable(true);
-        integerColumn1.setHeaderColumnName("Código");
-        gridReceitaProducao.getColumnContainer().add(integerColumn1);
+        integerColumnCodReceita.setColumnFilterable(true);
+        integerColumnCodReceita.setColumnName("codIngredientes");
+        integerColumnCodReceita.setColumnSortable(true);
+        integerColumnCodReceita.setHeaderColumnName("Código");
+        gridReceitaProducao.getColumnContainer().add(integerColumnCodReceita);
 
-        dateColumn1.setColumnName("dataCadastroIngred");
-        dateColumn1.setColumnSortable(true);
-        dateColumn1.setEditableOnEdit(true);
-        dateColumn1.setEditableOnInsert(true);
-        dateColumn1.setHeaderColumnName("Data Cadastro");
-        gridReceitaProducao.getColumnContainer().add(dateColumn1);
+        dateReceita.setColumnName("dataCadastroIngred");
+        dateReceita.setColumnSortable(true);
+        dateReceita.setEditableOnEdit(true);
+        dateReceita.setEditableOnInsert(true);
+        dateReceita.setHeaderColumnName("Data Cadastro");
+        gridReceitaProducao.getColumnContainer().add(dateReceita);
 
-        textColumn2.setColumnFilterable(true);
-        textColumn2.setColumnName("tipoIngrediente");
-        textColumn2.setColumnRequired(false);
-        textColumn2.setColumnSortable(true);
-        textColumn2.setEditableOnEdit(true);
-        textColumn2.setEditableOnInsert(true);
-        textColumn2.setHeaderColumnName("Tipo Ingredientes");
-        textColumn2.setPreferredWidth(255);
-        gridReceitaProducao.getColumnContainer().add(textColumn2);
+        txtNomeReceita.setColumnFilterable(true);
+        txtNomeReceita.setColumnName("tipoIngrediente");
+        txtNomeReceita.setColumnRequired(false);
+        txtNomeReceita.setColumnSortable(true);
+        txtNomeReceita.setEditableOnEdit(true);
+        txtNomeReceita.setEditableOnInsert(true);
+        txtNomeReceita.setHeaderColumnName("Nome Receita");
+        txtNomeReceita.setPreferredWidth(255);
+        gridReceitaProducao.getColumnContainer().add(txtNomeReceita);
 
         textColumn1.setAutoFitColumn(true);
         textColumn1.setColumnFilterable(true);
@@ -158,32 +156,13 @@ public class ReceitaProducao extends InternalFrame implements ActionListener{
         textColumn1.setColumnSortable(true);
         textColumn1.setEditableOnEdit(true);
         textColumn1.setEditableOnInsert(true);
-        textColumn1.setHeaderColumnName("Nome Ingredientes");
+        textColumn1.setHeaderColumnName("Tipo Receita");
         textColumn1.setPreferredWidth(255);
         gridReceitaProducao.getColumnContainer().add(textColumn1);
 
-        decimalColumn1.setColumnFilterable(true);
-        decimalColumn1.setColumnName("peso");
-        decimalColumn1.setDecimals(2);
-        decimalColumn1.setEditableOnEdit(true);
-        decimalColumn1.setEditableOnInsert(true);
-        decimalColumn1.setHeaderColumnName("Peso");
-        gridReceitaProducao.getColumnContainer().add(decimalColumn1);
-
-        decimalColumn2.setColumnName("unidade");
-        decimalColumn2.setColumnSortable(true);
-        decimalColumn2.setEditableOnEdit(true);
-        decimalColumn2.setEditableOnInsert(true);
-        decimalColumn2.setHeaderColumnName("Unidades");
-        gridReceitaProducao.getColumnContainer().add(decimalColumn2);
-
-        currencyColumn1.setColumnName("valor");
-        currencyColumn1.setCurrencySymbol("");
-        currencyColumn1.setDecimals(4);
-        currencyColumn1.setEditableOnEdit(true);
-        currencyColumn1.setEditableOnInsert(true);
-        currencyColumn1.setHeaderColumnName("Valor R$");
-        gridReceitaProducao.getColumnContainer().add(currencyColumn1);
+        textColumn2.setHeaderColumnName("Descrição");
+        textColumn2.setPreferredWidth(255);
+        gridReceitaProducao.getColumnContainer().add(textColumn2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -192,6 +171,8 @@ public class ReceitaProducao extends InternalFrame implements ActionListener{
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(gridReceitaProducao, gridBagConstraints);
+
+        getAccessibleContext().setAccessibleName("Cadastro de Receitas");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -204,17 +185,14 @@ public class ReceitaProducao extends InternalFrame implements ActionListener{
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.openswing.swing.table.columns.client.CurrencyColumn currencyColumn1;
-    private org.openswing.swing.table.columns.client.DateColumn dateColumn1;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalColumn1;
-    private org.openswing.swing.table.columns.client.DecimalColumn decimalColumn2;
+    private org.openswing.swing.table.columns.client.DateColumn dateReceita;
     private org.openswing.swing.client.DeleteButton deleteButton1;
     private org.openswing.swing.client.EditButton editButton1;
     private org.openswing.swing.client.ExportButton exportButton1;
     private org.openswing.swing.client.GridControl gridReceitaProducao;
     private org.openswing.swing.client.ImportButton importButton1;
     private org.openswing.swing.client.InsertButton insertButton1;
-    private org.openswing.swing.table.columns.client.IntegerColumn integerColumn1;
+    private org.openswing.swing.table.columns.client.IntegerColumn integerColumnCodReceita;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelButtons;
@@ -223,6 +201,7 @@ public class ReceitaProducao extends InternalFrame implements ActionListener{
     private org.openswing.swing.client.ReloadButton reloadButton1;
     private org.openswing.swing.table.columns.client.TextColumn textColumn1;
     private org.openswing.swing.table.columns.client.TextColumn textColumn2;
+    private org.openswing.swing.table.columns.client.TextColumn txtNomeReceita;
     // End of variables declaration//GEN-END:variables
 
     @Override

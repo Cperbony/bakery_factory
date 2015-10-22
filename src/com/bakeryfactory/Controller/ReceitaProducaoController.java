@@ -6,7 +6,7 @@
 package com.bakeryfactory.Controller;
 
 import com.bakeryfactory.VO.IngredientesVO;
-import com.bakeryfactory.VO.ReceitaProducaoVO;
+import com.bakeryfactory.VO.ReceitaVO;
 import com.bakeryfactory.view.Ingredientes;
 import com.bakeryfactory.view.ReceitaProducao;
 import java.sql.Connection;
@@ -56,7 +56,7 @@ public class ReceitaProducaoController extends GridController implements GridDat
      */
    // @Override
     public void doubleClick(int rowNumber, ValueObject persistentObject) {
-        ReceitaProducaoVO vo = (ReceitaProducaoVO) persistentObject;
+        ReceitaVO vo = (ReceitaVO) persistentObject;
         new IngredienteDetalheController(gridReceitaProducao, vo.getCodIngredientes().toString(), conn);
     }
 
